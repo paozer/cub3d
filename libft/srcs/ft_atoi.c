@@ -6,7 +6,7 @@
 /*   By: pramella <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/07 18:11:06 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/15 14:59:23 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/05 15:47:45 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ int		ft_atoi(const char *str)
 	i = 0;
 	sign = -1;
 	nb = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+	while (ft_isspace(str[i]))
 		++i;
 	if (str[i] == '+')
 		++i;
