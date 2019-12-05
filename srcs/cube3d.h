@@ -6,13 +6,15 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/04 16:41:35 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/05 01:31:44 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
+
+# include <fcntl.h>
 
 typedef struct	s_colour
 {
@@ -36,5 +38,8 @@ typedef struct	s_map
 	t_colour	*floor_ptr;
 	t_colour	*ceiling_ptr;
 }				t_map;
+
+int		ft_check_map(void);
+int		ft_parsing(void);
 
 #endif
