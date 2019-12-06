@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/05 21:16:58 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/06 13:52:13 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,8 @@
 
 # include <fcntl.h>
 # include <stddef.h>
-# include "parsing/parsing.h"
+
+# include <stdio.h>
 
 typedef struct	s_colour
 {
@@ -48,5 +49,7 @@ typedef struct	s_map
 	t_colour	*floor_ptr;
 	t_colour	*ceiling_ptr;
 }				t_map;
+
+# include "parsing/parsing.h"
 
 #endif
