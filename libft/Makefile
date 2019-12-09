@@ -38,6 +38,11 @@ SRCS	= $(SRCS_DIR)ft_atoi.c\
 		  $(SRCS_DIR)ft_memcpy.c\
 		  $(SRCS_DIR)ft_memmove.c\
 		  $(SRCS_DIR)ft_memset.c\
+		  $(SRCS_DIR)ft_printf.c\
+		  $(SRCS_DIR)ft_printf_conversions.c\
+		  $(SRCS_DIR)ft_printf_conversions2.c\
+		  $(SRCS_DIR)ft_printf_format.c\
+		  $(SRCS_DIR)ft_printf_utils.c\
 		  $(SRCS_DIR)ft_putchar_fd.c\
 		  $(SRCS_DIR)ft_putendl_fd.c\
 		  $(SRCS_DIR)ft_putnbr_fd.c\
