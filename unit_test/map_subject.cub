@@ -1,19 +1,13 @@
-R 1920         1080
- 
-NO ./path_to_the_north_texture
-NO
+R 200 1080
 
-SO./path_to_the_south_texture
-SOO
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-kkk
+NO ../textures/barrel_wood.xpm
+SO ../textures/barrel_wood.xpm
+WE ../textures/barrel_wood.xpm
+EA ../textures/barrel_wood.xpm
+S ../textures/barrel_wood.xpm
 
-S ./path_to_the_sprite_texture
-
-F220,         100,                   0
-
-C 22530,1,0
+F 3,100,0
+C 225,1,0
 
 11111111111111111111111111111
 10000000001100000000000000001
