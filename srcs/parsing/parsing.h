@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 20:30:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 13:11:02 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 18:16:42 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,5 +20,7 @@
 
 int		ft_parsing(char *params, t_map **map);
 t_map	*ft_init_map(void);
+void	ft_parsing_check(t_map **map);
+void	ft_print_error(int flag, void *arg);
 
 #endif
