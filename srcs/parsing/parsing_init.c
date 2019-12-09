@@ -6,14 +6,14 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 16:24:42 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 20:46:46 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static t_res	*ft_init_res(void)
+static t_res		*ft_init_res(void)
 {
 	t_res *ptr;
 
@@ -38,7 +38,7 @@ static t_textures	*ft_init_textures(void)
 	return (ptr);
 }
 
-static t_color *ft_init_color(void)
+static t_color		*ft_init_color(void)
 {
 	t_color *ptr;
 
@@ -50,7 +50,7 @@ static t_color *ft_init_color(void)
 	return (ptr);
 }
 
-t_map	*ft_init_map(void)
+t_map				*ft_init_map(void)
 {
 	t_map *map;
 

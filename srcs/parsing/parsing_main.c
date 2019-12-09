@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parsing.c                                        .::    .:/ .      .::   */
+/*   parsing_main.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 18:43:02 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 21:57:24 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	ft_set_resolution(char *line, t_map *map)
+static void		ft_set_resolution(char *line, t_map *map)
 {
 	int i;
 
@@ -28,10 +28,10 @@ static void	ft_set_resolution(char *line, t_map *map)
 	map->res_ptr->y = ft_atoi(line + i);
 }
 
-static char	*ft_set_paths(char *line)
+static char		*ft_set_paths(char *line)
 {
-	int	i;
-	char *str;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (line[i] && ft_isspace(line[i]))
@@ -40,10 +40,10 @@ static char	*ft_set_paths(char *line)
 	return (str);
 }
 
-static void ft_set_color(char *line, t_map *map, int flag)
+static void		ft_set_color(char *line, t_map *map, int flag)
 {
-	int i;
-	t_color *tmp;
+	int		i;
+	t_color	*tmp;
 
 	i = 0;
 	tmp = (flag == 0) ? map->floor_ptr : map->ceiling_ptr;
@@ -64,23 +64,22 @@ static void ft_set_color(char *line, t_map *map, int flag)
 	tmp->blue = ft_atoi(line + i);
 }
 
-int		ft_parsing(char *params, t_map **map)
+int				ft_parsing(char *params, t_map **map)
 {
 	int		i;
 	int		fd;
-	int		len;
 	char	*line;
 
 	if ((fd = open(params, O_RDONLY)) == -1)
 		ft_print_error(2, params);
-	len = ft_strlen(params) - 4;
-	(ft_strncmp(params + len, ".cub", 4) != 0) ? ft_print_error(3, params) : 1;
+	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
+		ft_print_error(3, params) : 1;
 	*map = ft_init_map();
 	while (get_next_line(fd, &line) == 1)
 	{
 		i = 0;
 		while (line[i] && ft_isspace(line[i]) == 1)
-				++i;
+			++i;
 		(line[i] == 'R') ? ft_set_resolution(line + i + 1, *map) : 1;
 		(line[i] == 'N' && line[i + 1] == 'O') ? ((*map)->text_ptr->north = ft_set_paths(line + 2)) : 0;
 		(line[i] == 'S' && line[i + 1] == 'O') ? ((*map)->text_ptr->south = ft_set_paths(line + 2)) : 0;
@@ -89,8 +88,11 @@ int		ft_parsing(char *params, t_map **map)
 		(line[i] == 'S' && line[i + 1] != 'O') ? ((*map)->text_ptr->sprite = ft_set_paths(line + 1)) : 0;
 		(line[i] == 'F') ? ft_set_color(line + 2, *map, 0) : 0;
 		(line[i] == 'C') ? ft_set_color(line + 2, *map, 1) : 0;
+		if (ft_isdigit(line[i])
+			break ;
 		free(line);
 	}
+	(*map)->map = ft_set_map(fd, &line);
 	if (close(fd) == -1)
 		return (-1);
 	ft_parsing_check(map);

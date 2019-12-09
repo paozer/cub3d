@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 20:30:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 18:58:07 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 21:37:17 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,17 +40,16 @@ typedef struct	s_res
 
 typedef struct	s_map
 {
-	char		*map;
+	char		**map;
 	t_res		*res_ptr;
 	t_textures	*text_ptr;
 	t_color		*floor_ptr;
 	t_color		*ceiling_ptr;
 }				t_map;
 
-int		ft_parsing(char *params, t_map **map);
-t_map	*ft_init_map(void);
-void	ft_parsing_check(t_map **map);
-void	ft_print_error(int flag, void *arg);
-
+int				ft_parsing(char *params, t_map **map);
+t_map			*ft_init_map(void);
+void			ft_parsing_check(t_map **map);
+void			ft_print_error(int flag, void *arg);
 
 #endif
