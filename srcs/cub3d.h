@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/06 13:52:13 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/09 17:19:57 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,15 +16,18 @@
 
 # include <fcntl.h>
 # include <stddef.h>
+# include <unistd.h>
+# include "../libft/includes/libft.h"
+# include "../libft/includes/ft_printf.h"
 
 # include <stdio.h>
 
-typedef struct	s_colour
+typedef struct	s_color
 {
 	int			red;
 	int			green;
 	int			blue;
-}				t_colour;
+}				t_color;
 
 typedef struct	s_textures
 {
@@ -46,8 +49,8 @@ typedef struct	s_map
 	char		*map;
 	t_res		*res_ptr;
 	t_textures	*text_ptr;
-	t_colour	*floor_ptr;
-	t_colour	*ceiling_ptr;
+	t_color		*floor_ptr;
+	t_color		*ceiling_ptr;
 }				t_map;
 
 # include "parsing/parsing.h"
