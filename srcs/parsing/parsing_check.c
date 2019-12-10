@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 20:20:55 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/10 15:55:40 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,8 @@ void		ft_print_error(int flag, void *arg)
 				*((int *)arg)) : 1;
 	(flag == 2) ? ft_printf("File \"%s\" does not exist.\n", arg) : 1;
 	(flag == 3) ? ft_printf("Path extension \"%s\" is not valid.\n", arg) : 1;
+	(flag == 4) ? ft_printf("Map character \"%c\" is not valid.\n",
+				*((char *)arg)) : 1;
 	exit(0);
 }
 
@@ -47,6 +49,27 @@ static void	ft_path_check(char *path)
 		ft_print_error(3, path);
 }
 
+/* check back if spaces in the map are allowed */
+
+static void	ft_map_check(char **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (!(ft_strchr("012NSEW", map[i][j]) || ft_isspace(map[i][j])))
+				ft_print_error(4, &map[i][j]);
+			++j;
+		}
+		++i;
+	}
+}
+
 void		ft_parsing_check(t_map **map)
 {
 	((*map)->res_ptr->x <= 0 || (*map)->res_ptr->y <= 0) ?
@@ -58,4 +81,5 @@ void		ft_parsing_check(t_map **map)
 	ft_path_check((*map)->text_ptr->sprite);
 	ft_color_check((*map)->floor_ptr);
 	ft_color_check((*map)->ceiling_ptr);
+	ft_map_check((*map)->map);
 }
