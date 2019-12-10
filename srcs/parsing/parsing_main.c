@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 21:57:24 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/10 11:55:02 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -88,7 +88,7 @@ int				ft_parsing(char *params, t_map **map)
 		(line[i] == 'S' && line[i + 1] != 'O') ? ((*map)->text_ptr->sprite = ft_set_paths(line + 1)) : 0;
 		(line[i] == 'F') ? ft_set_color(line + 2, *map, 0) : 0;
 		(line[i] == 'C') ? ft_set_color(line + 2, *map, 1) : 0;
-		if (ft_isdigit(line[i])
+		if (ft_isdigit(line[i]))
 			break ;
 		free(line);
 	}
