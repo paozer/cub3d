@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:11:33 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 15:55:21 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/10 16:21:52 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,6 +46,7 @@ void	ft_print_map(char **map)
 int		main(int argc, char **argv)
 {
 	t_map *map;
+	(void)argc;
 
 	ft_parsing(argv[1], &map);
 	ft_print_parsing(map);
