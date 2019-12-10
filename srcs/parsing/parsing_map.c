@@ -6,29 +6,45 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 22:36:53 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/10 13:33:30 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	ft_realloc()
+static char	**ft_realloc(char **str, int size)
 {
+	int		i;
+	size_t	len;
+	char	**new_str;
 
+	i = 0;
+	if (!(new_str = malloc(sizeof(*new_str) * (size + 1))))
+		return (NULL);
+	while (i < size)
+	{
+		len = ft_strlen(str[i]);
+		if (!(new_str[i] = malloc(sizeof(**new_str) * len)))
+			return (NULL);
+		ft_memcpy(new_str[i], str[i], len);
+		free(str[i]);
+		++i;
+	}
+	free(str);
+	return (new_str);
 }
 
-void	ft_set_map(int fd, char **line)
+char		**ft_set_map(int fd, char **line)
 {
 	int		i;
 	char	**map;
 
 	i = 1;
-	if (!(map = malloc(sizeof(map) * 2)))
-		return ;
+	if (!(map = malloc(sizeof(*map) * 2)))
+		return (NULL);
 	map[0] = *line;
 	while (get_next_line(fd, &map[i]) == 1)
-	{
-
-	}
+		map = ft_realloc(map, ++i);
+	return (map);
 }
