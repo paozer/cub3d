@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 20:30:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 11:35:02 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/10 15:49:02 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,7 @@ typedef struct	s_res
 typedef struct	s_map
 {
 	char		**map;
+	int			**map_i;
 	t_res		*res_ptr;
 	t_textures	*text_ptr;
 	t_color		*floor_ptr;
