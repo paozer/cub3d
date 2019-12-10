@@ -11,30 +11,41 @@
 #                                                         /                    #
 # **************************************************************************** #
 
-SRCS	=
+HEADERS	= $(LIBFT)includes/libft.h\
+		  $(SRCS_D)cub3d.h\
+		  $(SRCS_D)/parsing/parsing.h\
+
+SRCS_D	= srcs/
+
+SRCS	= $(SRCS_D)parsing/parsing_check.c\
+		  $(SRCS_D)parsing/parsing_init.c\
+		  $(SRCS_D)parsing/parsing_main.c\
+		  $(SRCS_D)parsing/parsing_map.c\
+		  $(SRCS_D)cub3d.c\
 
 OBJS	= $(SRCS:.c=.o)
-
-HEADER	=
 
 LIBFT	= libft/
 
 LIBNAME = libft.a
 
+NAME	= cub3d
+
 CC		= gcc
 
-CFLAGS	= -Wall -Werror -Wextra -I $(HEADER)
+CFLAGS	= -Wall -Werror -Wextra
 
 RM		= rm -f
 
-%.o: 		%.c $(HEADER)
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+%.o: 		%.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			make -C $(LIBFT)
 			mv $(LIBFT)$(LIBNAME) .
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBNAME)
 
 clean:
 			$(RM) $(OBJS)
@@ -42,7 +53,7 @@ clean:
 
 fclean: 	clean
 			$(RM) $(NAME)
-			cd $(LIBFT) && make fclean
+			$(RM) $(LIBNAME)
 
 re: 		fclean all
 
