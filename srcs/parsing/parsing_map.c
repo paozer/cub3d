@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 18:11:46 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 19:53:09 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,11 +38,9 @@ static int	**ft_set_int_map(char **map)
 {
 	int i;
 	int j;
-	int k;
 	int **map_i;
 
 	i = 0;
-	k = 0;
 	while (map[i])
 		++i;
 	if (!(map_i = malloc(sizeof(*map_i) * i)))
@@ -51,10 +49,14 @@ static int	**ft_set_int_map(char **map)
 	while (map[i])
 	{
 		j = 0;
-		map_i[i] = malloc(sizeof(**map_i) * ft_strlen(map[i]));
+		if (!(map_i[i] = malloc(sizeof(**map_i) * ft_strlen(map[i]))))
+			return (NULL);
 		while (map[i][j])
 		{
-			map_i[i][j] = map[i][j] - 48;
+			if (ft_strchr("NSWE", map[i][j]))
+				map_i[i][j] = 0;
+			else
+				map_i[i][j] = map[i][j] - 48;
 			++j;
 		}
 		++i;
