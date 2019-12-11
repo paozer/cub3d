@@ -1,6 +1,6 @@
 # cub3d #
-install minilibx https://achedeuzot.me/2014/12/20/installer-la-minilibx/
-raycasting tutorial https://lodev.org/cgtutor/raycasting.html
+* install minilibx https://achedeuzot.me/2014/12/20/installer-la-minilibx/
+* raycasting tutorial https://lodev.org/cgtutor/raycasting.html
 
 ### Parsing ###
 * use get_next_line to read arguments from .cub file
