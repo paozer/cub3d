@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 19:03:02 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 19:34:31 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,7 +52,8 @@ static t_color		*ft_init_color(void)
 
 void				ft_init_player(t_map **map, int x, int y)
 {
-	if (
+	if ((*map)->player->set_flag == 1)
+		ft_print_error(6, (void *)0);
 	(*map)->player->set_flag = 1;
 	(*map)->player->pos_x = x;
 	(*map)->player->pos_y = y;
@@ -77,6 +78,9 @@ t_map				*ft_init_map(void)
 	if (!(map = malloc(sizeof(*map))))
 		return (NULL);
 	map->map = NULL;
+	if (!(map->player = malloc(sizeof(*(map->player)))))
+		return (NULL);
+	map->player->set_flag = 0;
 	map->res_ptr = ft_init_res();
 	map->text_ptr = ft_init_textures();
 	map->floor_ptr = ft_init_color();

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 18:47:46 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 19:28:28 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,9 @@ void		ft_print_error(int flag, void *arg)
 	(flag == 3) ? ft_printf("Path extension \"%s\" is not valid.\n", arg) : 1;
 	(flag == 4) ? ft_printf("Map character \"%c\" is not valid.\n",
 				*((char *)arg)) : 1;
-	(flag == 5) ? ft_printf("Map is not enclosed by walls in row %d.\n", *((int *)arg) + 1) : 1;
+	(flag == 5) ? ft_printf("Map is not enclosed by walls in row %d.\n",
+				*((int *)arg) + 1) : 1;
+	(flag == 6) ? ft_printf("Multiple start positions for player.\n") : 1;
 	exit(0);
 }
 
