@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 20:30:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 15:49:02 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 18:49:09 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,10 +38,22 @@ typedef struct	s_res
 	int			y;
 }				t_res;
 
+typedef struct	s_player
+{
+	int			pos_x;
+	int			pos_y;
+	int			dir_x;
+	int			dir_y;
+	int			set_flag;
+}				t_player;
+
 typedef struct	s_map
 {
 	char		**map;
 	int			**map_i;
+	int			map_width;
+	int			map_height;
+	t_player	player;
 	t_res		*res_ptr;
 	t_textures	*text_ptr;
 	t_color		*floor_ptr;
@@ -52,6 +64,6 @@ int				ft_parsing(char *params, t_map **map);
 t_map			*ft_init_map(void);
 void			ft_parsing_check(t_map **map);
 void			ft_print_error(int flag, void *arg);
-char			**ft_set_map(int fd, char **line);
+void			ft_set_map(t_map **map, int fd, char **line);
 
 #endif

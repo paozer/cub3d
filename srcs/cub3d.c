@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:11:33 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 16:21:52 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 18:10:08 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,6 +28,8 @@ void	ft_print_parsing(t_map *map)
 	ft_printf("map->ceiling_ptr = \t RGB (%d, %d, %d)\n",
 					map->ceiling_ptr->red, map->ceiling_ptr->green,
 					map->ceiling_ptr->blue);
+	ft_printf("map->map_width = \t %d\n", map->map_width);
+	ft_printf("map->map_height = \t %d\n", map->map_height);
 }
 
 void	ft_print_map(char **map)
@@ -38,7 +40,28 @@ void	ft_print_map(char **map)
 	ft_printf("\n");
 	while (map[i])
 	{
-		ft_printf("map[%2d] [%s]\n", i, map[i]);
+		printf("map[%2d] [%s]\n", i, map[i]);
+		++i;
+	}
+}
+
+void	ft_print_map_i(int **map, int wd, int ht)
+{
+	int i;
+	int j;
+
+	i = 0;
+	ft_printf("\n");
+	while (i < ht)
+	{
+		ft_printf("map[%2d] {", i);
+		j = 0;
+		while (j < wd)
+		{
+			ft_printf("%d", map[i][j]);
+			++j;
+		}
+		ft_printf("}\n");
 		++i;
 	}
 }
@@ -51,5 +74,6 @@ int		main(int argc, char **argv)
 	ft_parsing(argv[1], &map);
 	ft_print_parsing(map);
 	ft_print_map(map->map);
+	ft_print_map_i(map->map_i, map->map_width, map->map_height);
 	return (0);
 }

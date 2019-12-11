@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/09 20:46:46 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 19:03:02 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,6 +48,26 @@ static t_color		*ft_init_color(void)
 	ptr->green = -1;
 	ptr->blue = -1;
 	return (ptr);
+}
+
+void				ft_init_player(t_map **map, int x, int y)
+{
+	if (
+	(*map)->player->set_flag = 1;
+	(*map)->player->pos_x = x;
+	(*map)->player->pos_y = y;
+	if ((*map)->map[y][x] == 'N' || (*map)->map[y][x] == 'S')
+		(*map)->player->dir_x = 0;
+	if ((*map)->map[y][x] == 'N')
+		(*map)->player->dir_y = 1;
+	if ((*map)->map[y][x] == 'S')
+		(*map)->player->dir_y = -1;
+	if ((*map)->map[y][x] == 'E' || (*map)->map[y][x] == 'W')
+		(*map)->player->dir_y = 0;
+	if ((*map)->map[y][x] == 'E')
+		(*map)->player->dir_x = -1;
+	if ((*map)->map[y][x] == 'W')
+		(*map)->player->dir_x = 1;
 }
 
 t_map				*ft_init_map(void)
