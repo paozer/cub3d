@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 19:34:31 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 22:28:20 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,8 +55,8 @@ void				ft_init_player(t_map **map, int x, int y)
 	if ((*map)->player->set_flag == 1)
 		ft_print_error(6, (void *)0);
 	(*map)->player->set_flag = 1;
-	(*map)->player->pos_x = x;
-	(*map)->player->pos_y = y;
+	(*map)->player->pos_x = x + .5;
+	(*map)->player->pos_y = y + .5;
 	if ((*map)->map[y][x] == 'N' || (*map)->map[y][x] == 'S')
 		(*map)->player->dir_x = 0;
 	if ((*map)->map[y][x] == 'N')
