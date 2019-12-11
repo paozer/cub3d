@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 15:54:28 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/11 03:41:10 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,6 +32,30 @@ static char	**ft_realloc(char **str, int size, int len)
 	}
 	free(str);
 	return (new_str);
+}
+
+int			**ft_set_int_map(char **map)
+{
+	int i;
+	int j;
+	int k;
+	int **map_i;
+
+	i = 0;
+	k = 0;
+	while (map[i])
+		++i;
+	if (!(map_i = malloc(sizeof(*map_i) * i)))
+		return (NULL);
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		map_i[i] = malloc(sizeof(**map_i) * ft_strlen(map[i]))
+		while (map[i][j])
+		{
+		}
+	}
 }
 
 char		**ft_set_map(int fd, char **line)
