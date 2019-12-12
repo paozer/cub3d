@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 23:01:54 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 23:03:26 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 17:17:09 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,8 +31,8 @@ void	ft_print_parsing(t_map *map)
 					map->ceiling_ptr->blue);
 	ft_printf("map->map_width = \t %d\n", map->map_width);
 	ft_printf("map->map_height = \t %d\n", map->map_height);
-	printf("player->pos_x = \t %f\n", map->player->pos_x);
-	printf("player->pos_y = \t %f\n", map->player->pos_y);
+	printf("player->pos_x = \t %f\n", map->player->x);
+	printf("player->pos_y = \t %f\n", map->player->y);
 	printf("player->dir_x = \t %f\n", map->player->dir_x);
 	printf("player->dir_y = \t %f\n", map->player->dir_y);
 	ft_printf("player->flag = \t\t %d\n", map->player->set_flag);
