@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 20:30:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 23:42:28 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 01:01:13 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,16 +44,10 @@ typedef struct	s_player
 	double		pos_y;
 	double		dir_x;
 	double		dir_y;
-	int			set_flag;
-}				t_player;
-
-typedef struct	s_calcs
-{
 	double		plane_x;
 	double		plane_y;
-	double		time;
-	double		prev_time;
-}				t_calcs;
+	int			set_flag;
+}				t_player;
 
 typedef struct	s_map
 {
@@ -62,11 +56,11 @@ typedef struct	s_map
 	int			map_width;
 	int			map_height;
 	t_player	*player;
-	t_calcs		*vectors;
 	t_res		*res_ptr;
 	t_textures	*text_ptr;
 	t_color		*floor_ptr;
 	t_color		*ceiling_ptr;
+/* pour mlx stuff	t_mlx		*mlx; */
 }				t_map;
 
 int				ft_parsing(char *params, t_map **map);
