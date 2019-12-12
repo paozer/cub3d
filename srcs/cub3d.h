@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 16:25:07 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 17:21:27 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -108,14 +108,10 @@ typedef struct	s_map
 
 
 /* PARSING */
-int				ft_parsing(char *params, t_map **map);
-
-void			ft_parsing_check(t_map **map);
-void			ft_print_error(int flag, void *arg);
-
-void			ft_set_map(t_map **map, int fd, char **line);
-
-void			ft_init_player(t_map **map, int x, int y);
+t_map			*ft_parsing(char *params);
+void			ft_parsing_check(t_map *map);
+void			ft_set_map(t_map *map, int fd, char **line);
+void			ft_init_player(t_map *map, int x, int y);
 t_map			*ft_init_map(void);
 
 /* RAYCASTING */
@@ -123,6 +119,7 @@ void			ft_raycasting(t_map *map);
 
 /* UTILITYS */
 double			ft_abs(double value);
+void			ft_print_error(int flag, void *arg);
 
 /* helper functions for debugging */
 

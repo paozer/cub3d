@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 03:22:34 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 16:56:21 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,26 +50,26 @@ static t_color		*ft_init_color(void)
 	return (ptr);
 }
 
-void				ft_init_player(t_map **map, int x, int y)
+void				ft_init_player(t_map *map, int x, int y)
 {
-	if ((*map)->player->set_flag == 1)
+	if (PLAYER->set_flag == 1)
 		ft_print_error(6, (void *)0);
-	(*map)->player->set_flag = 1;
-	(*map)->player->pos_x = x + .5;
-	(*map)->player->pos_y = y + .5;
-	if ((*map)->map[y][x] == 'N' || (*map)->map[y][x] == 'S')
+	PLAYER->set_flag = 1;
+	PLAYER->x = x + .5;
+	PLAYER->y = y + .5;
+	if (map->map[y][x] == 'N' || map->map[y][x] == 'S')
 	{
-		(*map)->player->dir_y = 0;
-		(*map)->player->dir_x = ((*map)->map[y][x] == 'N') ? -1 : 1;
-		(*map)->player->plane_x = 0;
-		(*map)->player->plane_y = ((*map)->map[y][x] == 'N') ? .66 : -.66;
+		PLAYER->dir_y = 0;
+		PLAYER->dir_x = (map->map[y][x] == 'N') ? -1 : 1;
+		SCREEN->plane_x = 0;
+		SCREEN->plane_y = (map->map[y][x] == 'N') ? .66 : -.66;
 	}
-	if ((*map)->map[y][x] == 'W' || (*map)->map[y][x] == 'E')
+	if (map->map[y][x] == 'W' || map->map[y][x] == 'E')
 	{
-		(*map)->player->dir_x = 0;
-		(*map)->player->dir_y = ((*map)->map[y][x] == 'W') ? -1 : 1;
-		(*map)->player->plane_y = 0;
-		(*map)->player->plane_x = ((*map)->map[y][x] == 'W') ? -.66 : .66;
+		PLAYER->dir_x = 0;
+		PLAYER->dir_y = (map->map[y][x] == 'W') ? -1 : 1;
+		SCREEN->plane_y = 0;
+		SCREEN->plane_x = (map->map[y][x] == 'W') ? -.66 : .66;
 	}
 }
 

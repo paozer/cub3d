@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 03:22:01 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 16:29:31 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,21 +64,21 @@ static int	**ft_set_int_map(char **map)
 	return (map_i);
 }
 
-void		ft_set_map(t_map **map, int fd, char **line)
+void		ft_set_map(t_map *map, int fd, char **line)
 {
 	int		i;
 	int		len;
 
 	i = 1;
-	if (!((*map)->map = malloc(sizeof(*(*map)->map) * 2)))
+	if (!(map->map = malloc(sizeof(*map->map) * 2)))
 		return ;
-	(*map)->map[0] = *line;
+	map->map[0] = *line;
 	len = ft_strlen(*line);
-	while (get_next_line(fd, &(*map)->map[i]) == 1)
-		(*map)->map = ft_realloc((*map)->map, ++i, len);
-	free((*map)->map[i]);
-	(*map)->map[i] = NULL;
-	(*map)->map_i = ft_set_int_map((*map)->map);
-	(*map)->map_width = len;
-	(*map)->map_height = i;
+	while (get_next_line(fd, &map->map[i]) == 1)
+		map->map = ft_realloc(map->map, ++i, len);
+	free(map->map[i]);
+	map->map[i] = NULL;
+	map->map_i = ft_set_int_map(map->map);
+	map->map_width = len;
+	map->map_height = i;
 }
