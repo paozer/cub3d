@@ -11,19 +11,20 @@
 #                                                         /                    #
 # **************************************************************************** #
 
-HEADERS	= $(LIBFT)includes/libft.h\
+HEADER	= $(LIBFT)includes/libft.h\
 		  $(SRCS_D)cub3d.h\
-		  $(SRCS_D)/parsing/parsing.h\
 
-SRCS_D	= srcs/
-
-SRCS	= $(SRCS_D)parsing/parsing_check.c\
+SRCS	= $(SRCS_D)cub3d.c\
+		  $(SRCS_D)utils.c\
+		  $(SRCS_D)raycasting/raycasting_main.c\
+		  $(SRCS_D)parsing/parsing_check.c\
 		  $(SRCS_D)parsing/parsing_init.c\
 		  $(SRCS_D)parsing/parsing_main.c\
 		  $(SRCS_D)parsing/parsing_map.c\
-		  $(SRCS_D)cub3d.c\
 
 OBJS	= $(SRCS:.c=.o)
+
+SRCS_D	= srcs/
 
 LIBFT	= libft/
 
@@ -50,8 +51,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			make -C $(LIBFT)
-			mv $(LIBFT)$(LIBNAME) .
-			$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(LIBNAME)
+			$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(LIBFT)$(LIBNAME)
 
 clean:
 			$(RM) $(OBJS)
@@ -59,7 +59,7 @@ clean:
 
 fclean: 	clean
 			$(RM) $(NAME)
-			$(RM) $(LIBNAME)
+			$(RM) $(LIBFT)$(LIBNAME)
 
 re: 		fclean all
 

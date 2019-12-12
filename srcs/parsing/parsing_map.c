@@ -6,12 +6,12 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 19:53:09 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 03:22:01 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../cub3d.h"
 
 static char	**ft_realloc(char **str, int size, int len)
 {

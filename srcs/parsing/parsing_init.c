@@ -6,12 +6,12 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 01:27:29 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 03:22:34 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../cub3d.h"
 
 static t_res		*ft_init_res(void)
 {

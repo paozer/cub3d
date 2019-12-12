@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   cub3d.c                                          .::    .:/ .      .::   */
+/*   raycasting_main.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/04 14:11:33 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 03:31:01 by pramella    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
+/*   Updated: 2019/12/12 03:30:39 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int		main(int argc, char **argv)
+void	ft_raycasting(t_map *map)
 {
-	t_map	*map;
-	void	*mlx_ptr;
-	void	*mlx_win;
-	(void)argc;
+	int x;
 
-	/* add argc check with appropriate error message */
-	ft_parsing(argv[1], &map);
-	if ((mlx_ptr = mlx_init()) == NULL)
-		return (0);
-	if ((mlx_win = mlx_new_window(mlx_ptr, map->res_ptr->x, map->res_ptr->y, "cube3d")) == NULL)
-		return (0);
-	mlx_loop(mlx_ptr);
-	return (0);
+	x = 0;
+	while (x < map->res_ptr->x)
+	{
+		PLAYER->cam_x = 2 * x / map->res_ptr->x - 1;
+		PLAYER->ray_dir_x = PLAYER->dir_x + PLAYER->plane_x * PLAYER->cam_x;
+		PLAYER->ray_dir_y = PLAYER->dir_y + PLAYER->plane_y * PLAYER->cam_y;
+	}
 }
