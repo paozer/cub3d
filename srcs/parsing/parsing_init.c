@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 22:28:20 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/12 01:27:29 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,17 +58,19 @@ void				ft_init_player(t_map **map, int x, int y)
 	(*map)->player->pos_x = x + .5;
 	(*map)->player->pos_y = y + .5;
 	if ((*map)->map[y][x] == 'N' || (*map)->map[y][x] == 'S')
-		(*map)->player->dir_x = 0;
-	if ((*map)->map[y][x] == 'N')
-		(*map)->player->dir_y = 1;
-	if ((*map)->map[y][x] == 'S')
-		(*map)->player->dir_y = -1;
-	if ((*map)->map[y][x] == 'E' || (*map)->map[y][x] == 'W')
+	{
 		(*map)->player->dir_y = 0;
-	if ((*map)->map[y][x] == 'E')
-		(*map)->player->dir_x = -1;
-	if ((*map)->map[y][x] == 'W')
-		(*map)->player->dir_x = 1;
+		(*map)->player->dir_x = ((*map)->map[y][x] == 'N') ? -1 : 1;
+		(*map)->player->plane_x = 0;
+		(*map)->player->plane_y = ((*map)->map[y][x] == 'N') ? .66 : -.66;
+	}
+	if ((*map)->map[y][x] == 'W' || (*map)->map[y][x] == 'E')
+	{
+		(*map)->player->dir_x = 0;
+		(*map)->player->dir_y = ((*map)->map[y][x] == 'W') ? -1 : 1;
+		(*map)->player->plane_y = 0;
+		(*map)->player->plane_x = ((*map)->map[y][x] == 'W') ? -.66 : .66;
+	}
 }
 
 t_map				*ft_init_map(void)
