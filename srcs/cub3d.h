@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 17:21:27 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/13 22:32:48 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,11 @@
 # define PLAYER map->player
 # define SCREEN map->screen
 # define RAY map->ray
+# define MLX map->mlx
+# define FLOOR map->floor
+# define CEILING map->ceiling
+# define TEXT map->text_ptr
+# define RES map->res_ptr
 
 typedef struct	s_color
 {
@@ -79,12 +84,19 @@ typedef struct	s_ray
 	double		side_dist_y;
 	double		delta_dist_x; // distance between hits
 	double		delta_dist_y;
-	double		step_x; // what direction to step in
-	double		step_y;
+	int			step_x; // what direction to step in
+	int			step_y;
 	int			side; // what kind of wall NS/EW was hit
 	int			hit; // did we hit a wall
 	double		wall_dist;
 }				t_ray;
+
+typedef struct	s_mlx
+{
+	void		*window;
+	void		*img;
+	char		*data_addr;
+}				t_mlx;
 
 typedef struct	s_map
 {
@@ -101,9 +113,7 @@ typedef struct	s_map
 	t_textures	*text_ptr;
 	t_color		*floor_ptr;
 	t_color		*ceiling_ptr;
-	/* pour mlx stuff
 	t_mlx		*mlx;
-	*/
 }				t_map;
 
 
@@ -111,7 +121,7 @@ typedef struct	s_map
 t_map			*ft_parsing(char *params);
 void			ft_parsing_check(t_map *map);
 void			ft_set_map(t_map *map, int fd, char **line);
-void			ft_init_player(t_map *map, int x, int y);
+void			ft_set_player(t_map *map, int x, int y);
 t_map			*ft_init_map(void);
 
 /* RAYCASTING */

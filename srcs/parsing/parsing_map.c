@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 16:29:31 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/13 17:30:42 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@ static char	**ft_realloc(char **str, int size, int len)
 	char	**new_str;
 
 	i = 0;
-	if (!(new_str = malloc(sizeof(*new_str) * (size + 1))))
+	if (!(new_str = malloc(sizeof(char*) * (size + 1))))
 		return (NULL);
 	while (i < size)
 	{
@@ -30,6 +30,7 @@ static char	**ft_realloc(char **str, int size, int len)
 		free(str[i]);
 		++i;
 	}
+	new_str[i] = NULL;
 	free(str);
 	return (new_str);
 }
@@ -73,8 +74,9 @@ void		ft_set_map(t_map *map, int fd, char **line)
 	if (!(map->map = malloc(sizeof(*map->map) * 2)))
 		return ;
 	map->map[0] = *line;
+	map->map[1] = NULL;
 	len = ft_strlen(*line);
-	while (get_next_line(fd, &map->map[i]) == 1)
+	while (get_next_line(fd, &map->map[i]))
 		map->map = ft_realloc(map->map, ++i, len);
 	free(map->map[i]);
 	map->map[i] = NULL;

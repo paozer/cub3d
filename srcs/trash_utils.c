@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 23:01:54 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 17:17:09 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/13 21:01:56 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,11 +31,33 @@ void	ft_print_parsing(t_map *map)
 					map->ceiling_ptr->blue);
 	ft_printf("map->map_width = \t %d\n", map->map_width);
 	ft_printf("map->map_height = \t %d\n", map->map_height);
+	printf("-------PLAYER-------\n");
 	printf("player->pos_x = \t %f\n", map->player->x);
 	printf("player->pos_y = \t %f\n", map->player->y);
 	printf("player->dir_x = \t %f\n", map->player->dir_x);
 	printf("player->dir_y = \t %f\n", map->player->dir_y);
 	ft_printf("player->flag = \t\t %d\n", map->player->set_flag);
+	printf("-------SCREEN-------\n");
+	printf("SCREEN->plane_x = [%f]\n", SCREEN->plane_x);
+	printf("SCREEN->plane_y = [%f]\n", SCREEN->plane_y);
+	printf("SCREEN->cam_x = [%f]\n", SCREEN->cam_x);
+	printf("SCREEN->cam_y = [%f]\n", SCREEN->cam_y);
+	printf("-------RAY-------\n");
+	printf("RAY->x = [%f]\n", RAY->x);
+	printf("RAY->y = [%f]\n", RAY->y);
+	printf("RAY->dir_x = [%f]\n", RAY->dir_x);
+	printf("RAY->dir_y = [%f]\n", RAY->dir_y);
+	printf("RAY->map_x = [%d]\n", RAY->map_x);
+	printf("RAY->map_y = [%d]\n", RAY->map_y);
+	printf("RAY->side_dist_x = [%f]\n", RAY->side_dist_x);
+	printf("RAY->side_dist_y = [%f]\n", RAY->side_dist_y);
+	printf("RAY->delta_dist_x = [%f]\n", RAY->delta_dist_x);
+	printf("RAY->delta_dist_y = [%f]\n", RAY->delta_dist_y);
+	printf("RAY->step_x = [%d]\n", RAY->step_x);
+	printf("RAY->step_y = [%d]\n", RAY->step_y);
+	printf("RAY->side = [%d]\n", RAY->side);
+	printf("RAY->hit = [%d]\n", RAY->hit);
+	printf("RAY->wall_dist = [%f]\n", RAY->wall_dist);
 }
 
 void	ft_print_map(char **map)

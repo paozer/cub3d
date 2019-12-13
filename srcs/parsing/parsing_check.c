@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 16:32:27 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/13 22:11:20 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,7 @@ static void	ft_path_check(char *path)
 }
 
 /* check back if spaces in the map are allowed */
+/* put set_player function call in parsing files not in check file */
 
 static void	ft_map_check(t_map *map)
 {
@@ -53,7 +54,7 @@ static void	ft_map_check(t_map *map)
 		{
 			if (!(ft_strchr("012NSEW", map->map[i][j]) || ft_isspace(map->map[i][j])))
 				ft_print_error(4, &map->map[i][j]);
-			(ft_strchr("NSEW", map->map[i][j])) ? ft_init_player(map, j, i) : 1;
+			(ft_strchr("NSEW", map->map[i][j])) ? ft_set_player(map, j, i) : 1;
 			++j;
 		}
 		(map->map[i][j - 1] != '1') ? ft_print_error(5, &i) : 1;
