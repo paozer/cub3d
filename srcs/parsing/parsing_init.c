@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/13 22:53:50 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/14 15:53:33 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,13 +32,16 @@ void		ft_init_textures(t_map *map)
 	TEXT->sprite = NULL;
 }
 
-void		ft_init_color(t_color *ptr)
+t_color		*ft_init_color(void)
 {
+	t_color *ptr;
+
 	if (!(ptr = malloc(sizeof(*ptr))))
-		return ;
+		return (NULL);
 	ptr->red = -1;
 	ptr->green = -1;
 	ptr->blue = -1;
+	return (ptr);
 }
 
 
@@ -96,7 +99,7 @@ t_map				*ft_init_map(void)
 	ft_init_player(map);
 	ft_init_res(map);
 	ft_init_textures(map);
-	ft_init_color(map->floor_ptr);
-	ft_init_color(map->ceiling_ptr);
+	map->floor_ptr = ft_init_color();
+	map->ceiling_ptr = ft_init_color();
 	return (map);
 }
