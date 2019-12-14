@@ -2,6 +2,7 @@
 * install minilibx https://achedeuzot.me/2014/12/20/installer-la-minilibx/
 * raycasting tutorial https://lodev.org/cgtutor/raycasting.html
 * same http://www.playfuljs.com/a-first-person-engine-in-265-lines/
+* mlx doc https://github.com/qst0/ft_libgfx 
 
 ### Parsing ###
 * use get_next_line to read arguments from .cub file
