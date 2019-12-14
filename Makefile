@@ -17,6 +17,7 @@ HEADER	= $(LIBFT)includes/libft.h\
 SRCS	= $(SRCS_D)cub3d.c\
 		  $(SRCS_D)utils.c\
 		  $(SRCS_D)raycasting/raycasting_main.c\
+		  $(SRCS_D)raycasting/raycasting_draw.c\
 		  $(SRCS_D)parsing/parsing_check.c\
 		  $(SRCS_D)parsing/parsing_init.c\
 		  $(SRCS_D)parsing/parsing_main.c\

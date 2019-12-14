@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 23:01:54 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/13 21:01:56 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/14 20:38:45 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,6 +14,16 @@
 #include "cub3d.h"
 
 
+void	ft_print_player(t_map *map)
+{
+	printf("-------PLAYER-------\n");
+	printf("player->pos_x = \t %f\n", map->player->x);
+	printf("player->pos_y = \t %f\n", map->player->y);
+	printf("player->dir_x = \t %f\n", map->player->dir_x);
+	printf("player->dir_y = \t %f\n", map->player->dir_y);
+	ft_printf("player->flag = \t\t %d\n", map->player->set_flag);
+	ft_printf("map->dircase = \t\t %c\n", map->map[(int)PLAYER->y][(int)PLAYER->x]);
+}
 void	ft_print_parsing(t_map *map)
 {
 	ft_printf("map->res_ptr->x = \t%d\n", map->res_ptr->x);
@@ -31,12 +41,7 @@ void	ft_print_parsing(t_map *map)
 					map->ceiling_ptr->blue);
 	ft_printf("map->map_width = \t %d\n", map->map_width);
 	ft_printf("map->map_height = \t %d\n", map->map_height);
-	printf("-------PLAYER-------\n");
-	printf("player->pos_x = \t %f\n", map->player->x);
-	printf("player->pos_y = \t %f\n", map->player->y);
-	printf("player->dir_x = \t %f\n", map->player->dir_x);
-	printf("player->dir_y = \t %f\n", map->player->dir_y);
-	ft_printf("player->flag = \t\t %d\n", map->player->set_flag);
+	ft_print_player(map);
 	printf("-------SCREEN-------\n");
 	printf("SCREEN->plane_x = [%f]\n", SCREEN->plane_x);
 	printf("SCREEN->plane_y = [%f]\n", SCREEN->plane_y);

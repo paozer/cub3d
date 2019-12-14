@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 18:11:29 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/14 19:29:22 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,7 @@
 # define SCREEN map->screen
 # define RAY map->ray
 # define MLX map->mlx
+# define IMG map->img
 # define FLOOR map->floor
 # define CEILING map->ceiling
 # define TEXT map->text_ptr
@@ -123,7 +124,9 @@ typedef struct	s_map
 	t_textures	*text_ptr;
 	t_color		*floor_ptr;
 	t_color		*ceiling_ptr;
+
 	t_mlx		*mlx;
+	t_img		*img;
 }				t_map;
 
 
@@ -136,6 +139,7 @@ t_map			*ft_init_map(void);
 
 /* RAYCASTING */
 void			ft_raycasting(t_map *map);
+void			draw(t_map *map, int x);
 
 /* UTILITYS */
 double			ft_abs(double value);

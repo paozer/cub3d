@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 18:11:54 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/14 19:38:48 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,9 +66,9 @@ void	compute_wall_hit(t_map *map)
 void	ft_raycasting(t_map *map)
 {
 	int x;
-	int line_h;
 
 	x = 0;
+	mlx_clear_window(MLX->mlx_ptr, MLX->wd_ptr);
 	while (x < map->res_ptr->x)
 	{
 		SCREEN->cam_x = 2 * x / (double)map->res_ptr->x - 1;
@@ -80,8 +80,9 @@ void	ft_raycasting(t_map *map)
 		RAY->delta_dist_y = ft_abs(1 / RAY->dir_y);
 		compute_first_section(map);
 		compute_wall_hit(map);
-		RAY->line_h = (int) (map->map_height / RAY->wall_dist);
-		draw(map);
+		RAY->line_h = (int) (RES->y / RAY->wall_dist);
+		draw(map, x);
+		mlx_put_image_to_window(MLX->mlx_ptr, MLX->wd_ptr, IMG->img, 0, 0);
 		++x;
 	}
 }
