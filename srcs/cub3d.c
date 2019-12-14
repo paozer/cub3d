@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:11:33 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 20:52:22 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/14 21:06:58 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,6 @@ int		main(int argc, char **argv)
 
 	/* add argc check with appropriate error message */
 	map = ft_parsing(argv[1]);
-	ft_print_parsing(map);
 	if ((MLX->mlx_ptr = mlx_init()) == NULL)
 		return (0);
 	if ((MLX->wd_ptr = mlx_new_window(MLX->mlx_ptr, map->res_ptr->x, map->res_ptr->y, "cube3d")) == NULL)

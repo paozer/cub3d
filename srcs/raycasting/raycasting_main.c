@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 19:38:48 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/14 21:18:59 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,7 @@ void	compute_wall_hit(t_map *map)
 			RAY->map_y += RAY->step_y;
 			RAY->side = 1;
 		}
-		if (map->map_i[RAY->map_y][RAY->map_x] >= 1)
+		if (map->map_i[RAY->map_x][RAY->map_y] >= 1)
 			RAY->hit = 1;
 	}
 	if (RAY->side == 0)

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 20:56:20 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/14 21:18:10 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,19 +71,19 @@ void				ft_set_player(t_map *map, int x, int y)
 	PLAYER->set_flag = 1;
 	PLAYER->x = x + .5;
 	PLAYER->y = y + .5;
-	if (map->map[y][x] == 'W' || map->map[y][x] == 'E')
+	if (map->map[x][y] == 'N' || map->map[x][y] == 'S')
 	{
 		PLAYER->dir_y = 0;
-		PLAYER->dir_x = (map->map[y][x] == 'W') ? -1 : 1;
+		PLAYER->dir_x = (map->map[x][y] == 'N') ? -1 : 1;
 		SCREEN->plane_x = 0;
-		SCREEN->plane_y = (map->map[y][x] == 'W') ? -.66 : .66;
+		SCREEN->plane_y = (map->map[x][y] == 'N') ? .66 : -.66;
 	}
-	if (map->map[y][x] == 'N' || map->map[y][x] == 'S')
+	if (map->map[x][y] == 'W' || map->map[x][y] == 'E')
 	{
 		PLAYER->dir_x = 0;
-		PLAYER->dir_y = (map->map[y][x] == 'N') ? -1 : 1;
+		PLAYER->dir_y = (map->map[x][y] == 'W') ? -1 : 1;
 		SCREEN->plane_y = 0;
-		SCREEN->plane_x = (map->map[y][x] == 'N') ? .66 : -.66;
+		SCREEN->plane_x = (map->map[x][y] == 'W') ? -.66 : .66;
 	}
 }
 
