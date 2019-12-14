@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/13 22:32:48 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/14 18:11:29 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,12 +89,22 @@ typedef struct	s_ray
 	int			side; // what kind of wall NS/EW was hit
 	int			hit; // did we hit a wall
 	double		wall_dist;
+	int			line_h;
 }				t_ray;
+
+typedef struct	s_img
+{
+	void		*img;
+	int			*buf;
+	int			bpp;
+	int			size_line;
+	int			endian;
+}				t_img;
 
 typedef struct	s_mlx
 {
-	void		*window;
-	void		*img;
+	void		*mlx_ptr;
+	void		*wd_ptr;
 	char		*data_addr;
 }				t_mlx;
 
