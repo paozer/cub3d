@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 19:29:22 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 17:41:41 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,6 +32,9 @@
 # define CEILING map->ceiling
 # define TEXT map->text_ptr
 # define RES map->res_ptr
+# define MOVT map->movt
+# define SPEED .1
+# define ROTSPEED .05
 
 typedef struct	s_color
 {
@@ -105,9 +108,19 @@ typedef struct	s_img
 typedef struct	s_mlx
 {
 	void		*mlx_ptr;
-	void		*wd_ptr;
+	void		*win_ptr;
 	char		*data_addr;
 }				t_mlx;
+
+typedef struct	s_movt
+{
+	int			front;
+	int			back;
+	int			right;
+	int			left;
+	int			rot_right;
+	int			rot_left;
+}				t_movt;
 
 typedef struct	s_map
 {
@@ -115,6 +128,8 @@ typedef struct	s_map
 	int			**map_i;
 	int			map_width;
 	int			map_height;
+
+	t_movt		*movt;
 
 	t_player	*player;
 	t_screen	*screen;
@@ -129,7 +144,6 @@ typedef struct	s_map
 	t_img		*img;
 }				t_map;
 
-
 /* PARSING */
 t_map			*ft_parsing(char *params);
 void			ft_parsing_check(t_map *map);
@@ -138,8 +152,12 @@ void			ft_set_player(t_map *map, int x, int y);
 t_map			*ft_init_map(void);
 
 /* RAYCASTING */
+void			start(t_map *map);
 void			ft_raycasting(t_map *map);
 void			draw(t_map *map, int x);
+int	movt_do(t_map *map);
+int	movt_pressed(int key_code, t_map *map);
+int	movt_released(int key_code, t_map *map);
 
 /* UTILITYS */
 double			ft_abs(double value);
