@@ -6,13 +6,12 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 23:01:54 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 20:38:45 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 13:24:21 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	ft_print_player(t_map *map)
 {
@@ -24,6 +23,7 @@ void	ft_print_player(t_map *map)
 	ft_printf("player->flag = \t\t %d\n", map->player->set_flag);
 	ft_printf("map->dircase = \t\t %c\n", map->map[(int)PLAYER->y][(int)PLAYER->x]);
 }
+
 void	ft_print_parsing(t_map *map)
 {
 	ft_printf("map->res_ptr->x = \t%d\n", map->res_ptr->x);
