@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 21:18:59 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 17:45:53 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,8 @@ void	compute_first_section(t_map *map)
 	else
 	{
 		RAY->step_x = 1;
-		RAY->side_dist_x = ((double)RAY->map_x + 1 - PLAYER->x) * RAY->delta_dist_x;
+		RAY->side_dist_x = ((double)RAY->map_x + 1 - PLAYER->x) *
+				RAY->delta_dist_x;
 	}
 	if (RAY->dir_y < 0)
 	{
@@ -33,7 +34,8 @@ void	compute_first_section(t_map *map)
 	else
 	{
 		RAY->step_y = 1;
-		RAY->side_dist_y = ((double)RAY->map_y + 1 - PLAYER->y) * RAY->delta_dist_y;
+		RAY->side_dist_y = ((double)RAY->map_y + 1 - PLAYER->y) *
+				RAY->delta_dist_y;
 	}
 }
 
@@ -58,9 +60,11 @@ void	compute_wall_hit(t_map *map)
 			RAY->hit = 1;
 	}
 	if (RAY->side == 0)
-		RAY->wall_dist = ((double)RAY->map_x - PLAYER->x + (1 - RAY->step_x) / 2) / RAY->dir_x;
+		RAY->wall_dist = ((double)RAY->map_x - PLAYER->x +
+					(1 - RAY->step_x) / 2) / RAY->dir_x;
 	else
-		RAY->wall_dist = ((double)RAY->map_y - PLAYER->y + (1 - RAY->step_y) / 2) / RAY->dir_y;
+		RAY->wall_dist = ((double)RAY->map_y - PLAYER->y +
+					(1 - RAY->step_y) / 2) / RAY->dir_y;
 }
 
 void	ft_raycasting(t_map *map)
@@ -68,7 +72,7 @@ void	ft_raycasting(t_map *map)
 	int x;
 
 	x = 0;
-	mlx_clear_window(MLX->mlx_ptr, MLX->wd_ptr);
+	mlx_clear_window(MLX->mlx_ptr, MLX->win_ptr);
 	while (x < map->res_ptr->x)
 	{
 		SCREEN->cam_x = 2 * x / (double)map->res_ptr->x - 1;
@@ -80,25 +84,26 @@ void	ft_raycasting(t_map *map)
 		RAY->delta_dist_y = ft_abs(1 / RAY->dir_y);
 		compute_first_section(map);
 		compute_wall_hit(map);
-		RAY->line_h = (int) (RES->y / RAY->wall_dist);
+		RAY->line_h = (int)(RES->y / RAY->wall_dist);
 		draw(map, x);
-		mlx_put_image_to_window(MLX->mlx_ptr, MLX->wd_ptr, IMG->img, 0, 0);
 		++x;
 	}
+	mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->img, 0, 0);
 }
 
-/*
-printf("RAY->dir_x = [%f] RAY->dir_y = [%f]\n", RAY->dir_x, RAY->dir_y);
-printf("SCREEN->cam_x = [%f]\n", SCREEN->cam_x);
-printf("SCREEN->cam_x = [%f]\n", SCREEN->cam_x);
-printf("RAY->dir_x = [%f]\n", RAY->dir_x);
-printf("RAY->dir_y = [%f]\n", RAY->dir_y);
-printf("RAY->map_x = [%d]\n", RAY->map_x);
-printf("RAY->map_y = [%d]\n", RAY->map_y);
-printf("RAY->delta_dist_x = [%f]\n", RAY->delta_dist_x);
-printf("RAY->delta_dist_y = [%f]\n", RAY->delta_dist_y);
-printf("RAY->step_x = [%f]\n", RAY->step_x);
-printf("RAY->step_y = [%f]\n", RAY->step_y);
-printf("RAY->side_dist_x = [%f]\n", RAY->side_dist_x);
-printf("RAY->side_dist_y = [%f]\n", RAY->side_dist_y);
-*/
+void	start(t_map *map)
+{
+	ft_raycasting(map);
+	if (!(MOVT = malloc(sizeof(*MOVT))))
+		return ;
+	MOVT->front = 0;
+	MOVT->back = 0;
+	MOVT->right = 0;
+	MOVT->left = 0;
+	MOVT->rot_right = 0;
+	MOVT->rot_left = 0;
+	mlx_loop_hook(MLX->mlx_ptr, movt_do, map);
+	mlx_hook(MLX->win_ptr, 2, 0, movt_pressed, map);
+	mlx_hook(MLX->win_ptr, 3, 0, movt_released, map);
+	mlx_loop(MLX->mlx_ptr);
+}
