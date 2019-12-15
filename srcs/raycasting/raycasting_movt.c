@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/15 16:13:03 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 21:55:05 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 22:09:47 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,14 +20,14 @@ int		movt_front_back(int key_code, t_map *map)
 		PLAYER->x += (map->map_i[(int)(PLAYER->x + PLAYER->dir_x * SPEED)]
 					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_x * SPEED;
 		PLAYER->y += (map->map_i[(int)PLAYER->x]
-					[(int)(PLAYER->y + PLAYER->dir_y * SPEED)] >= 1) ? 0 : PLAYER->dir_y * SPEED;
+					[(int)(PLAYER->y + PLAYER->dir_y * SPEED)] == 1) ? 0 : PLAYER->dir_y * SPEED;
 	}
 	if (key_code == 1)
 	{
 		PLAYER->x -= (map->map_i[(int)(PLAYER->x - PLAYER->dir_x * SPEED)]
 					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_x * SPEED;
 		PLAYER->y -= (map->map_i[(int)PLAYER->x]
-					[(int)(PLAYER->y - PLAYER->dir_y * SPEED)] >= 1) ? 0 : PLAYER->dir_y * SPEED;
+					[(int)(PLAYER->y - PLAYER->dir_y * SPEED)] == 1) ? 0 : PLAYER->dir_y * SPEED;
 	}
 	return (0);
 }
@@ -39,14 +39,14 @@ int		movt_left_right(int key_code, t_map *map)
 		PLAYER->x -= (map->map_i[(int)(PLAYER->x - PLAYER->dir_y * SPEED)]
 					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_y * SPEED;
 		PLAYER->y += (map->map_i[(int)PLAYER->x]
-					[(int)(PLAYER->y + PLAYER->dir_x * SPEED)] >= 1) ? 0 : PLAYER->dir_x * SPEED;
+					[(int)(PLAYER->y + PLAYER->dir_x * SPEED)] == 1) ? 0 : PLAYER->dir_x * SPEED;
 	}
 	if (key_code == 2)
 	{
 		PLAYER->x += (map->map_i[(int)(PLAYER->x + PLAYER->dir_y * SPEED)]
 					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_y * SPEED;
 		PLAYER->y -= (map->map_i[(int)PLAYER->x]
-					[(int)(PLAYER->y - PLAYER->dir_x * SPEED)] >= 1) ? 0 : PLAYER->dir_x * SPEED;
+					[(int)(PLAYER->y - PLAYER->dir_x * SPEED)] == 1) ? 0 : PLAYER->dir_x * SPEED;
 	}
 	return (0);
 }
