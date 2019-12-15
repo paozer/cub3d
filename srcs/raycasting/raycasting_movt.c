@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/15 16:13:03 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 19:59:06 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 20:08:23 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,8 +85,8 @@ int	movt_do(t_map *map)
 
 int	movt_pressed(int key_code, t_map *map)
 {
-	(key_code == 13) ? MOVT->front = 1 : 0;
-	(key_code == 1) ? MOVT->back = 1 : 0;
+	(key_code == 13 || key_code == 126) ? MOVT->front = 1 : 0;
+	(key_code == 1 || key_code == 125) ? MOVT->back = 1 : 0;
 	(key_code == 0) ? MOVT->left = 1 : 0;
 	(key_code == 2) ? MOVT->right = 1 : 0;
 	(key_code == 123) ? MOVT->rot_left = 1 : 0;
@@ -97,8 +97,8 @@ int	movt_pressed(int key_code, t_map *map)
 
 int	movt_released(int key_code, t_map *map)
 {
-	(key_code == 13) ? MOVT->front = 0 : 0;
-	(key_code == 1) ? MOVT->back = 0 : 0;
+	(key_code == 13 || key_code == 126) ? MOVT->front = 0 : 0;
+	(key_code == 1 || key_code == 125) ? MOVT->back = 0 : 0;
 	(key_code == 0) ? MOVT->left = 0 : 0;
 	(key_code == 2) ? MOVT->right = 0 : 0;
 	(key_code == 123) ? MOVT->rot_left = 0 : 0;
