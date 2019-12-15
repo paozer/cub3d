@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/15 16:13:03 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 20:08:23 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 21:55:05 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,13 +17,17 @@ int		movt_front_back(int key_code, t_map *map)
 {
 	if (key_code == 13)
 	{
-		PLAYER->x += PLAYER->dir_x * SPEED;
-		PLAYER->y += PLAYER->dir_y * SPEED;
+		PLAYER->x += (map->map_i[(int)(PLAYER->x + PLAYER->dir_x * SPEED)]
+					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_x * SPEED;
+		PLAYER->y += (map->map_i[(int)PLAYER->x]
+					[(int)(PLAYER->y + PLAYER->dir_y * SPEED)] >= 1) ? 0 : PLAYER->dir_y * SPEED;
 	}
 	if (key_code == 1)
 	{
-		PLAYER->x -= PLAYER->dir_x * SPEED;
-		PLAYER->y -= PLAYER->dir_y * SPEED;
+		PLAYER->x -= (map->map_i[(int)(PLAYER->x - PLAYER->dir_x * SPEED)]
+					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_x * SPEED;
+		PLAYER->y -= (map->map_i[(int)PLAYER->x]
+					[(int)(PLAYER->y - PLAYER->dir_y * SPEED)] >= 1) ? 0 : PLAYER->dir_y * SPEED;
 	}
 	return (0);
 }
@@ -32,13 +36,17 @@ int		movt_left_right(int key_code, t_map *map)
 {
 	if (key_code == 0)
 	{
-		PLAYER->x -= PLAYER->dir_y * SPEED;
-		PLAYER->y += PLAYER->dir_x * SPEED;
+		PLAYER->x -= (map->map_i[(int)(PLAYER->x - PLAYER->dir_y * SPEED)]
+					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_y * SPEED;
+		PLAYER->y += (map->map_i[(int)PLAYER->x]
+					[(int)(PLAYER->y + PLAYER->dir_x * SPEED)] >= 1) ? 0 : PLAYER->dir_x * SPEED;
 	}
 	if (key_code == 2)
 	{
-		PLAYER->x += PLAYER->dir_y * SPEED;
-		PLAYER->y -= PLAYER->dir_x * SPEED;
+		PLAYER->x += (map->map_i[(int)(PLAYER->x + PLAYER->dir_y * SPEED)]
+					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_y * SPEED;
+		PLAYER->y -= (map->map_i[(int)PLAYER->x]
+					[(int)(PLAYER->y - PLAYER->dir_x * SPEED)] >= 1) ? 0 : PLAYER->dir_x * SPEED;
 	}
 	return (0);
 }
@@ -79,12 +87,14 @@ int	movt_do(t_map *map)
 	(MOVT->right == 1) ? movt_left_right(2, map) : 0;
 	(MOVT->rot_left == 1) ? movt_rot_left_right(123, map) : 0;
 	(MOVT->rot_right == 1) ? movt_rot_left_right(124, map) : 0;
-	ft_raycasting(map);
+	raycasting(map);
 	return (0);
 }
 
 int	movt_pressed(int key_code, t_map *map)
 {
+	if (key_code == 53)
+		exit(0);
 	(key_code == 13 || key_code == 126) ? MOVT->front = 1 : 0;
 	(key_code == 1 || key_code == 125) ? MOVT->back = 1 : 0;
 	(key_code == 0) ? MOVT->left = 1 : 0;
