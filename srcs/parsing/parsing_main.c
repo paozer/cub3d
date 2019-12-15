@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 21:18:10 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 13:22:38 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,7 +64,7 @@ static void		ft_set_color(char *line, t_map *map, int flag)
 	tmp->blue = ft_atoi(line + i);
 }
 
-void				ft_set_player(t_map *map, int x, int y)
+void			ft_set_player(t_map *map, int x, int y)
 {
 	if (PLAYER->set_flag == 1)
 		ft_print_error(6, (void *)0);

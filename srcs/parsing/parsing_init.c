@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/14 18:05:32 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 13:27:10 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ t_color		*ft_init_color(void)
 }
 
 
-void			ft_init_player(t_map *map)
+void		ft_init_player(t_map *map)
 {
 	if (!(PLAYER = malloc(sizeof(*PLAYER))))
 		return ;
@@ -56,7 +56,7 @@ void			ft_init_player(t_map *map)
 	PLAYER->dir_y = 0;
 }
 
-void				ft_init_ray(t_map *map)
+void		ft_init_ray(t_map *map)
 {
 	if (!(RAY = malloc(sizeof(*RAY))))
 		return ;
@@ -77,7 +77,7 @@ void				ft_init_ray(t_map *map)
 	RAY->wall_dist = 0;
 }
 
-void				ft_init_screen(t_map *map)
+void		ft_init_screen(t_map *map)
 {
 	if (!(SCREEN = malloc(sizeof(*SCREEN))))
 		return ;
@@ -87,7 +87,7 @@ void				ft_init_screen(t_map *map)
 	SCREEN->cam_y = 0;
 }
 
-t_map				*ft_init_map(void)
+t_map		*ft_init_map(void)
 {
 	t_map *map;
 
