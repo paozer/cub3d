@@ -6,14 +6,14 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 03:54:36 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/12 15:35:53 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 21:09:58 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_print_error(int flag, void *arg)
+void	print_error(int flag, void *arg)
 {
 	write(1, "Error\n", 6);
 	(flag == 0) ? ft_printf("Resolution is not valid.\n") : 1;
@@ -27,11 +27,4 @@ void	ft_print_error(int flag, void *arg)
 				*((int *)arg) + 1) : 1;
 	(flag == 6) ? ft_printf("Multiple start positions for player.\n") : 1;
 	exit(0);
-}
-
-double	ft_abs(double value)
-{
-	if (value > 0)
-		return value;
-	return (-1 * value);
 }

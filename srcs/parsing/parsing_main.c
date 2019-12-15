@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 13:22:38 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 21:09:28 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,7 +67,7 @@ static void		ft_set_color(char *line, t_map *map, int flag)
 void			ft_set_player(t_map *map, int x, int y)
 {
 	if (PLAYER->set_flag == 1)
-		ft_print_error(6, (void *)0);
+		print_error(6, (void *)0);
 	PLAYER->set_flag = 1;
 	PLAYER->x = x + .5;
 	PLAYER->y = y + .5;
@@ -99,9 +99,9 @@ t_map			*ft_parsing(char *params)
 	line = NULL;
 	/* basic error checking */
 	if ((fd = open(params, O_RDONLY)) == -1)
-		ft_print_error(2, params);
+		print_error(2, params);
 	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
-		ft_print_error(3, params) : 1;
+		print_error(3, params) : 1;
 	/* end */
 	map = ft_init_map();
 	while (get_next_line(fd, &line) == 1)

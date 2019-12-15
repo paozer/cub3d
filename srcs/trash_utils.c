@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 23:01:54 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 13:24:21 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 21:03:25 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,17 @@ void	ft_print_player(t_map *map)
 	printf("player->dir_x = \t %f\n", map->player->dir_x);
 	printf("player->dir_y = \t %f\n", map->player->dir_y);
 	ft_printf("player->flag = \t\t %d\n", map->player->set_flag);
-	ft_printf("map->dircase = \t\t %c\n", map->map[(int)PLAYER->y][(int)PLAYER->x]);
+	ft_printf("map->dircase = \t\t %c\n",
+				map->map[(int)PLAYER->y][(int)PLAYER->x]);
+}
+
+void	ft_print_screen(t_map *map)
+{
+	printf("-------SCREEN-------\n");
+	printf("SCREEN->plane_x = [%f]\n", SCREEN->plane_x);
+	printf("SCREEN->plane_y = [%f]\n", SCREEN->plane_y);
+	printf("SCREEN->cam_x = [%f]\n", SCREEN->cam_x);
+	printf("SCREEN->cam_y = [%f]\n", SCREEN->cam_y);
 }
 
 void	ft_print_parsing(t_map *map)
@@ -42,11 +52,7 @@ void	ft_print_parsing(t_map *map)
 	ft_printf("map->map_width = \t %d\n", map->map_width);
 	ft_printf("map->map_height = \t %d\n", map->map_height);
 	ft_print_player(map);
-	printf("-------SCREEN-------\n");
-	printf("SCREEN->plane_x = [%f]\n", SCREEN->plane_x);
-	printf("SCREEN->plane_y = [%f]\n", SCREEN->plane_y);
-	printf("SCREEN->cam_x = [%f]\n", SCREEN->cam_x);
-	printf("SCREEN->cam_y = [%f]\n", SCREEN->cam_y);
+	ft_print_screen(map);
 	printf("-------RAY-------\n");
 	printf("RAY->x = [%f]\n", RAY->x);
 	printf("RAY->y = [%f]\n", RAY->y);

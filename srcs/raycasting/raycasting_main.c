@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 17:45:53 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 21:08:35 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,7 +67,7 @@ void	compute_wall_hit(t_map *map)
 					(1 - RAY->step_y) / 2) / RAY->dir_y;
 }
 
-void	ft_raycasting(t_map *map)
+void	raycasting(t_map *map)
 {
 	int x;
 
@@ -80,8 +80,8 @@ void	ft_raycasting(t_map *map)
 		RAY->dir_y = PLAYER->dir_y + SCREEN->plane_y * SCREEN->cam_x;
 		RAY->map_x = (int)PLAYER->x;
 		RAY->map_y = (int)PLAYER->y;
-		RAY->delta_dist_x = ft_abs(1 / RAY->dir_x);
-		RAY->delta_dist_y = ft_abs(1 / RAY->dir_y);
+		RAY->delta_dist_x = fabs(1 / RAY->dir_x);
+		RAY->delta_dist_y = fabs(1 / RAY->dir_y);
 		compute_first_section(map);
 		compute_wall_hit(map);
 		RAY->line_h = (int)(RES->y / RAY->wall_dist);
@@ -93,7 +93,7 @@ void	ft_raycasting(t_map *map)
 
 void	start(t_map *map)
 {
-	ft_raycasting(map);
+	raycasting(map);
 	if (!(MOVT = malloc(sizeof(*MOVT))))
 		return ;
 	MOVT->front = 0;
