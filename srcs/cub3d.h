@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 17:41:41 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 19:44:41 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <math.h>
 # include "../X11/includes/mlx.h"
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
@@ -34,7 +35,7 @@
 # define RES map->res_ptr
 # define MOVT map->movt
 # define SPEED .1
-# define ROTSPEED .05
+# define ROTSPEED .02
 
 typedef struct	s_color
 {

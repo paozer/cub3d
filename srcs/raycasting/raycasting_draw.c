@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/14 17:50:21 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 16:14:02 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/15 19:27:24 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,6 @@ void		draw(t_map *map, int x)
 	draw_end = (RES->y + RAY->line_h) / 2;
 	draw_start = (draw_start > 0) ? draw_start : 0;
 	draw_end = (draw_end >= RES->y) ? RES->y - 1 : draw_end;
-//	printf("start = %d end = %d line = %d\n", draw_start, draw_end, RAY->line_h);
 	while (y < map->res_ptr->y)
 	{
 		if ( y < draw_start)
