@@ -6,8 +6,8 @@ WE textures/barrel_wood.xpm
 EA textures/barrel_wood.xpm
 S textures/barrel_wood.xpm
 
-F 3,100,0
-C 225,1,0
+F 42, 45, 52
+C 133, 183, 62
 
 11111111111111111111111111111111
 10000000000000000000000000000001
