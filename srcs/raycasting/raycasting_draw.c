@@ -6,12 +6,19 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/14 17:50:21 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 19:27:24 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 14:17:11 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+/*
+int			select_texture(t_map *map, int y)
+{
+
+}
+*/
 
 void		draw(t_map *map, int x)
 {
@@ -27,20 +34,16 @@ void		draw(t_map *map, int x)
 	while (y < map->res_ptr->y)
 	{
 		if ( y < draw_start)
-		{
-			// print ceiling
-			IMG->buf[y * RES->x + x] = 0x8814f5;
-		}
+			IMG->buf[y * RES->x + x] =
+					((CEILING->red<<16)|(CEILING->green<<8)|(CEILING->blue));
 		if (y >= draw_start && y < draw_end)
 		{
 			// print wall
 			IMG->buf[y * RES->x + x] = 0xfa8080;
 		}
 		if (y >= draw_end)
-		{
-			// print floor
-			IMG->buf[y * RES->x + x] = 0x0;
-		}
+			IMG->buf[y * RES->x + x] =
+					((FLOOR->red<<16)|(FLOOR->green<<8)|(FLOOR->blue));
 		++y;
 	}
 }
