@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 13:56:32 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 16:56:10 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,7 @@
 
 typedef struct	s_color
 {
+	int			clr;
 	int			red;
 	int			green;
 	int			blue;

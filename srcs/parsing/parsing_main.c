@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 21:09:28 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 16:57:56 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,6 +62,7 @@ static void		ft_set_color(char *line, t_map *map, int flag)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	tmp->blue = ft_atoi(line + i);
+	tmp->clr = (tmp->red<<16)|(tmp->green<<8)|(tmp->blue);
 }
 
 void			ft_set_player(t_map *map, int x, int y)
