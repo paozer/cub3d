@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 21:07:14 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 13:56:32 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,8 +28,8 @@
 # define RAY map->ray
 # define MLX map->mlx
 # define IMG map->img
-# define FLOOR map->floor
-# define CEILING map->ceiling
+# define FLOOR map->floor_ptr
+# define CEILING map->ceiling_ptr
 # define TEXT map->text_ptr
 # define RES map->res_ptr
 # define MOVT map->movt
