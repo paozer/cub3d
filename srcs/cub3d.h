@@ -34,7 +34,7 @@
 # define RES map->res_ptr
 # define MOVT map->movt
 # define SPEED .1
-# define ROTSPEED .02
+# define ROTSPEED .05
 
 typedef struct	s_color
 {
