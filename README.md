@@ -8,3 +8,9 @@
 * use get_next_line to read arguments from .cub file
 * loop on gnl and check first characters for identifier
 * use ternary expressions to send to appropriate parsing fcnt
+
+### To-Do ###
+* display sprites
+* free allocated memory on exit
+* click on red arrow > clean exit
+* if the resolution is higher than the displays > adjust
