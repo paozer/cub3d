@@ -47,7 +47,7 @@ MLXFLAGS = -I $(MLXINC) -g -L $(MLXLIB) -l mlx -framework OpenGL -framework AppK
 
 RM		= rm -f
 
-%.o: 		%.c $(HEADERS)
+%.o: 		%.c $(HEADER)
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 all:		$(NAME)
