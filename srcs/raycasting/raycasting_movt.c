@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/15 16:13:03 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 23:09:07 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 23:20:30 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,7 +63,7 @@ void	movt_left_right(int key_code, t_map *map)
 	}
 }
 
-int		movt_rot_left_right(int key_code, t_map *map)
+int		rot_left_right(int key_code, t_map *map)
 {
 	double dir_x;
 	double dir_y;
@@ -97,8 +97,8 @@ int	movt_do(t_map *map)
 	(MOVT->back == 1) ? movt_front_back(1, map) : 0;
 	(MOVT->left == 1) ? movt_left_right(0, map) : 0;
 	(MOVT->right == 1) ? movt_left_right(2, map) : 0;
-	(MOVT->rot_left == 1) ? movt_rot_left_right(123, map) : 0;
-	(MOVT->rot_right == 1) ? movt_rot_left_right(124, map) : 0;
+	(MOVT->rot_left == 1) ? rot_left_right(123, map) : 0;
+	(MOVT->rot_right == 1) ? rot_left_right(124, map) : 0;
 	raycasting(map);
 	return (0);
 }
