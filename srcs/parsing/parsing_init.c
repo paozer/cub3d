@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 13:27:10 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 17:57:33 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ void		ft_init_res(t_map *map)
 	RES->x = -1;
 	RES->y = -1;
 }
-
+/*
 void		ft_init_textures(t_map *map)
 {
 	if (!(TEXT = malloc(sizeof(*TEXT))))
@@ -31,6 +31,7 @@ void		ft_init_textures(t_map *map)
 	TEXT->east = NULL;
 	TEXT->sprite = NULL;
 }
+*/
 
 t_color		*ft_init_color(void)
 {
@@ -98,7 +99,7 @@ t_map		*ft_init_map(void)
 	ft_init_screen(map);
 	ft_init_player(map);
 	ft_init_res(map);
-	ft_init_textures(map);
+//	ft_init_textures(map);
 	map->floor_ptr = ft_init_color();
 	map->ceiling_ptr = ft_init_color();
 

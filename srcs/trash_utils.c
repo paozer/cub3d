@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 23:01:54 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 21:03:25 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 18:00:42 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,11 +38,11 @@ void	ft_print_parsing(t_map *map)
 {
 	ft_printf("map->res_ptr->x = \t%d\n", map->res_ptr->x);
 	ft_printf("map->res_ptr->y = \t%d\n", map->res_ptr->y);
-	ft_printf("map->text_ptr->north = \t%s\n", map->text_ptr->north);
-	ft_printf("map->text_ptr->south = \t%s\n", map->text_ptr->south);
-	ft_printf("map->text_ptr->west = \t%s\n", map->text_ptr->west);
-	ft_printf("map->text_ptr->east = \t%s\n", map->text_ptr->east);
-	ft_printf("map->text_ptr->sprite = %s\n", map->text_ptr->sprite);
+	ft_printf("TEXT_P[north] = \t%s\n", TEXT_P[0]);
+	ft_printf("TEXT_P[south] = \t%s\n", TEXT_P[1]);
+	ft_printf("TEXT_P[west] = \t%s\n", TEXT_P[2]);
+	ft_printf("TEXT_P[east] = \t%s\n", TEXT_P[3]);
+	ft_printf("TEXT_P[sprite] = \t%s\n", TEXT_P[4]);
 	ft_printf("map->floor_ptr = \t RGB (%d, %d, %d)\n",
 					map->floor_ptr->red, map->floor_ptr->green,
 					map->floor_ptr->blue);

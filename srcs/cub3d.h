@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 16:56:10 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 18:16:41 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,8 @@
 # define IMG map->img
 # define FLOOR map->floor_ptr
 # define CEILING map->ceiling_ptr
-# define TEXT map->text_ptr
+# define TEXT_P map->texture_path
+# define TEXT map->texture
 # define RES map->res_ptr
 # define MOVT map->movt
 # define SPEED .1
@@ -43,15 +44,6 @@ typedef struct	s_color
 	int			green;
 	int			blue;
 }				t_color;
-
-typedef struct	s_textures
-{
-	char		*north;
-	char		*south;
-	char		*west;
-	char		*east;
-	char		*sprite;
-}				t_textures;
 
 typedef struct	s_res
 {
@@ -102,6 +94,8 @@ typedef struct	s_img
 	int			*buf;
 	int			bpp;
 	int			size_line;
+	int			height;
+	int			width;
 	int			endian;
 }				t_img;
 
@@ -136,7 +130,8 @@ typedef struct	s_map
 	t_ray		*ray;
 
 	t_res		*res_ptr;
-	t_textures	*text_ptr;
+	char		*texture_path[5];
+	t_img		*texture[5];
 	t_color		*floor_ptr;
 	t_color		*ceiling_ptr;
 

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 16:57:56 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 17:09:35 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -111,11 +111,11 @@ t_map			*ft_parsing(char *params)
 		while (line[i] && ft_isspace(line[i]) == 1)
 			++i;
 		(line[i] == 'R') ? ft_set_resolution(line + i + 1, map) : 1;
-		(line[i] == 'N' && line[i + 1] == 'O') ? (map->text_ptr->north = ft_set_paths(line + 2)) : 0;
-		(line[i] == 'S' && line[i + 1] == 'O') ? (map->text_ptr->south = ft_set_paths(line + 2)) : 0;
-		(line[i] == 'W' && line[i + 1] == 'E') ? (map->text_ptr->west = ft_set_paths(line + 2)) : 0;
-		(line[i] == 'E' && line[i + 1] == 'A') ? (map->text_ptr->east = ft_set_paths(line + 2)) : 0;
-		(line[i] == 'S' && line[i + 1] != 'O') ? (map->text_ptr->sprite = ft_set_paths(line + 1)) : 0;
+		(line[i] == 'N' && line[i + 1] == 'O') ? (TEXT_P[0] = ft_set_paths(line + 2)) : 0;
+		(line[i] == 'S' && line[i + 1] == 'O') ? (TEXT_P[1] = ft_set_paths(line + 2)) : 0;
+		(line[i] == 'W' && line[i + 1] == 'E') ? (TEXT_P[2] = ft_set_paths(line + 2)) : 0;
+		(line[i] == 'E' && line[i + 1] == 'A') ? (TEXT_P[3] = ft_set_paths(line + 2)) : 0;
+		(line[i] == 'S' && line[i + 1] != 'O') ? (TEXT_P[4] = ft_set_paths(line + 1)) : 0;
 		(line[i] == 'F') ? ft_set_color(line + 2, map, 0) : 0;
 		(line[i] == 'C') ? ft_set_color(line + 2, map, 1) : 0;
 		if (ft_isdigit(line[i]))
