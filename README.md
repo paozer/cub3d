@@ -12,5 +12,6 @@
 ### To-Do ###
 * display sprites
 * free allocated memory on exit
+* clean parsing up: simpler color parsing
 * click on red arrow > clean exit
 * if the resolution is higher than the displays > adjust
