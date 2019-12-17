@@ -6,49 +6,61 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/15 16:13:03 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/15 22:09:47 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 23:09:07 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		movt_front_back(int key_code, t_map *map)
+void	movt_front_back(int key_code, t_map *map)
 {
+	int new_x;
+	int new_y;
+
 	if (key_code == 13)
 	{
-		PLAYER->x += (map->map_i[(int)(PLAYER->x + PLAYER->dir_x * SPEED)]
-					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_x * SPEED;
-		PLAYER->y += (map->map_i[(int)PLAYER->x]
-					[(int)(PLAYER->y + PLAYER->dir_y * SPEED)] == 1) ? 0 : PLAYER->dir_y * SPEED;
+		new_x = (int)(PLAYER->x + PLAYER->dir_x * SPEED);
+		new_y = (int)(PLAYER->y + PLAYER->dir_y * SPEED);
+		if (map->map_i[new_x][new_y] >= 1)
+			return ;
+		PLAYER->x += PLAYER->dir_x * SPEED;
+		PLAYER->y += PLAYER->dir_y * SPEED;
 	}
 	if (key_code == 1)
 	{
-		PLAYER->x -= (map->map_i[(int)(PLAYER->x - PLAYER->dir_x * SPEED)]
-					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_x * SPEED;
-		PLAYER->y -= (map->map_i[(int)PLAYER->x]
-					[(int)(PLAYER->y - PLAYER->dir_y * SPEED)] == 1) ? 0 : PLAYER->dir_y * SPEED;
+		new_x = (int)(PLAYER->x - PLAYER->dir_x * SPEED);
+		new_y = (int)(PLAYER->y - PLAYER->dir_y * SPEED);
+		if (map->map_i[new_x][new_y] >= 1)
+			return ;
+		PLAYER->x -= PLAYER->dir_x * SPEED;
+		PLAYER->y -= PLAYER->dir_y * SPEED;
 	}
-	return (0);
 }
 
-int		movt_left_right(int key_code, t_map *map)
+void	movt_left_right(int key_code, t_map *map)
 {
+	int new_x;
+	int new_y;
+
 	if (key_code == 0)
 	{
-		PLAYER->x -= (map->map_i[(int)(PLAYER->x - PLAYER->dir_y * SPEED)]
-					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_y * SPEED;
-		PLAYER->y += (map->map_i[(int)PLAYER->x]
-					[(int)(PLAYER->y + PLAYER->dir_x * SPEED)] == 1) ? 0 : PLAYER->dir_x * SPEED;
+		new_x = (int)(PLAYER->x - PLAYER->dir_y * SPEED);
+		new_y = (int)(PLAYER->y + PLAYER->dir_x * SPEED);
+		if (map->map_i[new_x][new_y] >= 1)
+			return ;
+		PLAYER->x -= PLAYER->dir_y * SPEED;
+		PLAYER->y += PLAYER->dir_x * SPEED;
 	}
 	if (key_code == 2)
 	{
-		PLAYER->x += (map->map_i[(int)(PLAYER->x + PLAYER->dir_y * SPEED)]
-					[(int)PLAYER->y] >= 1) ? 0 : PLAYER->dir_y * SPEED;
-		PLAYER->y -= (map->map_i[(int)PLAYER->x]
-					[(int)(PLAYER->y - PLAYER->dir_x * SPEED)] == 1) ? 0 : PLAYER->dir_x * SPEED;
+		new_x = (int)(PLAYER->x + PLAYER->dir_y * SPEED);
+		new_y = (int)(PLAYER->y - PLAYER->dir_x * SPEED);
+		if (map->map_i[new_x][new_y] >= 1)
+			return ;
+		PLAYER->x += PLAYER->dir_y * SPEED;
+		PLAYER->y -= PLAYER->dir_x * SPEED;
 	}
-	return (0);
 }
 
 int		movt_rot_left_right(int key_code, t_map *map)
