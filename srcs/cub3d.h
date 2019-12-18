@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 18:16:41 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 14:40:17 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -157,6 +157,9 @@ void			draw(t_map *map, int x);
 int				movt_do(t_map *map);
 int				movt_pressed(int key_code, t_map *map);
 int				movt_released(int key_code, t_map *map);
+void			movt_front_back(int key_code, t_map *map);
+void			movt_left_right(int key_code, t_map *map);
+int				rot_left_right(int key_code, t_map *map);
 
 /*
  ** UTILITYS

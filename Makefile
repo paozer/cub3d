@@ -19,6 +19,7 @@ SRCS	= $(SRCS_D)cub3d.c\
 		  $(SRCS_D)raycasting/raycasting_main.c\
 		  $(SRCS_D)raycasting/raycasting_draw.c\
 		  $(SRCS_D)raycasting/raycasting_movt.c\
+		  $(SRCS_D)raycasting/raycasting_movt2.c\
 		  $(SRCS_D)parsing/parsing_check.c\
 		  $(SRCS_D)parsing/parsing_init.c\
 		  $(SRCS_D)parsing/parsing_main.c\
@@ -41,7 +42,7 @@ NAME	= cub3d
 
 CC		= gcc
 
-CFLAGS	= -g -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra #-fsanitize=address -g
 
 MLXFLAGS = -I $(MLXINC) -g -L $(MLXLIB) -l mlx -framework OpenGL -framework AppKit
 
