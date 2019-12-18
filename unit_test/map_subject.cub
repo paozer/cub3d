@@ -1,10 +1,10 @@
 R 1920 1080
 
-NO textures/metal.xpm
-SO textures/brick.xpm
-WE textures/stone.xpm
-EA textures/wood.xpm
-S textures/barrel_wood.xpm
+NO textures/wolf_wood.xpm
+SO textures/wolf_metal.xpm
+WE textures/wolf_brick.xpm
+EA textures/wolf_grass.xpm
+S textures/eye.xpm
 
 C 230, 230, 250
 F 105, 105, 105
