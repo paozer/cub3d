@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/14 17:50:21 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 16:11:17 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 18:07:19 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -73,14 +73,14 @@ void		draw(t_map *map, int x)
 	while (y < map->res_ptr->y)
 	{
 		if (y < draw_start)
-			IMG->buf[y * RES->x + x] = CEILING->clr;
+			IMG->buf[y * RES->x + x] = *map->cei_clr;
 		if (y >= draw_start && y < draw_end)
 		{
 			select_pixel(map, text_index, x, y);
 			y = draw_end;
 		}
 		if (y >= draw_end)
-			IMG->buf[y * RES->x + x] = FLOOR->clr;
+			IMG->buf[y * RES->x + x] = *map->flo_clr;
 		++y;
 	}
 }

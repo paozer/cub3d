@@ -6,21 +6,18 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 12:52:10 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 18:15:20 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_color_check(t_color *color_ptr)
+void	color_check(int r, int g, int b)
 {
-	(color_ptr->red < 0 || color_ptr->red > 255) ?
-		print_error(1, &(color_ptr->red)) : 0;
-	(color_ptr->green < 0 || color_ptr->green > 255) ?
-		print_error(1, &(color_ptr->red)) : 0;
-	(color_ptr->blue < 0 || color_ptr->blue > 255) ?
-		print_error(1, &(color_ptr->red)) : 0;
+	(r < 0 || r > 255) ? print_error(1, &(r)) : 0;
+	(g < 0 || g > 255) ? print_error(1, &(g)) : 0;
+	(b < 0 || b > 255) ? print_error(1, &(b)) : 0;
 }
 
 void	ft_path_check(t_map *map)
@@ -72,7 +69,5 @@ void	ft_parsing_check(t_map *map)
 	(map->res_ptr->x <= 0 || map->res_ptr->y <= 0) ?
 		(print_error(0, (void *)0)) : 1;
 	ft_path_check(map);
-	ft_color_check(map->floor_ptr);
-	ft_color_check(map->ceiling_ptr);
 	ft_map_check(map);
 }

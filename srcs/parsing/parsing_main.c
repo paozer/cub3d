@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 12:54:51 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 18:13:42 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,26 +43,31 @@ static char		*ft_set_paths(char *line)
 static void		ft_set_color(char *line, t_map *map, int flag)
 {
 	int		i;
-	t_color	*tmp;
+	int		r;
+	int		g;
+	int		b;
 
 	i = 0;
-	tmp = (flag == 0) ? map->floor_ptr : map->ceiling_ptr;
 	while (line[i] && ft_isspace(line[i]))
 		++i;
-	tmp->red = ft_atoi(line + i);
+	r = ft_atoi(line + i);
 	while (ft_isdigit(line[i]))
 		++i;
 	(line[i] == ',') ? ++i : 1;
 	while (line[i] && ft_isspace(line[i]))
 		++i;
-	tmp->green = ft_atoi(line + i);
+	g = ft_atoi(line + i);
 	while (ft_isdigit(line[i]))
 		++i;
 	(line[i] == ',') ? ++i : 1;
 	while (line[i] && ft_isspace(line[i]))
 		++i;
-	tmp->blue = ft_atoi(line + i);
-	tmp->clr = (tmp->red << 16) | (tmp->green << 8) | (tmp->blue);
+	b = ft_atoi(line + i);
+	color_check(r, g, b);
+	if (flag)
+		*map->cei_clr = (r << 16) | (g << 8) | (b);
+	else
+		*map->flo_clr = (r << 16) | (g << 8) | (b);
 }
 
 void			ft_set_player(t_map *map, int x, int y)

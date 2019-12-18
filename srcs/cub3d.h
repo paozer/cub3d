@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 14:40:17 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 18:13:22 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -132,6 +132,8 @@ typedef struct	s_map
 	t_res		*res_ptr;
 	char		*texture_path[5];
 	t_img		*texture[5];
+	int			*flo_clr;
+	int			*cei_clr;
 	t_color		*floor_ptr;
 	t_color		*ceiling_ptr;
 
@@ -147,6 +149,7 @@ void			ft_parsing_check(t_map *map);
 void			ft_set_map(t_map *map, int fd, char **line);
 void			ft_set_player(t_map *map, int x, int y);
 t_map			*ft_init_map(void);
+void			color_check(int r, int g, int b);
 
 /*
  ** RAYCASTING
