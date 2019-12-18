@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 17:57:33 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 13:02:42 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,18 +20,6 @@ void		ft_init_res(t_map *map)
 	RES->x = -1;
 	RES->y = -1;
 }
-/*
-void		ft_init_textures(t_map *map)
-{
-	if (!(TEXT = malloc(sizeof(*TEXT))))
-		return ;
-	TEXT->north = NULL;
-	TEXT->south = NULL;
-	TEXT->west = NULL;
-	TEXT->east = NULL;
-	TEXT->sprite = NULL;
-}
-*/
 
 t_color		*ft_init_color(void)
 {
@@ -44,7 +32,6 @@ t_color		*ft_init_color(void)
 	ptr->blue = -1;
 	return (ptr);
 }
-
 
 void		ft_init_player(t_map *map)
 {
@@ -90,24 +77,20 @@ void		ft_init_screen(t_map *map)
 
 t_map		*ft_init_map(void)
 {
-	t_map *map;
+	t_map	*map;
+	t_mlx	*ptr;
 
 	if (!(map = malloc(sizeof(*map))))
 		return (NULL);
 	map->map = NULL;
+	if (!(ptr = malloc(sizeof(*ptr))))
+		return (NULL);
+	MLX = ptr;
 	ft_init_ray(map);
 	ft_init_screen(map);
 	ft_init_player(map);
 	ft_init_res(map);
-//	ft_init_textures(map);
 	map->floor_ptr = ft_init_color();
 	map->ceiling_ptr = ft_init_color();
-
-	t_mlx	*ptr;
-	// move later on
-	if (!(ptr = malloc(sizeof(*ptr))))
-		return (NULL);
-	MLX = ptr;
-	// end
 	return (map);
 }
