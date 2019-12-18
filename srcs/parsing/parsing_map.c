@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/13 17:30:42 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 19:08:20 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,7 +35,7 @@ static char	**ft_realloc(char **str, int size, int len)
 	return (new_str);
 }
 
-static int	**ft_set_int_map(char **map)
+static int	**set_int_map(char **map)
 {
 	int i;
 	int j;
@@ -65,7 +65,7 @@ static int	**ft_set_int_map(char **map)
 	return (map_i);
 }
 
-void		ft_set_map(t_map *map, int fd, char **line)
+void		set_map(t_map *map, int fd, char **line)
 {
 	int		i;
 	int		len;
@@ -80,7 +80,7 @@ void		ft_set_map(t_map *map, int fd, char **line)
 		map->map = ft_realloc(map->map, ++i, len);
 	free(map->map[i]);
 	map->map[i] = NULL;
-	map->map_i = ft_set_int_map(map->map);
+	map->map_i = set_int_map(map->map);
 	map->map_width = len;
 	map->map_height = i;
 }

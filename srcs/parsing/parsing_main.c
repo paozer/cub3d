@@ -6,14 +6,14 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 18:13:42 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 19:15:45 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void		ft_set_resolution(char *line, t_map *map)
+static void		set_resolution(char *line, t_map *map)
 {
 	int i;
 
@@ -28,7 +28,7 @@ static void		ft_set_resolution(char *line, t_map *map)
 	map->res_ptr->y = ft_atoi(line + i);
 }
 
-static char		*ft_set_paths(char *line)
+static char		*set_paths(char *line)
 {
 	int		i;
 	char	*str;
@@ -40,7 +40,7 @@ static char		*ft_set_paths(char *line)
 	return (str);
 }
 
-static void		ft_set_color(char *line, t_map *map, int flag)
+static void		set_color(char *line, t_map *map, int flag)
 {
 	int		i;
 	int		r;
@@ -63,14 +63,14 @@ static void		ft_set_color(char *line, t_map *map, int flag)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	b = ft_atoi(line + i);
-	color_check(r, g, b);
+	check_color(r, g, b);
 	if (flag)
 		*map->cei_clr = (r << 16) | (g << 8) | (b);
 	else
 		*map->flo_clr = (r << 16) | (g << 8) | (b);
 }
 
-void			ft_set_player(t_map *map, int x, int y)
+void			set_player(t_map *map, int x, int y)
 {
 	if (PLAYER->set_flag == 1)
 		print_error(6, (void *)0);
@@ -93,7 +93,7 @@ void			ft_set_player(t_map *map, int x, int y)
 	}
 }
 
-t_map			*ft_parsing(char *params)
+t_map			*parsing(char *params)
 {
 	int		i;
 	int		fd;
@@ -109,31 +109,31 @@ t_map			*ft_parsing(char *params)
 	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
 		print_error(3, params) : 1;
 	/* end */
-	map = ft_init_map();
+	map = init_map();
 	while (get_next_line(fd, &line) == 1)
 	{
 		i = 0;
 		while (line[i] && ft_isspace(line[i]) == 1)
 			++i;
-		(line[i] == 'R') ? ft_set_resolution(line + i + 1, map) : 1;
+		(line[i] == 'R') ? set_resolution(line + i + 1, map) : 1;
 		(line[i] == 'N' && line[i + 1] == 'O') ?
-				(TEXT_P[0] = ft_set_paths(line + 2)) : 0;
+				(TEXT_P[0] = set_paths(line + 2)) : 0;
 		(line[i] == 'S' && line[i + 1] == 'O') ?
-				(TEXT_P[1] = ft_set_paths(line + 2)) : 0;
+				(TEXT_P[1] = set_paths(line + 2)) : 0;
 		(line[i] == 'W' && line[i + 1] == 'E') ?
-				(TEXT_P[2] = ft_set_paths(line + 2)) : 0;
+				(TEXT_P[2] = set_paths(line + 2)) : 0;
 		(line[i] == 'E' && line[i + 1] == 'A') ?
-				(TEXT_P[3] = ft_set_paths(line + 2)) : 0;
+				(TEXT_P[3] = set_paths(line + 2)) : 0;
 		(line[i] == 'S' && line[i + 1] != 'O') ?
-				(TEXT_P[4] = ft_set_paths(line + 1)) : 0;
-		(line[i] == 'F') ? ft_set_color(line + 2, map, 0) : 0;
-		(line[i] == 'C') ? ft_set_color(line + 2, map, 1) : 0;
+				(TEXT_P[4] = set_paths(line + 1)) : 0;
+		(line[i] == 'F') ? set_color(line + 2, map, 0) : 0;
+		(line[i] == 'C') ? set_color(line + 2, map, 1) : 0;
 		if (ft_isdigit(line[i]))
 			break ;
 		free(line);
 	}
-	ft_set_map(map, fd, &line);
-	ft_parsing_check(map);
+	set_map(map, fd, &line);
+	check_parsing(map);
 	if (close(fd) == -1)
 		return (NULL);
 	return (map);

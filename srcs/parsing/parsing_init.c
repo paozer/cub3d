@@ -6,14 +6,14 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 18:14:49 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 18:45:29 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void		ft_init_res(t_map *map)
+void		init_res(t_map *map)
 {
 	if (!(RES = malloc(sizeof(*RES))))
 		return ;
@@ -21,7 +21,7 @@ void		ft_init_res(t_map *map)
 	RES->y = -1;
 }
 
-void		ft_init_player(t_map *map)
+void		init_player(t_map *map)
 {
 	if (!(PLAYER = malloc(sizeof(*PLAYER))))
 		return ;
@@ -32,7 +32,7 @@ void		ft_init_player(t_map *map)
 	PLAYER->dir_y = 0;
 }
 
-void		ft_init_ray(t_map *map)
+void		init_ray(t_map *map)
 {
 	if (!(RAY = malloc(sizeof(*RAY))))
 		return ;
@@ -53,7 +53,7 @@ void		ft_init_ray(t_map *map)
 	RAY->wall_dist = 0;
 }
 
-void		ft_init_screen(t_map *map)
+void		init_screen(t_map *map)
 {
 	if (!(SCREEN = malloc(sizeof(*SCREEN))))
 		return ;
@@ -63,7 +63,7 @@ void		ft_init_screen(t_map *map)
 	SCREEN->cam_y = 0;
 }
 
-t_map		*ft_init_map(void)
+t_map		*init_map(void)
 {
 	t_map	*map;
 	t_mlx	*ptr;
@@ -74,10 +74,10 @@ t_map		*ft_init_map(void)
 	if (!(ptr = malloc(sizeof(*ptr))))
 		return (NULL);
 	MLX = ptr;
-	ft_init_ray(map);
-	ft_init_screen(map);
-	ft_init_player(map);
-	ft_init_res(map);
+	init_ray(map);
+	init_screen(map);
+	init_player(map);
+	init_res(map);
 	if(!(map->flo_clr = malloc(sizeof(*map->flo_clr))))
 		return (NULL);
 	if(!(map->cei_clr = malloc(sizeof(*map->cei_clr))))

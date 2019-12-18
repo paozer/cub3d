@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 18:13:22 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 19:19:28 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,14 +36,6 @@
 # define MOVT map->movt
 # define SPEED .1
 # define ROTSPEED .05
-
-typedef struct	s_color
-{
-	int			clr;
-	int			red;
-	int			green;
-	int			blue;
-}				t_color;
 
 typedef struct	s_res
 {
@@ -134,8 +126,6 @@ typedef struct	s_map
 	t_img		*texture[5];
 	int			*flo_clr;
 	int			*cei_clr;
-	t_color		*floor_ptr;
-	t_color		*ceiling_ptr;
 
 	t_mlx		*mlx;
 	t_img		*img;
@@ -144,12 +134,12 @@ typedef struct	s_map
 /*
  ** PARSING
 */
-t_map			*ft_parsing(char *params);
-void			ft_parsing_check(t_map *map);
-void			ft_set_map(t_map *map, int fd, char **line);
-void			ft_set_player(t_map *map, int x, int y);
-t_map			*ft_init_map(void);
-void			color_check(int r, int g, int b);
+t_map			*parsing(char *params);
+void			check_parsing(t_map *map);
+void			check_color(int r, int g, int b);
+void			set_map(t_map *map, int fd, char **line);
+void			set_player(t_map *map, int x, int y);
+t_map			*init_map(void);
 
 /*
  ** RAYCASTING

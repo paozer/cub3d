@@ -24,7 +24,7 @@ SRCS	= $(SRCS_D)cub3d.c\
 		  $(SRCS_D)parsing/parsing_init.c\
 		  $(SRCS_D)parsing/parsing_main.c\
 		  $(SRCS_D)parsing/parsing_map.c\
-		  $(SRCS_D)trash_utils.c\
+#		  $(SRCS_D)trash_utils.c\
 
 OBJS	= $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:11:33 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 18:18:43 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/18 19:03:46 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,7 @@ int		main(int argc, char **argv)
 		ft_printf("Error\nUsage: ./cube3d path/to/map.cub\n");
 		return (0);
 	}
-	map = ft_parsing(argv[1]);
+	map = parsing(argv[1]);
 	init(map);
 	start(map);
 	return (0);
