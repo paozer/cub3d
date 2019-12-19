@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 19:27:58 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 14:22:30 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@ void	print_error(int flag, void *arg)
 	(flag == 5) ? ft_printf("Map is not enclosed by walls in row %d.\n",
 				*((int *)arg) + 1) : 1;
 	(flag == 6) ? ft_printf("Multiple start positions for player.\n") : 1;
+	(flag == 7) ? ft_printf("No start position for player.\n") : 1;
 	exit(0);
 }
 
@@ -66,11 +67,11 @@ void	check_map(t_map *map)
 	while (map->map[i])
 	{
 		j = 0;
-		(map->map[i][0] != '1') ? print_error(5, &i) : 1;
+		(map->map[i][j] != '1') ? print_error(5, &i) : 1;
 		while (map->map[i][j])
 		{
 			if (!(ft_strchr("012NSEW", map->map[i][j]) ||
-						ft_isspace(map->map[i][j])))
+					ft_isspace(map->map[i][j])))
 				print_error(4, &map->map[i][j]);
 			(ft_strchr("NSEW", map->map[i][j])) ? set_player(map, i, j) : 1;
 			++j;
@@ -78,6 +79,7 @@ void	check_map(t_map *map)
 		(map->map[i][j - 1] != '1') ? print_error(5, &i) : 1;
 		++i;
 	}
+	(PLAYER->x == 0 && PLAYER->y == 0) ? print_error(7, (void *)0) : 0;
 }
 
 void	check_parsing(t_map *map)

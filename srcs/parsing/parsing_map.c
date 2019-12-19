@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 19:08:20 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 14:13:24 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,6 +71,7 @@ void		set_map(t_map *map, int fd, char **line)
 	int		len;
 
 	i = 1;
+	len = ft_strlen(*line);
 	if (!(map->map = malloc(sizeof(*map->map) * 2)))
 		return ;
 	map->map[0] = *line;
