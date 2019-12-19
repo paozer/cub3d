@@ -1,0 +1,14 @@
+R 1000 700
+
+NO textures/wolf_wood.xpm
+SO textures/wolf_metal.xpm
+WE textures/wolf_brick.xpm
+EA textures/wolf_grass.xpm
+S textures/eye.xpm
+
+C 230, 230, 250
+F 105, 105, 105
+
+111
+1N1
+111
