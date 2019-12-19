@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 19:19:28 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 20:10:27 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,15 +25,15 @@
 
 # define PLAYER map->player
 # define SCREEN map->screen
+# define MOVT map->movt
 # define RAY map->ray
 # define MLX map->mlx
+# define SPR map->sprites
 # define IMG map->img
 # define FLOOR map->floor_ptr
-# define CEILING map->ceiling_ptr
-# define TEXT_P map->texture_path
 # define TEXT map->texture
-# define RES map->res_ptr
-# define MOVT map->movt
+# define TEXT_P map->texture_path
+# define RES map->resolution
 # define SPEED .1
 # define ROTSPEED .05
 
@@ -42,6 +42,14 @@ typedef struct	s_res
 	int			x;
 	int			y;
 }				t_res;
+
+typedef struct	s_lst
+{
+	int			spr_dst;
+	double		x;
+	double		y;
+	struct s_lst *next;
+}				t_lst;
 
 typedef struct	s_player
 {
@@ -91,6 +99,13 @@ typedef struct	s_img
 	int			endian;
 }				t_img;
 
+typedef struct 	s_sprite
+{
+	double		**wall_dist;
+	t_lst		*lst;
+	t_img		*img;
+}				t_sprite;
+
 typedef struct	s_mlx
 {
 	void		*mlx_ptr;
@@ -114,16 +129,17 @@ typedef struct	s_map
 	int			**map_i;
 	int			map_width;
 	int			map_height;
-
-	t_movt		*movt;
+	t_res		*resolution;
 
 	t_player	*player;
+	t_movt		*movt;
 	t_screen	*screen;
 	t_ray		*ray;
 
-	t_res		*res_ptr;
 	char		*texture_path[5];
 	t_img		*texture[5];
+	int			nbr_sprites;
+	t_sprite	*sprites;
 	int			*flo_clr;
 	int			*cei_clr;
 
@@ -140,6 +156,7 @@ void			check_color(int r, int g, int b);
 void			set_map(t_map *map, int fd, char **line);
 void			set_player(t_map *map, int x, int y);
 t_map			*init_map(void);
+void			print_error(int flag, void *arg);
 
 /*
  ** RAYCASTING
@@ -153,11 +170,6 @@ int				movt_released(int key_code, t_map *map);
 void			movt_front_back(int key_code, t_map *map);
 void			movt_left_right(int key_code, t_map *map);
 int				rot_left_right(int key_code, t_map *map);
-
-/*
- ** UTILITYS
-*/
-void			print_error(int flag, void *arg);
 
 /*
  ** helper functions for debugging
