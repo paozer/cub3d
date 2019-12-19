@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/14 17:50:21 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 18:07:19 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 19:55:35 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,7 +70,7 @@ void		draw(t_map *map, int x)
 	draw_start = (draw_start > 0) ? draw_start : 0;
 	draw_end = (draw_end >= RES->y) ? RES->y - 1 : draw_end;
 	text_index = select_texture(map);
-	while (y < map->res_ptr->y)
+	while (y < RES->y)
 	{
 		if (y < draw_start)
 			IMG->buf[y * RES->x + x] = *map->cei_clr;

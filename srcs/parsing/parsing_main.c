@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 19:15:45 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 19:57:25 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,12 +20,12 @@ static void		set_resolution(char *line, t_map *map)
 	i = 0;
 	while (line[i] && ft_isspace(line[i]))
 		++i;
-	map->res_ptr->x = ft_atoi(line + i);
+	RES->x = ft_atoi(line + i);
 	while (ft_isdigit(line[i]))
 		++i;
 	while (line[i] && ft_isspace(line[i]))
 		++i;
-	map->res_ptr->y = ft_atoi(line + i);
+	RES->y = ft_atoi(line + i);
 }
 
 static char		*set_paths(char *line)

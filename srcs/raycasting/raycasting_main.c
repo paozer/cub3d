@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 13:25:03 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 19:55:13 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -73,9 +73,9 @@ void	raycasting(t_map *map)
 
 	x = 0;
 	mlx_clear_window(MLX->mlx_ptr, MLX->win_ptr);
-	while (x < map->res_ptr->x)
+	while (x < RES->x)
 	{
-		SCREEN->cam_x = 2 * x / (double)map->res_ptr->x - 1;
+		SCREEN->cam_x = 2 * x / (double)RES->x - 1;
 		RAY->dir_x = PLAYER->dir_x + SCREEN->plane_x * SCREEN->cam_x;
 		RAY->dir_y = PLAYER->dir_y + SCREEN->plane_y * SCREEN->cam_x;
 		RAY->map_x = (int)PLAYER->x;
@@ -84,6 +84,7 @@ void	raycasting(t_map *map)
 		RAY->delta_dist_y = fabs(1 / RAY->dir_y);
 		compute_first_section(map);
 		compute_wall_hit(map);
+
 		RAY->line_h = (int)(RES->y / RAY->wall_dist);
 		draw(map, x);
 		++x;
