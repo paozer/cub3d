@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 21:12:02 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 23:26:56 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,6 +63,17 @@ void		init_screen(t_map *map)
 	SCREEN->cam_y = 0;
 }
 
+void	init_sprites(t_map *map)
+{
+	if (!(SPR = malloc(sizeof(*SPR))))
+		return ;
+	if (!(SPR->img = malloc(sizeof(*SPR->img))))
+		return ;
+	if (!(SPR->lst = malloc(sizeof(*SPR->lst))))
+		return ;
+	SPR->lst = NULL;
+}
+
 t_map		*init_map(void)
 {
 	t_map	*map;
@@ -78,6 +89,7 @@ t_map		*init_map(void)
 	init_screen(map);
 	init_player(map);
 	init_res(map);
+	init_sprites(map);
 	if (!(map->flo_clr = malloc(sizeof(*map->flo_clr))))
 		return (NULL);
 	if (!(map->cei_clr = malloc(sizeof(*map->cei_clr))))

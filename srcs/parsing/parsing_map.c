@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 14:13:24 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 23:29:37 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,29 +35,31 @@ static char	**ft_realloc(char **str, int size, int len)
 	return (new_str);
 }
 
-static int	**set_int_map(char **map)
+static int	**set_int_map(t_map *map)
 {
 	int i;
 	int j;
 	int **map_i;
 
 	i = 0;
-	while (map[i])
+	while (map->map[i])
 		++i;
 	if (!(map_i = malloc(sizeof(*map_i) * i)))
 		return (NULL);
 	i = 0;
-	while (map[i])
+	while (map->map[i])
 	{
 		j = 0;
-		if (!(map_i[i] = malloc(sizeof(**map_i) * ft_strlen(map[i]))))
+		if (!(map_i[i] = malloc(sizeof(**map_i) * ft_strlen(map->map[i]))))
 			return (NULL);
-		while (map[i][j])
+		while (map->map[i][j])
 		{
-			if (ft_strchr("NSWE", map[i][j]))
+			if (ft_strchr("NSWE", map->map[i][j]))
 				map_i[i][j] = 0;
 			else
-				map_i[i][j] = map[i][j] - 48;
+				map_i[i][j] = map->map[i][j] - 48;
+			if (map->map[i][j] == '2')
+				lstadd_front(&SPR->lst, lstnew(i, j));
 			++j;
 		}
 		++i;
@@ -81,7 +83,7 @@ void		set_map(t_map *map, int fd, char **line)
 		map->map = ft_realloc(map->map, ++i, len);
 	free(map->map[i]);
 	map->map[i] = NULL;
-	map->map_i = set_int_map(map->map);
+	map->map_i = set_int_map(map);
 	map->map_width = len;
 	map->map_height = i;
 }

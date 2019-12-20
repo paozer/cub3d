@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 23:01:54 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 18:00:42 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 00:08:25 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,23 @@ void	ft_print_player(t_map *map)
 				map->map[(int)PLAYER->y][(int)PLAYER->x]);
 }
 
+void	ft_print_sprite_list(t_map *map)
+{
+	int i = 1;
+	t_lst *node;
+	node = SPR_LST;
+	ft_printf("--------------SPRITES--------------\n");
+	while (node)
+	{
+		printf("NODE [%2d]\n", i++);
+		printf("SPR_LST->dist = [%f]\n", node->dist);
+		printf("SPR_LST->x = [%f]\n", node->x);
+		printf("SPR_LST->y = [%f]\n", node->y);
+		ft_printf("-----------------------------------\n");
+		node = node->next;
+	}
+}
+/*
 void	ft_print_screen(t_map *map)
 {
 	printf("-------SCREEN-------\n");
@@ -104,3 +121,4 @@ void	ft_print_map_i(int **map, int wd, int ht)
 		++i;
 	}
 }
+*/

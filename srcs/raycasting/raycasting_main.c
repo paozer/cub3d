@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 19:55:13 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 00:10:00 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,7 +56,7 @@ void	compute_wall_hit(t_map *map)
 			RAY->map_y += RAY->step_y;
 			RAY->side = 1;
 		}
-		if (map->map_i[RAY->map_x][RAY->map_y] >= 1)
+		if (map->map_i[RAY->map_x][RAY->map_y] == 1)
 			RAY->hit = 1;
 	}
 	if (RAY->side == 0)
@@ -84,11 +84,15 @@ void	raycasting(t_map *map)
 		RAY->delta_dist_y = fabs(1 / RAY->dir_y);
 		compute_first_section(map);
 		compute_wall_hit(map);
-
+		if (!(SPR->wall_dist[x] = malloc(sizeof(*SPR->wall_dist))))
+			return ;
+		*SPR->wall_dist[x] = RAY->wall_dist;
 		RAY->line_h = (int)(RES->y / RAY->wall_dist);
 		draw(map, x);
 		++x;
 	}
+	sprites_main(map);
+	ft_print_sprite_list(map);
 	mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->img, 0, 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 20:10:27 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 00:02:15 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,7 @@
 # define RAY map->ray
 # define MLX map->mlx
 # define SPR map->sprites
+# define SPR_LST map->sprites->lst
 # define IMG map->img
 # define FLOOR map->floor_ptr
 # define TEXT map->texture
@@ -45,7 +46,7 @@ typedef struct	s_res
 
 typedef struct	s_lst
 {
-	int			spr_dst;
+	double		dist;
 	double		x;
 	double		y;
 	struct s_lst *next;
@@ -170,12 +171,16 @@ int				movt_released(int key_code, t_map *map);
 void			movt_front_back(int key_code, t_map *map);
 void			movt_left_right(int key_code, t_map *map);
 int				rot_left_right(int key_code, t_map *map);
+void			sprites_main(t_map *map);
 
+t_lst			*lstnew(int x, int y);
+void			lstadd_front(t_lst **alst, t_lst *new);
 /*
  ** helper functions for debugging
 */
 void			ft_print_parsing(t_map *map);
 void			ft_print_map(char **map);
 void			ft_print_map_i(int **map, int wd, int ht);
+void			ft_print_sprite_list(t_map *map);
 
 #endif

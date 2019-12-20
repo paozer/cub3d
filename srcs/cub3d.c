@@ -6,24 +6,12 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:11:33 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 21:10:00 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 00:03:56 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	init_sprites(t_map *map)
-{
-	if (!(SPR = malloc(sizeof(*SPR))))
-		return ;
-	if (!(SPR->wall_dist = malloc(sizeof(*SPR->wall_dist) * RES->x)))
-		return ;
-	if (!(SPR->img = malloc(sizeof(*SPR->img))))
-		return ;
-	SPR->img = mlx_xpm_file_to_image(MLX->mlx_ptr, TEXT_P[4],
-		&SPR->img->height, &SPR->img->width);
-}
 
 void	init(t_map *map)
 {
@@ -33,7 +21,7 @@ void	init(t_map *map)
 	if ((MLX->mlx_ptr = mlx_init()) == NULL)
 		return ;
 	if ((MLX->win_ptr = mlx_new_window(MLX->mlx_ptr, RES->x, RES->y,
-									"cube3d")) == NULL)
+		"cube3d")) == NULL)
 		return ;
 	if (!(map->img = malloc(sizeof(*(map->img)))))
 		return ;
@@ -50,7 +38,11 @@ void	init(t_map *map)
 						&TEXT[i]->size_line, &TEXT[i]->endian);
 		++i;
 	}
-	init_sprites(map);
+	/* sprites initialisation requiring results frim parsing */
+	if (!(SPR->wall_dist = malloc(sizeof(*SPR->wall_dist) * RES->x)))
+		return ;
+	SPR->img = mlx_xpm_file_to_image(MLX->mlx_ptr, TEXT_P[4],
+		&SPR->img->height, &SPR->img->width);
 }
 
 int		main(int argc, char **argv)
