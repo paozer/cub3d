@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 23:26:56 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 19:10:01 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,11 +67,7 @@ void	init_sprites(t_map *map)
 {
 	if (!(SPR = malloc(sizeof(*SPR))))
 		return ;
-	if (!(SPR->img = malloc(sizeof(*SPR->img))))
-		return ;
-	if (!(SPR->lst = malloc(sizeof(*SPR->lst))))
-		return ;
-	SPR->lst = NULL;
+	SPR->nbr = 0;
 }
 
 t_map		*init_map(void)

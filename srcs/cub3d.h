@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 00:02:15 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 19:09:43 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,13 +44,12 @@ typedef struct	s_res
 	int			y;
 }				t_res;
 
-typedef struct	s_lst
+typedef struct	s_spr
 {
 	double		dist;
 	double		x;
 	double		y;
-	struct s_lst *next;
-}				t_lst;
+}				t_spr;
 
 typedef struct	s_player
 {
@@ -102,9 +101,9 @@ typedef struct	s_img
 
 typedef struct 	s_sprite
 {
+	int			nbr;
 	double		**wall_dist;
-	t_lst		*lst;
-	t_img		*img;
+	t_spr		**arr;
 }				t_sprite;
 
 typedef struct	s_mlx
@@ -139,7 +138,6 @@ typedef struct	s_map
 
 	char		*texture_path[5];
 	t_img		*texture[5];
-	int			nbr_sprites;
 	t_sprite	*sprites;
 	int			*flo_clr;
 	int			*cei_clr;
@@ -173,14 +171,14 @@ void			movt_left_right(int key_code, t_map *map);
 int				rot_left_right(int key_code, t_map *map);
 void			sprites_main(t_map *map);
 
-t_lst			*lstnew(int x, int y);
-void			lstadd_front(t_lst **alst, t_lst *new);
+//t_lst			*lstnew(int x, int y);
+//void			lstadd_front(t_lst **alst, t_lst *new);
 /*
  ** helper functions for debugging
 */
 void			ft_print_parsing(t_map *map);
 void			ft_print_map(char **map);
 void			ft_print_map_i(int **map, int wd, int ht);
-void			ft_print_sprite_list(t_map *map);
+void			ft_print_spr(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 00:10:00 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 17:52:19 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,7 +92,6 @@ void	raycasting(t_map *map)
 		++x;
 	}
 	sprites_main(map);
-	ft_print_sprite_list(map);
 	mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->img, 0, 0);
 }
 

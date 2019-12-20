@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 23:01:54 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 00:08:25 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 17:04:27 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,20 +25,18 @@ void	ft_print_player(t_map *map)
 				map->map[(int)PLAYER->y][(int)PLAYER->x]);
 }
 
-void	ft_print_sprite_list(t_map *map)
+void ft_print_spr(t_map *map)
 {
-	int i = 1;
-	t_lst *node;
-	node = SPR_LST;
+	int i = 0;
 	ft_printf("--------------SPRITES--------------\n");
-	while (node)
+	while (i < SPR->nbr)
 	{
-		printf("NODE [%2d]\n", i++);
-		printf("SPR_LST->dist = [%f]\n", node->dist);
-		printf("SPR_LST->x = [%f]\n", node->x);
-		printf("SPR_LST->y = [%f]\n", node->y);
+		printf("NODE [%2d]\n", i);
+		printf("SPR_LST->dist = [%f]\n", SPR->arr[i]->dist);
+		printf("SPR_LST->x = [%f]\n", SPR->arr[i]->x);
+		printf("SPR_LST->y = [%f]\n", SPR->arr[i]->y);
 		ft_printf("-----------------------------------\n");
-		node = node->next;
+		++i;
 	}
 }
 /*

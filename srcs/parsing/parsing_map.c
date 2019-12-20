@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 02:17:49 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 17:04:04 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,7 @@ static int	**set_int_map(t_map *map)
 			else
 				map_i[i][j] = map->map[i][j] - 48;
 			if (map->map[i][j] == '2')
-				lstadd_front(&SPR->lst, lstnew(j, i));
+				SPR->nbr += 1;
 			++j;
 		}
 		++i;
