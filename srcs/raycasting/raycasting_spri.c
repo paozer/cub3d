@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 21:45:59 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 19:08:15 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 19:59:14 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,11 +36,12 @@ void	sprites_draw(t_map *map)
 
 
 	i = 0;
-	inv_deter = 1.0 / (SCREEN->plane_x * PLAYER->dir_y - PLAYER->dir_x * SCREEN->plane_y);
 	while (i < SPR->nbr)
 	{
 		sprite_x = SPR->arr[i]->x - PLAYER->x;
 		sprite_y = SPR->arr[i]->y - PLAYER->y;
+
+		inv_deter = 1.0 / (SCREEN->plane_x * PLAYER->dir_y - PLAYER->dir_x * SCREEN->plane_y);
 
 		trans_x = inv_deter * (PLAYER->dir_y * sprite_x - PLAYER->dir_x * sprite_y);
 		trans_y = inv_deter * (-SCREEN->plane_y * sprite_x + SCREEN->plane_x * sprite_y);
@@ -59,7 +60,7 @@ void	sprites_draw(t_map *map)
 		draw_end_x = spr_width / 2 + spr_screen_x;
 		(draw_end_x >= RES->x) ? draw_end_x = RES->x - 1 : 0;
 
-	 	j = draw_start_x;
+		j = draw_start_x;
 		while (j < draw_end_x)
 		{
 			tex_x = (int)(256 * (j - (-spr_width / 2 + spr_screen_x)) * TEXT[4]->width / spr_width) / 256;

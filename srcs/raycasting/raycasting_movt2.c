@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/15 16:13:03 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 12:41:42 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 19:46:56 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ void	movt_front_back(int key_code, t_map *map)
 	{
 		new_x = (int)(PLAYER->x + PLAYER->dir_x * SPEED);
 		new_y = (int)(PLAYER->y + PLAYER->dir_y * SPEED);
-		if (map->map_i[new_x][new_y] >= 1)
+		if (map->map_i[new_x][new_y] == 1)
 			return ;
 		PLAYER->x += PLAYER->dir_x * SPEED;
 		PLAYER->y += PLAYER->dir_y * SPEED;
@@ -31,7 +31,7 @@ void	movt_front_back(int key_code, t_map *map)
 	{
 		new_x = (int)(PLAYER->x - PLAYER->dir_x * SPEED);
 		new_y = (int)(PLAYER->y - PLAYER->dir_y * SPEED);
-		if (map->map_i[new_x][new_y] >= 1)
+		if (map->map_i[new_x][new_y] == 1)
 			return ;
 		PLAYER->x -= PLAYER->dir_x * SPEED;
 		PLAYER->y -= PLAYER->dir_y * SPEED;
@@ -47,7 +47,7 @@ void	movt_left_right(int key_code, t_map *map)
 	{
 		new_x = (int)(PLAYER->x - PLAYER->dir_y * SPEED);
 		new_y = (int)(PLAYER->y + PLAYER->dir_x * SPEED);
-		if (map->map_i[new_x][new_y] >= 1)
+		if (map->map_i[new_x][new_y] == 1)
 			return ;
 		PLAYER->x -= PLAYER->dir_y * SPEED;
 		PLAYER->y += PLAYER->dir_x * SPEED;
@@ -56,7 +56,7 @@ void	movt_left_right(int key_code, t_map *map)
 	{
 		new_x = (int)(PLAYER->x + PLAYER->dir_y * SPEED);
 		new_y = (int)(PLAYER->y - PLAYER->dir_x * SPEED);
-		if (map->map_i[new_x][new_y] >= 1)
+		if (map->map_i[new_x][new_y] == 1)
 			return ;
 		PLAYER->x += PLAYER->dir_y * SPEED;
 		PLAYER->y -= PLAYER->dir_x * SPEED;
