@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 19:57:25 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/21 21:58:19 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,7 +63,7 @@ static void		set_color(char *line, t_map *map, int flag)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	b = ft_atoi(line + i);
-	check_color(r, g, b);
+	check_color(r, g, b, map);
 	if (flag)
 		*map->cei_clr = (r << 16) | (g << 8) | (b);
 	else
@@ -72,9 +72,7 @@ static void		set_color(char *line, t_map *map, int flag)
 
 void			set_player(t_map *map, int x, int y)
 {
-	if (PLAYER->set_flag == 1)
-		print_error(6, (void *)0);
-	PLAYER->set_flag = 1;
+	PLAYER->set_flag++;
 	PLAYER->x = x + .5;
 	PLAYER->y = y + .5;
 	if (map->map[x][y] == 'N' || map->map[x][y] == 'S')
@@ -104,12 +102,12 @@ t_map			*parsing(char *params)
 	fd = 0;
 	line = NULL;
 	/* basic error checking */
-	if ((fd = open(params, O_RDONLY)) == -1)
-		print_error(2, params);
-	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
-		print_error(3, params) : 1;
-	/* end */
 	map = init_map();
+	if ((fd = open(params, O_RDONLY)) == -1)
+		print_error(2, params, map, 1);
+	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
+		print_error(3, params, map, 1) : 1;
+	/* end */
 	while (get_next_line(fd, &line) == 1)
 	{
 		i = 0;

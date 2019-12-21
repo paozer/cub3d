@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 17:36:50 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/21 22:17:37 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,14 +29,15 @@
 # define RAY map->ray
 # define MLX map->mlx
 # define SPR map->sprites
-# define SPR_LST map->sprites->lst
 # define IMG map->img
-# define FLOOR map->floor_ptr
 # define TEXT map->texture
 # define TEXT_P map->texture_path
 # define RES map->resolution
+# define FLO_CLR map->flo_clr
+# define CEI_CLR map->cei_clr
 # define SPEED .1
 # define ROTSPEED .05
+# define ALL FLO_CLR && CEI_CLR && MLX && RES && SCREEN && PLAYER && RAY && SPR
 
 typedef struct	s_res
 {
@@ -124,7 +125,6 @@ typedef struct	s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	char		*data_addr;
 }				t_mlx;
 
 typedef struct	s_movt
@@ -141,8 +141,8 @@ typedef struct	s_map
 {
 	char		**map;
 	int			**map_i;
-	int			map_width;
-	int			map_height;
+	int			width;
+	int			height;
 	t_res		*resolution;
 
 	t_player	*player;
@@ -165,11 +165,11 @@ typedef struct	s_map
 */
 t_map			*parsing(char *params);
 void			check_parsing(t_map *map);
-void			check_color(int r, int g, int b);
+void			check_color(int r, int g, int b, t_map *map);
 void			set_map(t_map *map, int fd, char **line);
 void			set_player(t_map *map, int x, int y);
+void			init(t_map *map);
 t_map			*init_map(void);
-void			print_error(int flag, void *arg);
 
 /*
  ** RAYCASTING
@@ -184,9 +184,15 @@ void			movt_front_back(int key_code, t_map *map);
 void			movt_left_right(int key_code, t_map *map);
 int				rot_left_right(int key_code, t_map *map);
 void			sprites_main(t_map *map);
+void			init_sprites(t_map *map);
 
-//t_lst			*lstnew(int x, int y);
-//void			lstadd_front(t_lst **alst, t_lst *new);
+/*
+ ** UTILITYS
+*/
+void			print_error(int flag, void *arg, t_map *map, int free_flag);
+void			free_all(t_map *map, int flag);
+
+
 /*
  ** helper functions for debugging
 */

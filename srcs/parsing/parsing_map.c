@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 17:04:04 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/21 21:23:32 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,6 +84,6 @@ void		set_map(t_map *map, int fd, char **line)
 	free(map->map[i]);
 	map->map[i] = NULL;
 	map->map_i = set_int_map(map);
-	map->map_width = len;
-	map->map_height = i;
+	map->width = len;
+	map->height = i;
 }
