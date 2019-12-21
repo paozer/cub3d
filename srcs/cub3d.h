@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 19:09:43 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/21 17:36:50 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -104,6 +104,20 @@ typedef struct 	s_sprite
 	int			nbr;
 	double		**wall_dist;
 	t_spr		**arr;
+	double		inv_deter;
+	double		x;
+	double		y;
+	double		trans_x;
+	double		trans_y;
+	int			screen_x;
+	int 		height;
+	int 		width;
+	int 		draw_start_y;
+	int 		draw_end_y;
+	int 		draw_start_x;
+	int 		draw_end_x;
+	int 		tex_x;
+	int 		tex_y;
 }				t_sprite;
 
 typedef struct	s_mlx
