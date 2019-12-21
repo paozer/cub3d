@@ -3,6 +3,7 @@
 * raycasting tutorial https://lodev.org/cgtutor/raycasting.html
 * same http://www.playfuljs.com/a-first-person-engine-in-265-lines/
 * mlx doc https://github.com/qst0/ft_libgfx 
+* bmp image saving https://stackoverflow.com/questions/2654480/writing-bmp-image-in-pure-c-c-without-other-libraries
 
 ### Parsing ###
 * use get_next_line to read arguments from .cub file
