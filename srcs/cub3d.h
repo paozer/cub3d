@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 22:17:37 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 00:10:53 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -103,7 +103,7 @@ typedef struct	s_img
 typedef struct 	s_sprite
 {
 	int			nbr;
-	double		**wall_dist;
+	double		*wall_dist;
 	t_spr		**arr;
 	double		inv_deter;
 	double		x;
@@ -191,6 +191,7 @@ void			init_sprites(t_map *map);
 */
 void			print_error(int flag, void *arg, t_map *map, int free_flag);
 void			free_all(t_map *map, int flag);
+int				free_dummy(t_map *map);
 
 
 /*

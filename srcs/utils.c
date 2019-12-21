@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 22:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 21:43:59 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 00:08:15 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,19 +29,26 @@ void	print_error(int flag, void *arg, t_map *map, int free_flag)
 	(flag == 7) ? ft_printf("No start position for player.\n") : 1;
 	(flag == 8) ? ft_printf("Could not allocate sufficient memory.\n") : 1;
 	free_all(map, free_flag);
-	exit(0);
+}
+
+int		free_dummy(t_map *map)
+{
+	free_all(map, 2);
+	return (0);
 }
 
 void	free_all(t_map *map, int flag)
 {
 	int i;
+	int w = RES->x;
 
 	i = 0;
 	if (flag != 0)
 	{
 		free(CEI_CLR);
 		free(FLO_CLR);
-		(flag == 1) ? free(SPR) : 0; // attention si on a finit parsing
+		(flag == 1) ? free(SPR) : 0;
+		(flag == 1) ? free(MLX) : 0;
 		free(SCREEN);
 		free(RAY);
 		free(PLAYER);
@@ -58,20 +65,32 @@ void	free_all(t_map *map, int flag)
 			free(map->map_i[i++]);
 		free(map->map_i);
 	}
-	mlx_destroy_window (MLX->mlx_ptr, MLX->win_ptr);
-	if (flag == 1)
+	if (flag == 2)
 	{
-		//free(MOVT)
-		//while (i < 5)
-		//	free(TEXT[i++];
-		//while (i < map->width)
-		//	free (SPR->wall_dist[i++]);
-		//free(SPR->wall_dist);
-		//while (i < SPR->nbr)
-		//	free(SPR->arr[i++]);
-		//free(SPR->arr);
-		//free(SPR)
-		//free(MLX)
+		mlx_destroy_window (MLX->mlx_ptr, MLX->win_ptr);
+		free(MLX);
+		free(MOVT);
+		i = 0;
+		while (i < 5)
+		{
+			free(TEXT[i]->img);
+			free(TEXT[i]->buf);
+			free(TEXT[i++]);
+		}
+		i = 0;
+		while (i < w)
+			free (SPR->wall_dist[i++]);
+		free(SPR->wall_dist);
+		i = 0;
+		while (SPR->arr[i])
+			free(SPR->arr[i++]);
+		free(SPR->arr);
+		free(SPR);
+		free(IMG->img);
+		free(IMG->buf);
+		free(IMG);
 	}
 	free(map);
+	while (1) ;
+	exit(0);
 }
