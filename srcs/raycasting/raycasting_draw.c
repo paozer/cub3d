@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/14 17:50:21 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 19:55:35 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/21 17:16:36 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,9 +48,9 @@ void		select_pixel(t_map *map, int i, int x, int y)
 		d = y * 256 - RES->y * 128 + RAY->line_h * 128;
 		tex_y = d * TEXT[i]->height / RAY->line_h / 256;
 		tex_y < 0 ? tex_y = 0 : 0;
-		if (TEXT[i]->height * TEXT[i]->width > tex_y * TEXT[i]->width + tex_x)
+		if (TEXT[i]->height * TEXT[i]->width > tex_y * TEXT[i]->height + tex_x)
 		{
-			color = TEXT[i]->buf[tex_y * TEXT[i]->width + tex_x];
+			color = TEXT[i]->buf[tex_y * TEXT[i]->height + tex_x];
 			IMG->buf[y * RES->x + x] = color;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:11:33 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 19:27:40 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/21 17:10:59 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,8 +33,8 @@ static void	init_sprites(t_map *map)
 			{
 				if (!(SPR->arr[y] = malloc(sizeof(*SPR->arr[y]))))
 					return ;
-				SPR->arr[y]->x = j + .5;
-				SPR->arr[y]->y = i + .5;
+				SPR->arr[y]->x = i + .5;
+				SPR->arr[y]->y = j + .5;
 				++y;
 			}
 			++j;
@@ -65,7 +65,7 @@ void	init(t_map *map)
 		if (!(TEXT[i] = malloc(sizeof(t_img))))
 			return ;
 		TEXT[i]->img = mlx_xpm_file_to_image(MLX->mlx_ptr, TEXT_P[i],
-						&TEXT[i]->height, &TEXT[i]->width);
+						&TEXT[i]->width, &TEXT[i]->height);
 		TEXT[i]->buf = (int *)mlx_get_data_addr(TEXT[i]->img, &TEXT[i]->bpp,
 						&TEXT[i]->size_line, &TEXT[i]->endian);
 		++i;
