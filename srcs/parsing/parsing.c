@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 02:02:07 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 04:25:37 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,10 +64,8 @@ static void		set_color(char *line, t_map *map, int flag)
 		++i;
 	b = ft_atoi(line + i);
 	check_color(r, g, b, map);
-	if (flag)
-		*map->cei_clr = (r << 16) | (g << 8) | (b);
-	else
-		*map->flo_clr = (r << 16) | (g << 8) | (b);
+	(flag == 1) ? (*map->cei_clr = (r << 16) | (g << 8) | (b)) :
+		(*map->flo_clr = (r << 16) | (g << 8) | (b));
 }
 
 void			set_player(t_map *map, int x, int y)
@@ -91,12 +89,11 @@ void			set_player(t_map *map, int x, int y)
 	}
 }
 
-t_map			*parsing(char *params)
+void			parsing(t_map *map, char *params)
 {
 	int		i;
 	int		fd;
 	char	*line;
-	t_map	*map;
 
 	i = 0;
 	line = NULL;
@@ -129,7 +126,5 @@ t_map			*parsing(char *params)
 	}
 	set_map(map, fd, line);
 	check_parsing(map);
-	if (close(fd) == -1)
-		return (NULL);
-	return (map);
+	close(fd);
 }

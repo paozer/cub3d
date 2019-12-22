@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 03:27:06 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 03:49:55 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,24 +42,21 @@ void	init_sprites(t_map *map)
 	if (!(SPR->arr = malloc(sizeof(t_spr) * (SPR->nbr + 1))))
 		return ;
 	SPR->arr[SPR->nbr] = NULL;
-	i = 0;
+	i = -1;
 	y = 0;
-	while (i < map->height)
+	while (++i < map->height)
 	{
-		j = 0;
-		while (j < map->width)
+		j = -1;
+		while (++j < map->width)
 		{
 			if (map->map_i[i][j] == 2)
 			{
 				if (!(SPR->arr[y] = malloc(sizeof(*SPR->arr[y]))))
 					return ;
 				SPR->arr[y]->x = i + .5;
-				SPR->arr[y]->y = j + .5;
-				++y;
+				SPR->arr[y++]->y = j + .5;
 			}
-			++j;
 		}
-		++i;
 	}
 	if (!(SPR->wall_dist = malloc(sizeof(*SPR->wall_dist) * RES->x)))
 		return ;
