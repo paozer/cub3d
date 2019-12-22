@@ -15,15 +15,18 @@ HEADER	= $(LIBFT)includes/libft.h\
 		  $(SRCS_D)cub3d.h\
 
 SRCS	= $(SRCS_D)cub3d.c\
+		  $(SRCS_D)init.c\
 		  $(SRCS_D)utils.c\
-		  $(SRCS_D)raycasting/raycasting_main.c\
-		  $(SRCS_D)raycasting/raycasting_draw.c\
-		  $(SRCS_D)raycasting/raycasting_movt.c\
-		  $(SRCS_D)parsing/parsing_check.c\
-		  $(SRCS_D)parsing/parsing_init.c\
-		  $(SRCS_D)parsing/parsing_main.c\
-		  $(SRCS_D)parsing/parsing_map.c\
-		  $(SRCS_D)trash_utils.c\
+		  $(SRCS_D)utils2.c\
+		  $(SRCS_D)bmp.c\
+		  $(SRCS_D)raycasting/raycasting.c\
+		  $(SRCS_D)raycasting/draw.c\
+		  $(SRCS_D)raycasting/movement.c\
+		  $(SRCS_D)raycasting/movement2.c\
+		  $(SRCS_D)raycasting/sprites.c\
+		  $(SRCS_D)parsing/check.c\
+		  $(SRCS_D)parsing/parsing.c\
+		  $(SRCS_D)parsing/map.c\
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -37,11 +40,11 @@ MLXINC	= X11/includes/
 
 MLXLIB	= X11/lib/
 
-NAME	= cub3d
+NAME	= cub3D
 
 CC		= gcc
 
-CFLAGS	= -g -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra #-g -fsanitize=address
 
 MLXFLAGS = -I $(MLXINC) -g -L $(MLXLIB) -l mlx -framework OpenGL -framework AppKit
 
