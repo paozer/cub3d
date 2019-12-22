@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:25:37 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 04:34:52 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,11 +89,12 @@ void			set_player(t_map *map, int x, int y)
 	}
 }
 
-void			parsing(t_map *map, char *params)
+t_map		*parsing(char *params)
 {
 	int		i;
 	int		fd;
 	char	*line;
+	t_map	*map;
 
 	i = 0;
 	line = NULL;
@@ -127,4 +128,5 @@ void			parsing(t_map *map, char *params)
 	set_map(map, fd, line);
 	check_parsing(map);
 	close(fd);
+	return (map);
 }
