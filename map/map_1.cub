@@ -1,4 +1,4 @@
-R 1000 700
+R 5120 2880
 
 NO textures/wolf_wood.xpm
 SO textures/wolf_metal.xpm
@@ -10,5 +10,5 @@ C 230, 230, 250
 F 105, 105, 105
 
 111
-1N1
+1     N1
 111

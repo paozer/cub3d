@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parsing_map.c                                    .::    .:/ .      .::   */
+/*   map.c                                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 21:23:32 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 02:00:28 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,20 +67,25 @@ static int	**set_int_map(t_map *map)
 	return (map_i);
 }
 
-void		set_map(t_map *map, int fd, char **line)
+void		set_map(t_map *map, int fd, char *line)
 {
 	int		i;
 	int		len;
+	char	*map_line;
 
 	i = 1;
-	len = ft_strlen(*line);
 	if (!(map->map = malloc(sizeof(*map->map) * 2)))
 		return ;
-	map->map[0] = *line;
+	map->map[0] = ft_strdup_mod(line);
 	map->map[1] = NULL;
-	len = ft_strlen(*line);
-	while (get_next_line(fd, &map->map[i]))
+	map_line = NULL;
+	len = ft_strlen(map->map[0]);
+	while (get_next_line(fd, &map_line))
+	{
+		map->map[i] = ft_strdup_mod(map_line);
 		map->map = ft_realloc(map->map, ++i, len);
+	}
+	free(map_line);
 	free(map->map[i]);
 	map->map[i] = NULL;
 	map->map_i = set_int_map(map);

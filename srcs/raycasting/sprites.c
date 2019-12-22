@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 21:45:59 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 18:09:30 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 00:20:41 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ void	sprites_select_pixel(t_map *map, int j)
 	int color;
 
 	if (SPR->trans_y > 0 && j > 0 && j < RES->x &&
-			SPR->trans_y < *SPR->wall_dist[j])
+			SPR->trans_y < SPR->wall_dist[j])
 	{
 		y = SPR->draw_start_y;
 		while (y < SPR->draw_end_y)

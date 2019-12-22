@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 22:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 00:08:15 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 02:05:48 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,6 @@ int		free_dummy(t_map *map)
 void	free_all(t_map *map, int flag)
 {
 	int i;
-	int w = RES->x;
 
 	i = 0;
 	if (flag != 0)
@@ -78,8 +77,6 @@ void	free_all(t_map *map, int flag)
 			free(TEXT[i++]);
 		}
 		i = 0;
-		while (i < w)
-			free (SPR->wall_dist[i++]);
 		free(SPR->wall_dist);
 		i = 0;
 		while (SPR->arr[i])
@@ -93,4 +90,41 @@ void	free_all(t_map *map, int flag)
 	free(map);
 	while (1) ;
 	exit(0);
+}
+
+int	ft_strlen_mod(char *str)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]) == 0)
+			++j;
+		++i;
+	}
+	return (j);
+}
+
+char *ft_strdup_mod(char *str)
+{
+	int		i;
+	int		j;
+	char	*s;
+
+	i = 0;
+	j = 0;
+	if (!(s = malloc(sizeof(*s) * ft_strlen_mod(str) + 1)))
+		return (NULL);
+	while (str[i])
+	{
+		if (ft_isspace(str[i]) == 0)
+			s[j++] = str[i];
+		++i;
+	}
+	s[j] = '\0';
+	free(str);
+	return (s);
 }

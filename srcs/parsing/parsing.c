@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parsing_main.c                                   .::    .:/ .      .::   */
+/*   parsing.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 21:58:19 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 02:02:07 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -99,15 +99,12 @@ t_map			*parsing(char *params)
 	t_map	*map;
 
 	i = 0;
-	fd = 0;
 	line = NULL;
-	/* basic error checking */
 	map = init_map();
 	if ((fd = open(params, O_RDONLY)) == -1)
 		print_error(2, params, map, 1);
 	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
 		print_error(3, params, map, 1) : 1;
-	/* end */
 	while (get_next_line(fd, &line) == 1)
 	{
 		i = 0;
@@ -115,22 +112,22 @@ t_map			*parsing(char *params)
 			++i;
 		(line[i] == 'R') ? set_resolution(line + i + 1, map) : 1;
 		(line[i] == 'N' && line[i + 1] == 'O') ?
-				(TEXT_P[0] = set_paths(line + 2)) : 0;
+			(TEXT_P[0] = set_paths(line + 2)) : 0;
 		(line[i] == 'S' && line[i + 1] == 'O') ?
-				(TEXT_P[1] = set_paths(line + 2)) : 0;
+			(TEXT_P[1] = set_paths(line + 2)) : 0;
 		(line[i] == 'W' && line[i + 1] == 'E') ?
-				(TEXT_P[2] = set_paths(line + 2)) : 0;
+			(TEXT_P[2] = set_paths(line + 2)) : 0;
 		(line[i] == 'E' && line[i + 1] == 'A') ?
-				(TEXT_P[3] = set_paths(line + 2)) : 0;
+			(TEXT_P[3] = set_paths(line + 2)) : 0;
 		(line[i] == 'S' && line[i + 1] != 'O') ?
-				(TEXT_P[4] = set_paths(line + 1)) : 0;
+			(TEXT_P[4] = set_paths(line + 1)) : 0;
 		(line[i] == 'F') ? set_color(line + 2, map, 0) : 0;
 		(line[i] == 'C') ? set_color(line + 2, map, 1) : 0;
 		if (ft_isdigit(line[i]))
 			break ;
 		free(line);
 	}
-	set_map(map, fd, &line);
+	set_map(map, fd, line);
 	check_parsing(map);
 	if (close(fd) == -1)
 		return (NULL);
