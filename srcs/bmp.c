@@ -6,44 +6,45 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 06:20:46 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 09:10:30 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 10:28:10 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-void	bitmap_image(t_map *map, int fd, t_header2 bih)
+
+void	pixels_to_bitmap(t_map *map, int fd, t_bmp_header bih)
 {
 	int				x;
 	int				y;
-	int				ble;
+	int				rgb;
 	unsigned char	color[3];
 
 	write(fd, &bih, sizeof(bih));
-	y = RES->y - 1;
-	while (y >= 0)
+	y = 0;
+	while (y < RES->y)
 	{
 		x = 0;
 		while (x < RES->x)
 		{
-			ble = IMG->buf[x + y * RES->x];
-			color[0] = ble % 256;
-			ble /= 256;
-			color[1] = ble % 256;
-			ble /= 256;
-			color[2] = ble % 256;
+			rgb = map->img->buf[x + y * RES->x];
+			color[0] = rgb % 256;
+			rgb /= 256;
+			color[1] = rgb % 256;
+			rgb /= 256;
+			color[2] = rgb % 256;
 			write(fd, &color, sizeof(color));
-			x++;
+			++x;
 		}
-		y--;
+		++y;
 	}
 }
 
-void	save_bitmap(const char *filename, t_map *map)
+void	create_header_file(const char *filename, t_map *map)
 {
-	int			fd;
-	t_header	bfh;
-	t_header2	bih;
+	int				fd;
+	t_file_header	bfh;
+	t_bmp_header	bih;
 
 	ft_memcpy(&bfh.bitmap_type, "BM", 2);
 	bfh.file_size = RES->x * RES->y * 4 + 54;
@@ -61,15 +62,14 @@ void	save_bitmap(const char *filename, t_map *map)
 	bih.ppm_y = 2;
 	bih.clr_used = 0;
 	bih.clr_important = 0;
-	close(open(filename, O_WRONLY | O_CREAT));
-	fd = open(filename, O_RDWR);
+	fd = open(filename, O_CREAT | O_RDWR, 0666);
 	write(fd, &bfh, 14);
-	bitmap_image(map, fd, bih);
+	pixels_to_bitmap(map, fd, bih);
 	close(fd);
 }
 
-void    map_to_bmp(t_map *map)
+void	map_to_bmp(t_map *map)
 {
-	save_bitmap("cub3D.bmp", map);
+	create_header_file("cub3D.bmp", map);
 	free_all(map, 3);
 }
