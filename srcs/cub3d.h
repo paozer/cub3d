@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 08:58:12 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 10:29:19 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,189 +39,189 @@
 # define ROTSPEED .05
 # define ALL FLO_CLR && CEI_CLR && MLX && RES && SCREEN && PLAYER && RAY && SPR
 
-typedef struct	s_res
+typedef struct		s_res
 {
-	int			x;
-	int			y;
-}				t_res;
+	int				x;
+	int				y;
+}					t_res;
 
-typedef struct	s_spr
+typedef struct		s_spr
 {
-	double		dist;
-	double		x;
-	double		y;
-}				t_spr;
+	double			dist;
+	double			x;
+	double			y;
+}					t_spr;
 
-typedef struct	s_player
+typedef struct		s_player
 {
-	int			set_flag;
-	double		x;
-	double		y;
-	double		dir_x;
-	double		dir_y;
-}				t_player;
+	int				set_flag;
+	double			x;
+	double			y;
+	double			dir_x;
+	double			dir_y;
+}					t_player;
 
-typedef struct	s_screen
+typedef struct		s_screen
 {
-	double		plane_x;
-	double		plane_y;
-	double		cam_x;
-	double		cam_y;
-}				t_screen;
+	double			plane_x;
+	double			plane_y;
+	double			cam_x;
+	double			cam_y;
+}					t_screen;
 
-typedef struct	s_ray
+typedef struct		s_ray
 {
-	double		x;
-	double		y;
-	double		dir_x;
-	double		dir_y;
-	int			map_x;
-	int			map_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	int			step_x;
-	int			step_y;
-	int			side;
-	int			hit;
-	double		wall_dist;
-	int			line_h;
-}				t_ray;
+	double			x;
+	double			y;
+	double			dir_x;
+	double			dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	int				step_x;
+	int				step_y;
+	int				side;
+	int				hit;
+	double			wall_dist;
+	int				line_h;
+}					t_ray;
 
-typedef struct	s_img
+typedef struct		s_img
 {
-	void		*img;
-	int			*buf;
-	int			bpp;
-	int			size_line;
-	int			height;
-	int			width;
-	int			endian;
-	int			tex_x;
-	int			tex_y;
-	double		wall_x;
-	int			draw_start;
-	int			draw_end;
-}				t_img;
+	void			*img;
+	int				*buf;
+	int				bpp;
+	int				size_line;
+	int				height;
+	int				width;
+	int				endian;
+	int				tex_x;
+	int				tex_y;
+	double			wall_x;
+	int				draw_start;
+	int				draw_end;
+}					t_img;
 
-typedef struct	s_sprite
+typedef struct		s_sprite
 {
-	int			nbr;
-	double		*wall_dist;
-	t_spr		**arr;
-	double		inv_deter;
-	double		x;
-	double		y;
-	double		trans_x;
-	double		trans_y;
-	int			screen_x;
-	int			height;
-	int			width;
-	int			draw_start_y;
-	int			draw_end_y;
-	int			draw_start_x;
-	int			draw_end_x;
-	int			tex_x;
-	int			tex_y;
-}				t_sprite;
+	int				nbr;
+	double			*wall_dist;
+	t_spr			**arr;
+	double			inv_deter;
+	double			x;
+	double			y;
+	double			trans_x;
+	double			trans_y;
+	int				screen_x;
+	int				height;
+	int				width;
+	int				draw_start_y;
+	int				draw_end_y;
+	int				draw_start_x;
+	int				draw_end_x;
+	int				tex_x;
+	int				tex_y;
+}					t_sprite;
 
-typedef struct      s_header
+typedef struct		s_file_header
 {
-	unsigned char   bitmap_type[2];
-	int             file_size;
-	short           reserved1;
-	short           reserved2;
-	unsigned int    offset_bits;
-}                   t_header;
+	unsigned char	bitmap_type[2];
+	int				file_size;
+	short			reserved1;
+	short			reserved2;
+	unsigned int	offset_bits;
+}					t_file_header;
 
-typedef struct      s_header2
+typedef struct		s_bmp_header
 {
-	unsigned int    size_header;
-	unsigned int    width;
-	unsigned int    height;
-	short int       planes;
-	short int       bit_count;
-	unsigned int    compression;
-	unsigned int    image_size;
-	unsigned int    ppm_x;
-	unsigned int    ppm_y;
-	unsigned int    clr_used;
-	unsigned int    clr_important;
-}                   t_header2;
+	unsigned int	size_header;
+	unsigned int	width;
+	unsigned int	height;
+	short int		planes;
+	short int		bit_count;
+	unsigned int	compression;
+	unsigned int	image_size;
+	unsigned int	ppm_x;
+	unsigned int	ppm_y;
+	unsigned int	clr_used;
+	unsigned int	clr_important;
+}					t_bmp_header;
 
-typedef struct	s_mlx
+typedef struct		s_mlx
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-}				t_mlx;
+	void			*mlx_ptr;
+	void			*win_ptr;
+}					t_mlx;
 
-typedef struct	s_movt
+typedef struct		s_movt
 {
-	int			front;
-	int			back;
-	int			right;
-	int			left;
-	int			rot_right;
-	int			rot_left;
-}				t_movt;
+	int				front;
+	int				back;
+	int				right;
+	int				left;
+	int				rot_right;
+	int				rot_left;
+}					t_movt;
 
-typedef struct	s_map
+typedef struct		s_map
 {
-	char		**map;
-	int			**map_i;
-	int			width;
-	int			height;
-	t_res		*resolution;
+	char			**map;
+	int				**map_i;
+	int				width;
+	int				height;
+	t_res			*resolution;
 
-	t_player	*player;
-	t_movt		*movt;
-	t_screen	*screen;
-	t_ray		*ray;
+	t_player		*player;
+	t_movt			*movt;
+	t_screen		*screen;
+	t_ray			*ray;
 
-	char		*texture_path[5];
-	t_img		*texture[5];
-	t_sprite	*sprites;
-	int			*flo_clr;
-	int			*cei_clr;
+	char			*texture_path[5];
+	t_img			*texture[5];
+	t_sprite		*sprites;
+	int				*flo_clr;
+	int				*cei_clr;
 
-	t_mlx		*mlx;
-	t_img		*img;
-	int			save;
-}				t_map;
+	t_mlx			*mlx;
+	t_img			*img;
+	int				save;
+}					t_map;
 
-t_map			*parsing(char *params);
-void			check_parsing(t_map *map);
-void			check_color(int r, int g, int b, t_map *map);
-void			set_map(t_map *map, int fd, char *line);
-void			set_player(t_map *map, int x, int y);
-void			init(t_map *map);
-t_map			*init_map(void);
+t_map				*parsing(char *params);
+void				check_parsing(t_map *map);
+void				check_color(int r, int g, int b, t_map *map);
+void				set_map(t_map *map, int fd, char *line);
+void				set_player(t_map *map, int x, int y);
+void				init(t_map *map);
+t_map				*init_map(void);
 
-void			start(t_map *map);
-void			raycasting(t_map *map);
-void			draw(t_map *map, int x);
-int				movt_do(t_map *map);
-int				movt_pressed(int key_code, t_map *map);
-int				movt_released(int key_code, t_map *map);
-void			movt_front_back(int key_code, t_map *map);
-void			movt_left_right(int key_code, t_map *map);
-int				rot_left_right(int key_code, t_map *map);
-void			sprites_main(t_map *map);
-void			init_sprites(t_map *map);
+void				start(t_map *map);
+void				raycasting(t_map *map);
+void				draw(t_map *map, int x);
+int					movt_do(t_map *map);
+int					movt_pressed(int key_code, t_map *map);
+int					movt_released(int key_code, t_map *map);
+void				movt_front_back(int key_code, t_map *map);
+void				movt_left_right(int key_code, t_map *map);
+int					rot_left_right(int key_code, t_map *map);
+void				sprites_main(t_map *map);
+void				init_sprites(t_map *map);
 
-void			print_error(int flag, void *arg, t_map *map, int free_flag);
-void			free_all(t_map *map, int flag);
-void			free_mlx(t_map *map, int flag);
-void			free_extra(t_map *map, int flag);
-int				free_dummy(t_map *map);
-char			*ft_strdup_mod(char *str);
-char			*set_paths(char *line);
-void			map_to_bmp(t_map *map);
+void				print_error(int flag, void *arg, t_map *map, int free_flag);
+void				free_all(t_map *map, int flag);
+void				free_mlx(t_map *map, int flag);
+void				free_extra(t_map *map, int flag);
+int					free_dummy(t_map *map);
+char				*ft_strdup_mod(char *str);
+char				*set_paths(char *line);
+void				map_to_bmp(t_map *map);
 
-void			ft_print_parsing(t_map *map);
-void			ft_print_map(char **map);
-void			ft_print_map_i(int **map, int wd, int ht);
-void			ft_print_spr(t_map *map);
+void				ft_print_parsing(t_map *map);
+void				ft_print_map(char **map);
+void				ft_print_map_i(int **map, int wd, int ht);
+void				ft_print_spr(t_map *map);
 
 #endif
