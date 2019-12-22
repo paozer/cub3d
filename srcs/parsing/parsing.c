@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:44:23 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 10:36:02 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@ static void		set_resolution(char *line, t_map *map)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	RES->y = ft_atoi(line + i);
+	++map->config_flag;
 }
 
 static void		set_color(char *line, t_map *map, int flag)
@@ -54,6 +55,7 @@ static void		set_color(char *line, t_map *map, int flag)
 	check_color(r, g, b, map);
 	(flag == 1) ? (*map->cei_clr = (r << 16) | (g << 8) | (b)) :
 		(*map->flo_clr = (r << 16) | (g << 8) | (b));
+	++map->config_flag;
 }
 
 void			set_player(t_map *map, int x, int y)
@@ -88,15 +90,15 @@ char			*gnl_file(t_map *map, int fd, int i)
 			++i;
 		(line[i] == 'R') ? set_resolution(line + i + 1, map) : 1;
 		(line[i] == 'N' && line[i + 1] == 'O') ?
-			(TEXT_P[0] = set_paths(line + 2)) : 0;
+			(TEXT_P[0] = set_paths(line + 2, map)) : 0;
 		(line[i] == 'S' && line[i + 1] == 'O') ?
-			(TEXT_P[1] = set_paths(line + 2)) : 0;
+			(TEXT_P[1] = set_paths(line + 2, map)) : 0;
 		(line[i] == 'W' && line[i + 1] == 'E') ?
-			(TEXT_P[2] = set_paths(line + 2)) : 0;
+			(TEXT_P[2] = set_paths(line + 2, map)) : 0;
 		(line[i] == 'E' && line[i + 1] == 'A') ?
-			(TEXT_P[3] = set_paths(line + 2)) : 0;
+			(TEXT_P[3] = set_paths(line + 2, map)) : 0;
 		(line[i] == 'S' && line[i + 1] != 'O') ?
-			(TEXT_P[4] = set_paths(line + 1)) : 0;
+			(TEXT_P[4] = set_paths(line + 1, map)) : 0;
 		(line[i] == 'F') ? set_color(line + 2, map, 0) : 0;
 		(line[i] == 'C') ? set_color(line + 2, map, 1) : 0;
 		if (ft_isdigit(line[i]))

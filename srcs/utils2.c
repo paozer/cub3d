@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 03:31:34 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:46:18 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 10:39:01 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,10 +28,11 @@ void	print_error(int flag, void *arg, t_map *map, int free_flag)
 	(flag == 6) ? ft_printf("Multiple or no start positions for player.\n") : 1;
 	(flag == 7) ? ft_printf("No start position for player.\n") : 1;
 	(flag == 8) ? ft_printf("Could not allocate sufficient memory.\n") : 1;
+	(flag == 9) ? ft_printf("Multiple or missing specifications.\n") : 1;
 	free_all(map, free_flag);
 }
 
-char	*set_paths(char *line)
+char	*set_paths(char *line, t_map *map)
 {
 	int		i;
 	char	*str;
@@ -40,6 +41,7 @@ char	*set_paths(char *line)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	str = ft_strdup(line + i);
+	++map->config_flag;
 	return (str);
 }
 

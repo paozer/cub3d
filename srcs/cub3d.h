@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 10:29:19 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 10:35:14 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -172,6 +172,7 @@ typedef struct		s_map
 	int				**map_i;
 	int				width;
 	int				height;
+	int				config_flag;
 	t_res			*resolution;
 
 	t_player		*player;
@@ -216,7 +217,7 @@ void				free_mlx(t_map *map, int flag);
 void				free_extra(t_map *map, int flag);
 int					free_dummy(t_map *map);
 char				*ft_strdup_mod(char *str);
-char				*set_paths(char *line);
+char				*set_paths(char *line, t_map *map);
 void				map_to_bmp(t_map *map);
 
 void				ft_print_parsing(t_map *map);

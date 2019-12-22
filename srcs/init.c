@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 06:05:53 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 10:32:10 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,6 +30,7 @@ t_map	*init_map(void)
 	SPR = malloc(sizeof(*SPR));
 	SPR->nbr = 0;
 	map->save = 0;
+	map->config_flag = 0;
 	if (!(map && ALL))
 		print_error(8, NULL, map, 1);
 	return (map);

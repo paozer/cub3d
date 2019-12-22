@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 03:16:59 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 10:40:47 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,6 +68,7 @@ void	check_parsing(t_map *map)
 	(RES->x <= 0 || RES->y <= 0) ? (print_error(0, (void *)0, map, 1)) : 1;
 	(RES->x >= 5120) ? RES->x = 5120 / 2 : 0;
 	(RES->y >= 2880) ? RES->y = 1395 : 0;
+	(map->config_flag != 8) ? print_error(9, (void *)0, map, 1) : 0;
 	check_path(map);
 	check_map(map);
 	(PLAYER->set_flag != 1) ? print_error(6, (void *)0, map, 1) : 0;
