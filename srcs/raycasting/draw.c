@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/14 17:50:21 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:59:50 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 08:31:44 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,8 +47,6 @@ void		select_pixel_while(t_map *map, int x, int y, int i)
 
 void		select_pixel(t_map *map, int i, int x, int y)
 {
-	IMG->draw_end = (RES->y + RAY->line_h) / 2;
-	IMG->draw_end = (IMG->draw_end >= RES->y) ? RES->y - 1 : IMG->draw_end;
 	IMG->wall_x = (RAY->side) ? PLAYER->x + RAY->wall_dist * RAY->dir_x :
 		PLAYER->y + RAY->wall_dist * RAY->dir_y;
 	IMG->wall_x -= floor(IMG->wall_x);

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:57:43 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 08:58:12 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -126,6 +126,30 @@ typedef struct	s_sprite
 	int			tex_y;
 }				t_sprite;
 
+typedef struct      s_header
+{
+	unsigned char   bitmap_type[2];
+	int             file_size;
+	short           reserved1;
+	short           reserved2;
+	unsigned int    offset_bits;
+}                   t_header;
+
+typedef struct      s_header2
+{
+	unsigned int    size_header;
+	unsigned int    width;
+	unsigned int    height;
+	short int       planes;
+	short int       bit_count;
+	unsigned int    compression;
+	unsigned int    image_size;
+	unsigned int    ppm_x;
+	unsigned int    ppm_y;
+	unsigned int    clr_used;
+	unsigned int    clr_important;
+}                   t_header2;
+
 typedef struct	s_mlx
 {
 	void		*mlx_ptr;
@@ -163,6 +187,7 @@ typedef struct	s_map
 
 	t_mlx		*mlx;
 	t_img		*img;
+	int			save;
 }				t_map;
 
 t_map			*parsing(char *params);
@@ -187,11 +212,12 @@ void			init_sprites(t_map *map);
 
 void			print_error(int flag, void *arg, t_map *map, int free_flag);
 void			free_all(t_map *map, int flag);
-void			free_mlx(t_map *map);
+void			free_mlx(t_map *map, int flag);
 void			free_extra(t_map *map, int flag);
 int				free_dummy(t_map *map);
 char			*ft_strdup_mod(char *str);
 char			*set_paths(char *line);
+void			map_to_bmp(t_map *map);
 
 void			ft_print_parsing(t_map *map);
 void			ft_print_map(char **map);

@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:11:33 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 05:09:30 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 07:02:28 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,8 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	map = parsing(argv[1]);
+	if (argc == 3)
+		map->save = (ft_strncmp(argv[2], "-save", 6) == 0) ? 1 : 0;
 	init(map);
 	init_sprites(map);
 	start(map);

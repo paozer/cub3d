@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 22:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 03:44:00 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 06:57:19 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,9 +39,8 @@ void	free_all(t_map *map, int flag)
 			free(map->map_i[i++]);
 		free(map->map_i);
 	}
-	(flag == 2) ? free_mlx(map) : 0;
+	(flag == 2 || flag == 3) ? free_mlx(map, flag) : 0;
 	free(map);
-	while (1) ;
 	exit(0);
 }
 
@@ -57,14 +56,14 @@ void	free_extra(t_map *map, int flag)
 	free(RES);
 }
 
-void	free_mlx(t_map *map)
+void	free_mlx(t_map *map, int flag)
 {
 	int i;
 
 	i = 0;
 	mlx_destroy_window(MLX->mlx_ptr, MLX->win_ptr);
 	free(MLX);
-	free(MOVT);
+	(flag == 3) ? 0 : free(MOVT);
 	while (i < 5)
 	{
 		free(TEXT[i]->img);
