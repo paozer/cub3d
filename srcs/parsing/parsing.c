@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:34:52 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 04:44:23 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,18 +26,6 @@ static void		set_resolution(char *line, t_map *map)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	RES->y = ft_atoi(line + i);
-}
-
-static char		*set_paths(char *line)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	while (line[i] && ft_isspace(line[i]))
-		++i;
-	str = ft_strdup(line + i);
-	return (str);
 }
 
 static void		set_color(char *line, t_map *map, int flag)
@@ -89,20 +77,10 @@ void			set_player(t_map *map, int x, int y)
 	}
 }
 
-t_map		*parsing(char *params)
+char			*gnl_file(t_map *map, int fd, int i)
 {
-	int		i;
-	int		fd;
 	char	*line;
-	t_map	*map;
 
-	i = 0;
-	line = NULL;
-	map = init_map();
-	if ((fd = open(params, O_RDONLY)) == -1)
-		print_error(2, params, map, 1);
-	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
-		print_error(3, params, map, 1) : 1;
 	while (get_next_line(fd, &line) == 1)
 	{
 		i = 0;
@@ -122,9 +100,27 @@ t_map		*parsing(char *params)
 		(line[i] == 'F') ? set_color(line + 2, map, 0) : 0;
 		(line[i] == 'C') ? set_color(line + 2, map, 1) : 0;
 		if (ft_isdigit(line[i]))
-			break ;
+			return (line);
 		free(line);
 	}
+	return (NULL);
+}
+
+t_map			*parsing(char *params)
+{
+	int		i;
+	int		fd;
+	char	*line;
+	t_map	*map;
+
+	i = 0;
+	line = NULL;
+	map = init_map();
+	if ((fd = open(params, O_RDONLY)) == -1)
+		print_error(2, params, map, 1);
+	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
+		print_error(3, params, map, 1) : 1;
+	line = gnl_file(map, fd, i);
 	set_map(map, fd, line);
 	check_parsing(map);
 	close(fd);

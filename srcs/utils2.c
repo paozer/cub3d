@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 03:31:34 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 03:46:43 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 04:46:18 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,18 @@ void	print_error(int flag, void *arg, t_map *map, int free_flag)
 	(flag == 7) ? ft_printf("No start position for player.\n") : 1;
 	(flag == 8) ? ft_printf("Could not allocate sufficient memory.\n") : 1;
 	free_all(map, free_flag);
+}
+
+char	*set_paths(char *line)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (line[i] && ft_isspace(line[i]))
+		++i;
+	str = ft_strdup(line + i);
+	return (str);
 }
 
 int		ft_strlen_mod(char *str)

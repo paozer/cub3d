@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 03:49:55 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 05:12:53 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,6 +28,7 @@ t_map	*init_map(void)
 	(PLAYER) ? PLAYER->set_flag = 0 : 0;
 	RAY = malloc(sizeof(*RAY));
 	SPR = malloc(sizeof(*SPR));
+	SPR->nbr = 0;
 	if (!(map && ALL))
 		print_error(8, NULL, map, 1);
 	return (map);
@@ -39,7 +40,7 @@ void	init_sprites(t_map *map)
 	int j;
 	int y;
 
-	if (!(SPR->arr = malloc(sizeof(t_spr) * (SPR->nbr + 1))))
+	if (!(SPR->arr = malloc(sizeof(*SPR->arr) * (SPR->nbr + 1))))
 		return ;
 	SPR->arr[SPR->nbr] = NULL;
 	i = -1;
