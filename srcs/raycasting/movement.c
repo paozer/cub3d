@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   raycasting_movt.c                                .::    .:/ .      .::   */
+/*   movement.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/18 12:40:53 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 21:24:31 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 03:18:38 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ int	movt_do(t_map *map)
 int	movt_pressed(int key_code, t_map *map)
 {
 	if (key_code == 53)
-		exit(0);
+		free_all(map, 2);
 	(key_code == 13 || key_code == 126) ? MOVT->front = 1 : 0;
 	(key_code == 1 || key_code == 125) ? MOVT->back = 1 : 0;
 	(key_code == 0) ? MOVT->left = 1 : 0;

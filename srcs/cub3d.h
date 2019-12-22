@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 01:46:30 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 03:44:36 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,7 +100,7 @@ typedef struct	s_img
 	int			endian;
 }				t_img;
 
-typedef struct 	s_sprite
+typedef struct	s_sprite
 {
 	int			nbr;
 	double		*wall_dist;
@@ -111,14 +111,14 @@ typedef struct 	s_sprite
 	double		trans_x;
 	double		trans_y;
 	int			screen_x;
-	int 		height;
-	int 		width;
-	int 		draw_start_y;
-	int 		draw_end_y;
-	int 		draw_start_x;
-	int 		draw_end_x;
-	int 		tex_x;
-	int 		tex_y;
+	int			height;
+	int			width;
+	int			draw_start_y;
+	int			draw_end_y;
+	int			draw_start_x;
+	int			draw_end_x;
+	int			tex_x;
+	int			tex_y;
 }				t_sprite;
 
 typedef struct	s_mlx
@@ -160,9 +160,6 @@ typedef struct	s_map
 	t_img		*img;
 }				t_map;
 
-/*
- ** PARSING
-*/
 t_map			*parsing(char *params);
 void			check_parsing(t_map *map);
 void			check_color(int r, int g, int b, t_map *map);
@@ -171,9 +168,6 @@ void			set_player(t_map *map, int x, int y);
 void			init(t_map *map);
 t_map			*init_map(void);
 
-/*
- ** RAYCASTING
-*/
 void			start(t_map *map);
 void			raycasting(t_map *map);
 void			draw(t_map *map, int x);
@@ -186,18 +180,13 @@ int				rot_left_right(int key_code, t_map *map);
 void			sprites_main(t_map *map);
 void			init_sprites(t_map *map);
 
-/*
- ** UTILITYS
-*/
 void			print_error(int flag, void *arg, t_map *map, int free_flag);
 void			free_all(t_map *map, int flag);
+void			free_mlx(t_map *map);
+void			free_extra(t_map *map, int flag);
 int				free_dummy(t_map *map);
 char			*ft_strdup_mod(char *str);
 
-
-/*
- ** helper functions for debugging
-*/
 void			ft_print_parsing(t_map *map);
 void			ft_print_map(char **map);
 void			ft_print_map_i(int **map, int wd, int ht);

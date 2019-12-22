@@ -15,8 +15,9 @@ HEADER	= $(LIBFT)includes/libft.h\
 		  $(SRCS_D)cub3d.h\
 
 SRCS	= $(SRCS_D)cub3d.c\
-		  $(SRCS_D)utils.c\
 		  $(SRCS_D)init.c\
+		  $(SRCS_D)utils.c\
+		  $(SRCS_D)utils2.c\
 		  $(SRCS_D)raycasting/raycasting.c\
 		  $(SRCS_D)raycasting/draw.c\
 		  $(SRCS_D)raycasting/movement.c\
@@ -25,7 +26,6 @@ SRCS	= $(SRCS_D)cub3d.c\
 		  $(SRCS_D)parsing/check.c\
 		  $(SRCS_D)parsing/parsing.c\
 		  $(SRCS_D)parsing/map.c\
-		  $(SRCS_D)trash_utils.c\
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -39,7 +39,7 @@ MLXINC	= X11/includes/
 
 MLXLIB	= X11/lib/
 
-NAME	= cub3d
+NAME	= cub3D
 
 CC		= gcc
 

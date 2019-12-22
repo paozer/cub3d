@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   raycasting_draw.c                                .::    .:/ .      .::   */
+/*   draw.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/14 17:50:21 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 17:16:36 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 03:27:49 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,13 +36,12 @@ void		select_pixel(t_map *map, int i, int x, int y)
 
 	draw_end = (RES->y + RAY->line_h) / 2;
 	draw_end = (draw_end >= RES->y) ? RES->y - 1 : draw_end;
-
 	wall_x = (RAY->side) ? PLAYER->x + RAY->wall_dist * RAY->dir_x :
-			PLAYER->y + RAY->wall_dist * RAY->dir_y;
+		PLAYER->y + RAY->wall_dist * RAY->dir_y;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * (double)TEXT[i]->width);
 	((RAY->side == 0 && RAY->dir_x > 0) || (RAY->side == 1 && RAY->dir_y < 0)) ?
-			tex_x = TEXT[i]->width - tex_x - 1 : 0;
+		tex_x = TEXT[i]->width - tex_x - 1 : 0;
 	while (y < draw_end)
 	{
 		d = y * 256 - RES->y * 128 + RAY->line_h * 128;

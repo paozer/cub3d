@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   raycasting_main.c                                .::    .:/ .      .::   */
+/*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 00:13:56 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 03:22:24 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ void	compute_first_section(t_map *map)
 	{
 		RAY->step_x = 1;
 		RAY->side_dist_x = ((double)RAY->map_x + 1 - PLAYER->x) *
-				RAY->delta_dist_x;
+			RAY->delta_dist_x;
 	}
 	if (RAY->dir_y < 0)
 	{
@@ -35,7 +35,7 @@ void	compute_first_section(t_map *map)
 	{
 		RAY->step_y = 1;
 		RAY->side_dist_y = ((double)RAY->map_y + 1 - PLAYER->y) *
-				RAY->delta_dist_y;
+			RAY->delta_dist_y;
 	}
 }
 
@@ -61,10 +61,10 @@ void	compute_wall_hit(t_map *map)
 	}
 	if (RAY->side == 0)
 		RAY->wall_dist = ((double)RAY->map_x - PLAYER->x +
-					(1 - RAY->step_x) / 2) / RAY->dir_x;
+				(1 - RAY->step_x) / 2) / RAY->dir_x;
 	else
 		RAY->wall_dist = ((double)RAY->map_y - PLAYER->y +
-					(1 - RAY->step_y) / 2) / RAY->dir_y;
+				(1 - RAY->step_y) / 2) / RAY->dir_y;
 }
 
 void	raycasting(t_map *map)
@@ -84,10 +84,6 @@ void	raycasting(t_map *map)
 		RAY->delta_dist_y = fabs(1 / RAY->dir_y);
 		compute_first_section(map);
 		compute_wall_hit(map);
-		/*
-		if (!(SPR->wall_dist[x] = malloc(sizeof(*SPR->wall_dist))))
-			return ;
-			*/
 		SPR->wall_dist[x] = RAY->wall_dist;
 		RAY->line_h = (int)(RES->y / RAY->wall_dist);
 		draw(map, x);

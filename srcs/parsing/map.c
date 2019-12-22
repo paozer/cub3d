@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 02:00:28 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 03:45:08 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,11 +42,8 @@ static int	**set_int_map(t_map *map)
 	int **map_i;
 
 	i = 0;
-	while (map->map[i])
-		++i;
-	if (!(map_i = malloc(sizeof(*map_i) * i)))
+	if (!(map_i = malloc(sizeof(*map_i) * ft_strlen(map->map[i]))))
 		return (NULL);
-	i = 0;
 	while (map->map[i])
 	{
 		j = 0;
