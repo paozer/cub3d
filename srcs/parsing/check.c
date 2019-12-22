@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 10:40:47 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 11:30:00 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,12 +39,26 @@ void	check_path(t_map *map)
 	}
 }
 
+void	check_wall(t_map *map, int i)
+{
+	int j;
+
+	j = 0;
+	while (map->map[i][j])
+	{
+		if (map->map[i][j] != '1')
+			print_error(5, &i, map, 1);
+		++j;
+	}
+}
+
 void	check_map(t_map *map)
 {
 	int i;
 	int j;
 
 	i = 0;
+	check_wall(map, i);
 	while (map->map[i])
 	{
 		j = 0;
@@ -60,6 +74,7 @@ void	check_map(t_map *map)
 		(map->map[i][j - 1] != '1') ? print_error(5, &i, map, 1) : 1;
 		++i;
 	}
+	check_wall(map, i - 1);
 	(PLAYER->x == 0 && PLAYER->y == 0) ? print_error(7, (void *)0, map, 1) : 0;
 }
 
