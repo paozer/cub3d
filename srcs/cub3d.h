@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 10:35:14 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/23 22:43:09 by paozer      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -193,7 +193,7 @@ typedef struct		s_map
 
 t_map				*parsing(char *params);
 void				check_parsing(t_map *map);
-void				check_color(int r, int g, int b, t_map *map);
+void				check_color(int *c, t_map *map);
 void				set_map(t_map *map, int fd, char *line);
 void				set_player(t_map *map, int x, int y);
 void				init(t_map *map);

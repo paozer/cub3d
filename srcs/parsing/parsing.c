@@ -6,12 +6,12 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 10:36:02 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/23 22:42:26 by paozer      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 static void		set_resolution(char *line, t_map *map)
 {
@@ -52,7 +52,6 @@ static void		set_color(char *line, t_map *map, int flag)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	b = ft_atoi(line + i);
-	check_color(r, g, b, map);
 	(flag == 1) ? (*map->cei_clr = (r << 16) | (g << 8) | (b)) :
 		(*map->flo_clr = (r << 16) | (g << 8) | (b));
 	++map->config_flag;

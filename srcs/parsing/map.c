@@ -6,12 +6,12 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 03:45:08 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/23 22:33:08 by paozer      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 static char	**ft_realloc(char **str, int size, int len)
 {
@@ -80,6 +80,7 @@ void		set_map(t_map *map, int fd, char *line)
 	while (get_next_line(fd, &map_line))
 	{
 		map->map[i] = ft_strdup_mod(map_line);
+		(map->map[i][0] == '\0') ? ++map->config_flag : 0;
 		map->map = ft_realloc(map->map, ++i, len);
 	}
 	free(map_line);
