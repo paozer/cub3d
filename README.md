@@ -5,14 +5,10 @@
 * mlx doc https://github.com/qst0/ft_libgfx 
 * bmp image saving https://stackoverflow.com/questions/2654480/writing-bmp-image-in-pure-c-c-without-other-libraries
 
-### Parsing ###
-* use get_next_line to read arguments from .cub file
-* loop on gnl and check first characters for identifier
-* use ternary expressions to send to appropriate parsing fcnt
+### usage ###
+* make
+* ./cub3D path/to/map.cub
+* example of (non)-valid maps can be found in the map directory
 
 ### To-Do ###
-* display sprites
-* free allocated memory on exit
-* clean parsing up: simpler color parsing
-* click on red arrow > clean exit
 * if the resolution is higher than the displays > adjust
