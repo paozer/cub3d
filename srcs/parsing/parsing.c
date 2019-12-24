@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/23 22:42:26 by paozer      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/24 14:44:05 by paozer      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,8 @@ static void		set_color(char *line, t_map *map, int flag)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	b = ft_atoi(line + i);
+	(r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) ?
+		map->flag_clr = 1 : 0;
 	(flag == 1) ? (*map->cei_clr = (r << 16) | (g << 8) | (b)) :
 		(*map->flo_clr = (r << 16) | (g << 8) | (b));
 	++map->config_flag;

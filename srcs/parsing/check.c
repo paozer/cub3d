@@ -6,29 +6,12 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/23 22:58:51 by paozer      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/24 15:04:02 by paozer      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	check_color(int *c, t_map *map)
-{
-	int r;
-	int g;
-	int b;
-	int clr;
-
-	clr = *c;
-	r = clr & 255;
-	g = (clr >> 8) & 255;
-	b = (clr >> 16) & 255;
-	printf("r = %d g = %d b = %d\n", r, g, b);
-	(r < 0 || r > 255) ? print_error(1, &(r), map, 1) : 0;
-	(g < 0 || g > 255) ? print_error(1, &(g), map, 1) : 0;
-	(b < 0 || b > 255) ? print_error(1, &(b), map, 1) : 0;
-}
 
 void	check_path(t_map *map)
 {
@@ -94,9 +77,8 @@ void	check_parsing(t_map *map)
 	(RES->x >= 5120) ? RES->x = 5120 / 2 : 0;
 	(RES->y >= 2880) ? RES->y = 1395 : 0;
 	(map->config_flag != 8) ? print_error(9, (void *)0, map, 1) : 0;
-	check_color(CEI_CLR, map);
-	check_color(FLO_CLR, map);
 	check_path(map);
 	check_map(map);
 	(PLAYER->set_flag != 1) ? print_error(6, (void *)0, map, 1) : 0;
+	(map->flag_clr == 1) ? print_error(1, (void *)0, map, 1) : 0;
 }

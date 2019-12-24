@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/23 22:43:09 by paozer      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/24 14:35:53 by paozer      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -173,19 +173,18 @@ typedef struct		s_map
 	int				width;
 	int				height;
 	int				config_flag;
-	t_res			*resolution;
 
+	t_res			*resolution;
 	t_player		*player;
 	t_movt			*movt;
 	t_screen		*screen;
 	t_ray			*ray;
-
 	char			*texture_path[5];
 	t_img			*texture[5];
 	t_sprite		*sprites;
 	int				*flo_clr;
 	int				*cei_clr;
-
+	int				flag_clr;
 	t_mlx			*mlx;
 	t_img			*img;
 	int				save;

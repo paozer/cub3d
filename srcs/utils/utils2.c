@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 03:31:34 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 10:39:01 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/24 15:03:31 by paozer      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,8 +17,7 @@ void	print_error(int flag, void *arg, t_map *map, int free_flag)
 {
 	write(1, "Error\n", 6);
 	(flag == 0) ? ft_printf("Resolution is not valid.\n") : 1;
-	(flag == 1) ? ft_printf("Color [%d] is not an RGB value.\n",
-			*((int *)arg)) : 1;
+	(flag == 1) ? ft_printf("Specified colors are not in the RGB range.\n") : 1;
 	(flag == 2) ? ft_printf("File \"%s\" does not exist.\n", arg) : 1;
 	(flag == 3) ? ft_printf("Path extension \"%s\" is not valid.\n", arg) : 1;
 	(flag == 4) ? ft_printf("Map character \"%c\" is not valid.\n",

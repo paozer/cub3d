@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 10:32:10 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/24 14:38:24 by paozer      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,7 @@ t_map	*init_map(void)
 		print_error(8, NULL, NULL, 0);
 	FLO_CLR = malloc(sizeof(*FLO_CLR));
 	CEI_CLR = malloc(sizeof(*CEI_CLR));
+	map->flag_clr = 0;
 	MLX = malloc(sizeof(*MLX));
 	RES = malloc(sizeof(*RES));
 	SCREEN = malloc(sizeof(*SCREEN));
