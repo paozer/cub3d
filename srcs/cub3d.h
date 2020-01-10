@@ -23,21 +23,21 @@
 # include "../libft/includes/ft_printf.h"
 # include <stdio.h>
 
-# define PLAYER map->player
-# define SCREEN map->screen
-# define MOVT map->movt
-# define RAY map->ray
-# define MLX map->mlx
-# define SPR map->sprites
-# define IMG map->img
-# define TEXT map->texture
-# define TEXT_P map->texture_path
-# define RES map->resolution
-# define FLO_CLR map->flo_clr
-# define CEI_CLR map->cei_clr
+// # define map->p map->player
+// # define map->s map->screen
+// # define map->mo map->movt
+// # define map->ra map->ray
+// # define map->mx map->mlx
+// # define map->sp map->sprites
+// # define map->i map->img
+// # define map->t map->texture
+// # define map->tp map->texture_path
+// # define map->re map->resolution
+// # define map->fc map->flo_clr
+// # define map->cc map->cei_clr
 # define SPEED .1
 # define ROTSPEED .05
-# define ALL FLO_CLR && CEI_CLR && MLX && RES && SCREEN && PLAYER && RAY && SPR
+// # define ALL map->fc && map->cc && map->mx && map->re && map->s && map->p && map->ra && map->sp
 
 typedef struct		s_res
 {
@@ -174,19 +174,19 @@ typedef struct		s_map
 	int				height;
 	int				config_flag;
 
-	t_res			*resolution;
-	t_player		*player;
-	t_movt			*movt;
-	t_screen		*screen;
-	t_ray			*ray;
-	char			*texture_path[5];
-	t_img			*texture[5];
-	t_sprite		*sprites;
-	int				*flo_clr;
-	int				*cei_clr;
+	t_res			*re; //*resolution;
+	t_player		*p; //*player;
+	t_movt			*mo; //*movt;
+	t_screen		*s; //*screen;
+	t_ray			*ra; //*ray;
+	char			*tp[5]; //*texture_path[5];
+	t_img			*t[5]; //*texture[5];
+	t_sprite		*sp; //*sprites;
+	int				*fc; //*flo_clr;
+	int				*cc; //*cei_clr;
 	int				flag_clr;
-	t_mlx			*mlx;
-	t_img			*img;
+	t_mlx			*mx; //*mlx;
+	t_img			*i; //*img;
 	int				save;
 }					t_map;
 

@@ -18,10 +18,10 @@ int			select_texture(t_map *map)
 	int i;
 
 	i = 0;
-	(RAY->side == 0 && RAY->dir_x > 0) ? (i = 0) : 0;
-	(RAY->side == 0 && RAY->dir_x < 0) ? (i = 1) : 0;
-	(RAY->side == 1 && RAY->dir_y < 0) ? (i = 2) : 0;
-	(RAY->side == 1 && RAY->dir_y > 0) ? (i = 3) : 0;
+	(map->ra->side == 0 && map->ra->dir_x > 0) ? (i = 0) : 0;
+	(map->ra->side == 0 && map->ra->dir_x < 0) ? (i = 1) : 0;
+	(map->ra->side == 1 && map->ra->dir_y < 0) ? (i = 2) : 0;
+	(map->ra->side == 1 && map->ra->dir_y > 0) ? (i = 3) : 0;
 	return (i);
 }
 
@@ -30,16 +30,16 @@ void		select_pixel_while(t_map *map, int x, int y, int i)
 	int d;
 	int color;
 
-	while (y < IMG->draw_end)
+	while (y < map->i->draw_end)
 	{
-		d = y * 256 - RES->y * 128 + RAY->line_h * 128;
-		IMG->tex_y = d * TEXT[i]->height / RAY->line_h / 256;
-		IMG->tex_y < 0 ? IMG->tex_y = 0 : 0;
-		if (TEXT[i]->height * TEXT[i]->width >
-				IMG->tex_y * TEXT[i]->height + IMG->tex_x)
+		d = y * 256 - map->re->y * 128 + map->ra->line_h * 128;
+		map->i->tex_y = d * map->t[i]->height / map->ra->line_h / 256;
+		map->i->tex_y < 0 ? map->i->tex_y = 0 : 0;
+		if (map->t[i]->height * map->t[i]->width >
+				map->i->tex_y * map->t[i]->height + map->i->tex_x)
 		{
-			color = TEXT[i]->buf[IMG->tex_y * TEXT[i]->height + IMG->tex_x];
-			IMG->buf[y * RES->x + x] = color;
+			color = map->t[i]->buf[map->i->tex_y * map->t[i]->height + map->i->tex_x];
+			map->i->buf[y * map->re->x + x] = color;
 		}
 		y++;
 	}
@@ -47,12 +47,12 @@ void		select_pixel_while(t_map *map, int x, int y, int i)
 
 void		select_pixel(t_map *map, int i, int x, int y)
 {
-	IMG->wall_x = (RAY->side) ? PLAYER->x + RAY->wall_dist * RAY->dir_x :
-		PLAYER->y + RAY->wall_dist * RAY->dir_y;
-	IMG->wall_x -= floor(IMG->wall_x);
-	IMG->tex_x = (int)(IMG->wall_x * (double)TEXT[i]->width);
-	((RAY->side == 0 && RAY->dir_x > 0) || (RAY->side == 1 && RAY->dir_y < 0)) ?
-		IMG->tex_x = TEXT[i]->width - IMG->tex_x - 1 : 0;
+	map->i->wall_x = (map->ra->side) ? map->p->x + map->ra->wall_dist * map->ra->dir_x :
+		map->p->y + map->ra->wall_dist * map->ra->dir_y;
+	map->i->wall_x -= floor(map->i->wall_x);
+	map->i->tex_x = (int)(map->i->wall_x * (double)map->t[i]->width);
+	((map->ra->side == 0 && map->ra->dir_x > 0) || (map->ra->side == 1 && map->ra->dir_y < 0)) ?
+		map->i->tex_x = map->t[i]->width - map->i->tex_x - 1 : 0;
 	select_pixel_while(map, x, y, i);
 }
 
@@ -62,22 +62,22 @@ void		draw(t_map *map, int x)
 	int		text_index;
 
 	y = 0;
-	IMG->draw_start = (RES->y - RAY->line_h) / 2;
-	IMG->draw_end = (RES->y + RAY->line_h) / 2;
-	IMG->draw_start = (IMG->draw_start > 0) ? IMG->draw_start : 0;
-	IMG->draw_end = (IMG->draw_end >= RES->y) ? RES->y - 1 : IMG->draw_end;
+	map->i->draw_start = (map->re->y - map->ra->line_h) / 2;
+	map->i->draw_end = (map->re->y + map->ra->line_h) / 2;
+	map->i->draw_start = (map->i->draw_start > 0) ? map->i->draw_start : 0;
+	map->i->draw_end = (map->i->draw_end >= map->re->y) ? map->re->y - 1 : map->i->draw_end;
 	text_index = select_texture(map);
-	while (y < RES->y)
+	while (y < map->re->y)
 	{
-		if (y < IMG->draw_start)
-			IMG->buf[y * RES->x + x] = *map->cei_clr;
-		if (y >= IMG->draw_start && y < IMG->draw_end)
+		if (y < map->i->draw_start)
+			map->i->buf[y * map->re->x + x] = *map->cc;
+		if (y >= map->i->draw_start && y < map->i->draw_end)
 		{
 			select_pixel(map, text_index, x, y);
-			y = IMG->draw_end;
+			y = map->i->draw_end;
 		}
-		if (y >= IMG->draw_end)
-			IMG->buf[y * RES->x + x] = *map->flo_clr;
+		if (y >= map->i->draw_end)
+			map->i->buf[y * map->re->x + x] = *map->fc;
 		++y;
 	}
 }

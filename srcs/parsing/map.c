@@ -56,7 +56,7 @@ static int	**set_int_map(t_map *map)
 			else
 				map_i[i][j] = map->map[i][j] - 48;
 			if (map->map[i][j] == '2')
-				SPR->nbr += 1;
+				map->sp->nbr += 1;
 			++j;
 		}
 		++i;

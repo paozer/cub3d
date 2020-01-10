@@ -22,12 +22,12 @@ void	check_path(t_map *map)
 	i = 0;
 	while (i < 5)
 	{
-		if ((fd = open(TEXT_P[i], O_RDONLY)) == -1)
-			print_error(2, TEXT_P[i], map, 1);
+		if ((fd = open(map->tp[i], O_RDONLY)) == -1)
+			print_error(2, map->tp[i], map, 1);
 		close(fd);
-		len = ft_strlen(TEXT_P[i]) - 4;
-		if (ft_strncmp(TEXT_P[i] + len, ".xpm", 4) != 0)
-			print_error(3, TEXT_P[i], map, 1);
+		len = ft_strlen(map->tp[i]) - 4;
+		if (ft_strncmp(map->tp[i] + len, ".xpm", 4) != 0)
+			print_error(3, map->tp[i], map, 1);
 		++i;
 	}
 }
@@ -68,17 +68,17 @@ void	check_map(t_map *map)
 		++i;
 	}
 	check_wall(map, i - 1);
-	(PLAYER->x == 0 && PLAYER->y == 0) ? print_error(7, (void *)0, map, 1) : 0;
+	(map->p->x == 0 && map->p->y == 0) ? print_error(7, (void *)0, map, 1) : 0;
 }
 
 void	check_parsing(t_map *map)
 {
-	(RES->x <= 0 || RES->y <= 0) ? (print_error(0, (void *)0, map, 1)) : 1;
-	(RES->x >= 5120) ? RES->x = 5120 / 2 : 0;
-	(RES->y >= 2880) ? RES->y = 1395 : 0;
+	(map->re->x <= 0 || map->re->y <= 0) ? (print_error(0, (void *)0, map, 1)) : 1;
+	(map->re->x >= 5120) ? map->re->x = 5120 / 2 : 0;
+	(map->re->y >= 2880) ? map->re->y = 1395 : 0;
 	(map->config_flag != 8) ? print_error(9, (void *)0, map, 1) : 0;
 	check_path(map);
 	check_map(map);
-	(PLAYER->set_flag != 1) ? print_error(6, (void *)0, map, 1) : 0;
+	(map->p->set_flag != 1) ? print_error(6, (void *)0, map, 1) : 0;
 	(map->flag_clr == 1) ? print_error(1, (void *)0, map, 1) : 0;
 }

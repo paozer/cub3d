@@ -19,20 +19,20 @@ void	sprites_select_pixel(t_map *map, int j)
 	int d;
 	int color;
 
-	if (SPR->trans_y > 0 && j > 0 && j < RES->x &&
-			SPR->trans_y < SPR->wall_dist[j])
+	if (map->sp->trans_y > 0 && j > 0 && j < map->re->x &&
+			map->sp->trans_y < map->sp->wall_dist[j])
 	{
-		y = SPR->draw_start_y;
-		while (y < SPR->draw_end_y)
+		y = map->sp->draw_start_y;
+		while (y < map->sp->draw_end_y)
 		{
-			d = y * 256 - RES->y * 128 + SPR->height * 128;
-			SPR->tex_y = ((d * TEXT[4]->width) / SPR->height) / 256;
-			if (TEXT[4]->width * TEXT[4]->height > SPR->tex_y * TEXT[4]->width +
-					SPR->tex_x)
+			d = y * 256 - map->re->y * 128 + map->sp->height * 128;
+			map->sp->tex_y = ((d * map->t[4]->width) / map->sp->height) / 256;
+			if (map->t[4]->width * map->t[4]->height > map->sp->tex_y * map->t[4]->width +
+					map->sp->tex_x)
 			{
-				color = TEXT[4]->buf[SPR->tex_y * TEXT[4]->width + SPR->tex_x];
+				color = map->t[4]->buf[map->sp->tex_y * map->t[4]->width + map->sp->tex_x];
 				if (color != 0)
-					IMG->buf[y * RES->x + j] = color;
+					map->i->buf[y * map->re->x + j] = color;
 			}
 			++y;
 		}
@@ -41,16 +41,16 @@ void	sprites_select_pixel(t_map *map, int j)
 
 void	sprites_start_end(t_map *map)
 {
-	SPR->height = abs((int)(RES->y / SPR->trans_y));
-	SPR->draw_start_y = -SPR->height / 2 + RES->y / 2;
-	(SPR->draw_start_y < 0) ? SPR->draw_start_y = 0 : 0;
-	SPR->draw_end_y = SPR->height / 2 + RES->y / 2;
-	(SPR->draw_end_y >= RES->y) ? SPR->draw_end_y = RES->y - 1 : 0;
-	SPR->width = abs((int)(RES->y / SPR->trans_y));
-	SPR->draw_start_x = -SPR->width / 2 + SPR->screen_x;
-	(SPR->draw_start_x < 0) ? SPR->draw_start_x = 0 : 0;
-	SPR->draw_end_x = SPR->width / 2 + SPR->screen_x;
-	(SPR->draw_end_x >= RES->x) ? SPR->draw_end_x = RES->x - 1 : 0;
+	map->sp->height = abs((int)(map->re->y / map->sp->trans_y));
+	map->sp->draw_start_y = -map->sp->height / 2 + map->re->y / 2;
+	(map->sp->draw_start_y < 0) ? map->sp->draw_start_y = 0 : 0;
+	map->sp->draw_end_y = map->sp->height / 2 + map->re->y / 2;
+	(map->sp->draw_end_y >= map->re->y) ? map->sp->draw_end_y = map->re->y - 1 : 0;
+	map->sp->width = abs((int)(map->re->y / map->sp->trans_y));
+	map->sp->draw_start_x = -map->sp->width / 2 + map->sp->screen_x;
+	(map->sp->draw_start_x < 0) ? map->sp->draw_start_x = 0 : 0;
+	map->sp->draw_end_x = map->sp->width / 2 + map->sp->screen_x;
+	(map->sp->draw_end_x >= map->re->x) ? map->sp->draw_end_x = map->re->x - 1 : 0;
 }
 
 void	sprites_draw(t_map *map)
@@ -59,23 +59,23 @@ void	sprites_draw(t_map *map)
 	int j;
 
 	i = 0;
-	while (i < SPR->nbr)
+	while (i < map->sp->nbr)
 	{
-		SPR->x = SPR->arr[i]->x - PLAYER->x;
-		SPR->y = SPR->arr[i]->y - PLAYER->y;
-		SPR->inv_deter = 1.0 / (SCREEN->plane_x * PLAYER->dir_y -
-				PLAYER->dir_x * SCREEN->plane_y);
-		SPR->trans_x = SPR->inv_deter *
-			(PLAYER->dir_y * SPR->x - PLAYER->dir_x * SPR->y);
-		SPR->trans_y = SPR->inv_deter *
-			(-SCREEN->plane_y * SPR->x + SCREEN->plane_x * SPR->y);
-		SPR->screen_x = (int)((RES->x / 2) * (1 + SPR->trans_x / SPR->trans_y));
+		map->sp->x = map->sp->arr[i]->x - map->p->x;
+		map->sp->y = map->sp->arr[i]->y - map->p->y;
+		map->sp->inv_deter = 1.0 / (map->s->plane_x * map->p->dir_y -
+				map->p->dir_x * map->s->plane_y);
+		map->sp->trans_x = map->sp->inv_deter *
+			(map->p->dir_y * map->sp->x - map->p->dir_x * map->sp->y);
+		map->sp->trans_y = map->sp->inv_deter *
+			(-map->s->plane_y * map->sp->x + map->s->plane_x * map->sp->y);
+		map->sp->screen_x = (int)((map->re->x / 2) * (1 + map->sp->trans_x / map->sp->trans_y));
 		sprites_start_end(map);
-		j = SPR->draw_start_x;
-		while (j < SPR->draw_end_x)
+		j = map->sp->draw_start_x;
+		while (j < map->sp->draw_end_x)
 		{
-			SPR->tex_x = (int)(256 * (j - (-SPR->width / 2 + SPR->screen_x))
-					* TEXT[4]->height / SPR->width) / 256;
+			map->sp->tex_x = (int)(256 * (j - (-map->sp->width / 2 + map->sp->screen_x))
+					* map->t[4]->height / map->sp->width) / 256;
 			sprites_select_pixel(map, j++);
 		}
 		++i;
@@ -88,13 +88,13 @@ void	sprites_sort(t_map *map)
 	t_spr	*tmp;
 
 	i = 0;
-	while (SPR->arr[i] && SPR->arr[i + 1])
+	while (map->sp->arr[i] && map->sp->arr[i + 1])
 	{
-		if (SPR->arr[i]->dist < SPR->arr[i + 1]->dist)
+		if (map->sp->arr[i]->dist < map->sp->arr[i + 1]->dist)
 		{
-			tmp = SPR->arr[i + 1];
-			SPR->arr[i + 1] = SPR->arr[i];
-			SPR->arr[i] = tmp;
+			tmp = map->sp->arr[i + 1];
+			map->sp->arr[i + 1] = map->sp->arr[i];
+			map->sp->arr[i] = tmp;
 			i = 0;
 		}
 		++i;
@@ -106,10 +106,10 @@ void	sprites_main(t_map *map)
 	int i;
 
 	i = 0;
-	while (SPR->arr[i])
+	while (map->sp->arr[i])
 	{
-		SPR->arr[i]->dist = pow(PLAYER->x - SPR->arr[i]->x, 2)
-			+ pow(PLAYER->y - SPR->arr[i]->y, 2);
+		map->sp->arr[i]->dist = pow(map->p->x - map->sp->arr[i]->x, 2)
+			+ pow(map->p->y - map->sp->arr[i]->y, 2);
 		++i;
 	}
 	sprites_sort(map);

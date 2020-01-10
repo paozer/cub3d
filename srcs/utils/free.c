@@ -15,14 +15,14 @@
 
 static void	free_extra(t_map *map, int flag)
 {
-	free(CEI_CLR);
-	free(FLO_CLR);
-	(flag == 1) ? free(SPR) : 0;
-	(flag == 1) ? free(MLX) : 0;
-	free(SCREEN);
-	free(RAY);
-	free(PLAYER);
-	free(RES);
+	free(map->cc);
+	free(map->fc);
+	(flag == 1) ? free(map->sp) : 0;
+	(flag == 1) ? free(map->mx) : 0;
+	free(map->s);
+	free(map->ra);
+	free(map->p);
+	free(map->re);
 }
 
 static void	free_mlx(t_map *map, int flag)
@@ -30,25 +30,25 @@ static void	free_mlx(t_map *map, int flag)
 	int i;
 
 	i = 0;
-	mlx_destroy_window(MLX->mlx_ptr, MLX->win_ptr);
-	free(MLX);
-	(flag == 3) ? 0 : free(MOVT);
+	mlx_destroy_window(map->mx->mlx_ptr, map->mx->win_ptr);
+	free(map->mx);
+	(flag == 3) ? 0 : free(map->mo);
 	while (i < 5)
 	{
-		free(TEXT[i]->img);
-		free(TEXT[i]->buf);
-		free(TEXT[i++]);
+		free(map->t[i]->img);
+		free(map->t[i]->buf);
+		free(map->t[i++]);
 	}
 	i = 0;
-	free(SPR->wall_dist);
+	free(map->sp->wall_dist);
 	i = 0;
-	while (SPR->arr[i])
-		free(SPR->arr[i++]);
-	free(SPR->arr);
-	free(SPR);
-	free(IMG->img);
-	free(IMG->buf);
-	free(IMG);
+	while (map->sp->arr[i])
+		free(map->sp->arr[i++]);
+	free(map->sp->arr);
+	free(map->sp);
+	free(map->i->img);
+	free(map->i->buf);
+	free(map->i);
 }
 
 int			free_dummy(t_map *map)
@@ -66,7 +66,7 @@ void		free_all(t_map *map, int flag)
 	{
 		free_extra(map, flag);
 		while (i < 5)
-			free(TEXT_P[i++]);
+			free(map->tp[i++]);
 		i = 0;
 		while (map->map[i])
 			free(map->map[i++]);

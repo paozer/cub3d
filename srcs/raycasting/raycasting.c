@@ -15,56 +15,56 @@
 
 void	compute_first_section(t_map *map)
 {
-	if (RAY->dir_x < 0)
+	if (map->ra->dir_x < 0)
 	{
-		RAY->step_x = -1;
-		RAY->side_dist_x = (PLAYER->x - (double)RAY->map_x) * RAY->delta_dist_x;
+		map->ra->step_x = -1;
+		map->ra->side_dist_x = (map->p->x - (double)map->ra->map_x) * map->ra->delta_dist_x;
 	}
 	else
 	{
-		RAY->step_x = 1;
-		RAY->side_dist_x = ((double)RAY->map_x + 1 - PLAYER->x) *
-			RAY->delta_dist_x;
+		map->ra->step_x = 1;
+		map->ra->side_dist_x = ((double)map->ra->map_x + 1 - map->p->x) *
+			map->ra->delta_dist_x;
 	}
-	if (RAY->dir_y < 0)
+	if (map->ra->dir_y < 0)
 	{
-		RAY->step_y = -1;
-		RAY->side_dist_y = (PLAYER->y - (double)RAY->map_y) * RAY->delta_dist_y;
+		map->ra->step_y = -1;
+		map->ra->side_dist_y = (map->p->y - (double)map->ra->map_y) * map->ra->delta_dist_y;
 	}
 	else
 	{
-		RAY->step_y = 1;
-		RAY->side_dist_y = ((double)RAY->map_y + 1 - PLAYER->y) *
-			RAY->delta_dist_y;
+		map->ra->step_y = 1;
+		map->ra->side_dist_y = ((double)map->ra->map_y + 1 - map->p->y) *
+			map->ra->delta_dist_y;
 	}
 }
 
 void	compute_wall_hit(t_map *map)
 {
-	RAY->hit = 0;
-	while (RAY->hit == 0)
+	map->ra->hit = 0;
+	while (map->ra->hit == 0)
 	{
-		if (RAY->side_dist_x < RAY->side_dist_y)
+		if (map->ra->side_dist_x < map->ra->side_dist_y)
 		{
-			RAY->side_dist_x += RAY->delta_dist_x;
-			RAY->map_x += RAY->step_x;
-			RAY->side = 0;
+			map->ra->side_dist_x += map->ra->delta_dist_x;
+			map->ra->map_x += map->ra->step_x;
+			map->ra->side = 0;
 		}
 		else
 		{
-			RAY->side_dist_y += RAY->delta_dist_y;
-			RAY->map_y += RAY->step_y;
-			RAY->side = 1;
+			map->ra->side_dist_y += map->ra->delta_dist_y;
+			map->ra->map_y += map->ra->step_y;
+			map->ra->side = 1;
 		}
-		if (map->map_i[RAY->map_x][RAY->map_y] == 1)
-			RAY->hit = 1;
+		if (map->map_i[map->ra->map_x][map->ra->map_y] == 1)
+			map->ra->hit = 1;
 	}
-	if (RAY->side == 0)
-		RAY->wall_dist = ((double)RAY->map_x - PLAYER->x +
-				(1 - RAY->step_x) / 2) / RAY->dir_x;
+	if (map->ra->side == 0)
+		map->ra->wall_dist = ((double)map->ra->map_x - map->p->x +
+				(1 - map->ra->step_x) / 2) / map->ra->dir_x;
 	else
-		RAY->wall_dist = ((double)RAY->map_y - PLAYER->y +
-				(1 - RAY->step_y) / 2) / RAY->dir_y;
+		map->ra->wall_dist = ((double)map->ra->map_y - map->p->y +
+				(1 - map->ra->step_y) / 2) / map->ra->dir_y;
 }
 
 void	raycasting(t_map *map)
@@ -72,43 +72,43 @@ void	raycasting(t_map *map)
 	int x;
 
 	x = 0;
-	mlx_clear_window(MLX->mlx_ptr, MLX->win_ptr);
-	while (x < RES->x)
+	mlx_clear_window(map->mx->mlx_ptr, map->mx->win_ptr);
+	while (x < map->re->x)
 	{
-		SCREEN->cam_x = 2 * x / (double)RES->x - 1;
-		RAY->dir_x = PLAYER->dir_x + SCREEN->plane_x * SCREEN->cam_x;
-		RAY->dir_y = PLAYER->dir_y + SCREEN->plane_y * SCREEN->cam_x;
-		RAY->map_x = (int)PLAYER->x;
-		RAY->map_y = (int)PLAYER->y;
-		RAY->delta_dist_x = fabs(1 / RAY->dir_x);
-		RAY->delta_dist_y = fabs(1 / RAY->dir_y);
+		map->s->cam_x = 2 * x / (double)map->re->x - 1;
+		map->ra->dir_x = map->p->dir_x + map->s->plane_x * map->s->cam_x;
+		map->ra->dir_y = map->p->dir_y + map->s->plane_y * map->s->cam_x;
+		map->ra->map_x = (int)map->p->x;
+		map->ra->map_y = (int)map->p->y;
+		map->ra->delta_dist_x = fabs(1 / map->ra->dir_x);
+		map->ra->delta_dist_y = fabs(1 / map->ra->dir_y);
 		compute_first_section(map);
 		compute_wall_hit(map);
-		SPR->wall_dist[x] = RAY->wall_dist;
-		RAY->line_h = (int)(RES->y / RAY->wall_dist);
+		map->sp->wall_dist[x] = map->ra->wall_dist;
+		map->ra->line_h = (int)(map->re->y / map->ra->wall_dist);
 		draw(map, x);
 		++x;
 	}
 	sprites_main(map);
 	if (map->save == 1)
 		map_to_bmp(map);
-	mlx_put_image_to_window(MLX->mlx_ptr, MLX->win_ptr, IMG->img, 0, 0);
+	mlx_put_image_to_window(map->mx->mlx_ptr, map->mx->win_ptr, map->i->img, 0, 0);
 }
 
 void	start(t_map *map)
 {
 	raycasting(map);
-	if (!(MOVT = malloc(sizeof(*MOVT))))
+	if (!(map->mo = malloc(sizeof(*map->mo))))
 		return ;
-	MOVT->front = 0;
-	MOVT->back = 0;
-	MOVT->right = 0;
-	MOVT->left = 0;
-	MOVT->rot_right = 0;
-	MOVT->rot_left = 0;
-	mlx_loop_hook(MLX->mlx_ptr, movt_do, map);
-	mlx_hook(MLX->win_ptr, 2, 0, movt_pressed, map);
-	mlx_hook(MLX->win_ptr, 3, 0, movt_released, map);
-	mlx_hook(MLX->win_ptr, 17, 0, free_dummy, map);
-	mlx_loop(MLX->mlx_ptr);
+	map->mo->front = 0;
+	map->mo->back = 0;
+	map->mo->right = 0;
+	map->mo->left = 0;
+	map->mo->rot_right = 0;
+	map->mo->rot_left = 0;
+	mlx_loop_hook(map->mx->mlx_ptr, movt_do, map);
+	mlx_hook(map->mx->win_ptr, 2, 0, movt_pressed, map);
+	mlx_hook(map->mx->win_ptr, 3, 0, movt_released, map);
+	mlx_hook(map->mx->win_ptr, 17, 0, free_dummy, map);
+	mlx_loop(map->mx->mlx_ptr);
 }

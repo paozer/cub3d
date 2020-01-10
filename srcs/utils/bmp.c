@@ -22,12 +22,12 @@ void	pixels_to_bitmap(t_map *map, int fd, t_bmp_header bih)
 
 	write(fd, &bih, sizeof(bih));
 	y = 0;
-	while (y < RES->y)
+	while (y < map->re->y)
 	{
 		x = 0;
-		while (x < RES->x)
+		while (x < map->re->x)
 		{
-			rgb = map->img->buf[x + y * RES->x];
+			rgb = map->i->buf[x + y * map->re->x];
 			color[0] = rgb % 256;
 			rgb /= 256;
 			color[1] = rgb % 256;
@@ -47,17 +47,17 @@ void	create_header_file(const char *filename, t_map *map)
 	t_bmp_header	bih;
 
 	ft_memcpy(&bfh.bitmap_type, "BM", 2);
-	bfh.file_size = RES->x * RES->y * 4 + 54;
+	bfh.file_size = map->re->x * map->re->y * 4 + 54;
 	bfh.reserved1 = 0;
 	bfh.reserved2 = 0;
 	bfh.offset_bits = 0;
 	bih.size_header = sizeof(bih);
-	bih.width = RES->x;
-	bih.height = RES->y;
+	bih.width = map->re->x;
+	bih.height = map->re->y;
 	bih.planes = 1;
 	bih.bit_count = 24;
 	bih.compression = 0;
-	bih.image_size = RES->x * RES->y * 4 + 54;
+	bih.image_size = map->re->x * map->re->y * 4 + 54;
 	bih.ppm_x = 2;
 	bih.ppm_y = 2;
 	bih.clr_used = 0;
