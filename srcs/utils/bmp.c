@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 06:20:46 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 10:28:10 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 06:41:19 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,8 +21,8 @@ void	pixels_to_bitmap(t_map *m, int fd, t_bmp_header bih)
 	unsigned char	color[3];
 
 	write(fd, &bih, sizeof(bih));
-	y = 0;
-	while (y < m->re->y)
+	y = m->re->y - 1;
+	while (y >= 0)
 	{
 		x = 0;
 		while (x < m->re->x)
@@ -36,7 +36,7 @@ void	pixels_to_bitmap(t_map *m, int fd, t_bmp_header bih)
 			write(fd, &color, sizeof(color));
 			++x;
 		}
-		++y;
+		--y;
 	}
 }
 
