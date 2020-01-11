@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 21:45:59 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 02:30:20 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 20:54:44 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,11 +27,11 @@ void	sprites_select_pixel(t_map *m, int j)
 		{
 			d = y * 256 - m->re->y * 128 + m->sp->height * 128;
 			m->sp->tex_y = ((d * m->t[4]->width) / m->sp->height) / 256;
-			if (m->t[4]->width * m->t[4]->height >
-					m->sp->tex_y * m->t[4]->width + m->sp->tex_x)
+			if (m->t[4]->width * m->t[4]->height > (int)m->t[4]->width *
+					m->sp->tex_y + m->sp->tex_x)
 			{
-				color = m->t[4]->buf[m->sp->tex_y *
-					m->t[4]->width + m->sp->tex_x];
+				color = m->t[4]->buf[(int)m->t[4]->width *
+					m->sp->tex_y + m->sp->tex_x];
 				if (color != 0)
 					m->i->buf[y * m->re->x + j] = color;
 			}
@@ -77,7 +77,7 @@ void	sprites_draw(t_map *m)
 		while (j < m->sp->draw_end_x)
 		{
 			m->sp->tex_x = (int)(256 * (j - (-m->sp->width / 2 +
-				m->sp->screen_x)) * m->t[4]->height / m->sp->width) / 256;
+							m->sp->screen_x)) * m->t[4]->height / m->sp->width) / 256;
 			sprites_select_pixel(m, j++);
 		}
 	}
