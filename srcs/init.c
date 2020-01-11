@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 01:08:39 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 02:45:16 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,10 +15,14 @@
 
 t_map	*init_map(void)
 {
+	int i;
 	t_map	*m;
 
+	i = 0;
 	if (!(m = malloc(sizeof(*m))))
 		print_error(8, NULL, NULL, 0);
+	while (i < 5)
+		m->tp[i++] = NULL;
 	m->fc = malloc(sizeof(*m->fc));
 	m->cc = malloc(sizeof(*m->cc));
 	m->flag_clr = 0;

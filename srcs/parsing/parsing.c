@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 02:23:47 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 02:42:57 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -82,15 +82,15 @@ char			*gnl_file(t_map *m, int fd, int i)
 			++i;
 		(line[i] == 'R') ? set_resolution(line + i + 1, m) : 1;
 		(line[i] == 'N' && line[i + 1] == 'O') ?
-			(m->tp[0] = set_paths(line + 2, m)) : 0;
+			(m->tp[0] = set_paths(line + 2, m, 0)) : 0;
 		(line[i] == 'S' && line[i + 1] == 'O') ?
-			(m->tp[1] = set_paths(line + 2, m)) : 0;
+			(m->tp[1] = set_paths(line + 2, m, 1)) : 0;
 		(line[i] == 'W' && line[i + 1] == 'E') ?
-			(m->tp[2] = set_paths(line + 2, m)) : 0;
+			(m->tp[2] = set_paths(line + 2, m, 2)) : 0;
 		(line[i] == 'E' && line[i + 1] == 'A') ?
-			(m->tp[3] = set_paths(line + 2, m)) : 0;
+			(m->tp[3] = set_paths(line + 2, m, 3)) : 0;
 		(line[i] == 'S' && line[i + 1] != 'O') ?
-			(m->tp[4] = set_paths(line + 1, m)) : 0;
+			(m->tp[4] = set_paths(line + 1, m, 4)) : 0;
 		(line[i] == 'F') ? set_color(line + 2, m, 0) : 0;
 		(line[i] == 'C') ? set_color(line + 2, m, 1) : 0;
 		if (ft_isdigit(line[i]))

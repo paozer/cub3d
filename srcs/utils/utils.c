@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 03:31:34 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 02:26:13 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 02:46:37 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,12 +31,14 @@ void	print_error(int flag, void *arg, t_map *m, int free_flag)
 	free_all(m, free_flag);
 }
 
-char	*set_paths(char *line, t_map *m)
+char	*set_paths(char *line, t_map *m, int t)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
+	if (m->tp[t])
+		free(m->tp[t]);
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	str = ft_strdup(line + i);

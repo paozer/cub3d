@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 02:30:39 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 02:46:57 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -201,7 +201,7 @@ void				print_error(int flag, void *arg, t_map *m, int free_flag);
 void				free_all(t_map *m, int flag);
 int					free_dummy(t_map *m);
 char				*ft_strdup_mod(char *str);
-char				*set_paths(char *line, t_map *m);
+char				*set_paths(char *line, t_map *m, int t);
 void				map_to_bmp(t_map *m);
 void				ft_atoi_pos_return(char *s, int *c, int *i);
 
