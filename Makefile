@@ -42,7 +42,7 @@ NAME	= cub3D
 
 CC		= gcc
 
-CFLAGS	= -Wall -Werror -Wextra -I srcs #-g -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -I srcs
 
 MLXFLAGS = -I $(LIBMLX) -g -L $(LIBMLX) -l mlx -framework OpenGL -framework AppKit
 
@@ -56,7 +56,7 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 			make -C $(LIBFT)
 			make -C $(LIBMLX)
-			$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(LIBFT)$(LIBNAME)
+			$(CC) $(CFLAGS) -g3 -fsanitize=address $(MLXFLAGS) -o $(NAME) $(OBJS) $(LIBFT)$(LIBNAME)
 
 clean:
 			$(RM) $(OBJS)
