@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 03:31:34 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 02:46:37 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 06:27:32 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,6 +28,7 @@ void	print_error(int flag, void *arg, t_map *m, int free_flag)
 	(flag == 7) ? ft_printf("No start position for player.\n") : 1;
 	(flag == 8) ? ft_printf("Could not allocate sufficient memory.\n") : 1;
 	(flag == 9) ? ft_printf("Multiple or missing specifications.\n") : 1;
+	(flag == 10) ? ft_printf("Map rows are not of equal length.\n") : 1;
 	free_all(m, free_flag);
 }
 

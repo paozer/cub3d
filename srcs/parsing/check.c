@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 03:44:20 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 06:27:52 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,6 +55,8 @@ void	check_map(t_map *m)
 	while (m->map[i])
 	{
 		j = 0;
+		if ((int)ft_strlen(m->map[i]) != m->width)
+			print_error(10, (void *)0, m, 1);
 		(m->map[i][j] != '1') ? print_error(5, &i, m, 1) : 1;
 		while (m->map[i][j])
 		{
