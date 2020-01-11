@@ -6,12 +6,18 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 02:51:53 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 06:56:41 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_map2(t_map *m)
+{
+	m->map = NULL;
+	m->map_i = NULL;
+}
 
 t_map	*init_map(void)
 {
@@ -39,6 +45,7 @@ t_map	*init_map(void)
 	if (!(m && m->fc && m->cc && m->mx && m->re &&
 				m->s && m->p && m->ra && m->sp))
 		print_error(8, NULL, m, 1);
+	init_map2(m);
 	return (m);
 }
 
@@ -78,8 +85,9 @@ void	init(t_map *m)
 	i = 0;
 	if ((m->mx->mlx_ptr = mlx_init()) == NULL)
 		return ;
-	if ((m->mx->win_ptr = mlx_new_window(m->mx->mlx_ptr, m->re->x, m->re->y,
-					"cube3d")) == NULL)
+	if (m->save == 0)
+		if ((m->mx->win_ptr = mlx_new_window(m->mx->mlx_ptr,
+					m->re->x, m->re->y, "cube3d")) == NULL)
 		return ;
 	if (!(m->i = malloc(sizeof(*(m->i)))))
 		return ;

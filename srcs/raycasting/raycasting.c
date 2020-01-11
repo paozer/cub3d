@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 01:06:42 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 06:35:33 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,7 +74,8 @@ void	raycasting(t_map *m)
 	int x;
 
 	x = 0;
-	mlx_clear_window(m->mx->mlx_ptr, m->mx->win_ptr);
+	if (m->save == 0)
+		mlx_clear_window(m->mx->mlx_ptr, m->mx->win_ptr);
 	while (x < m->re->x)
 	{
 		m->s->cam_x = 2 * x / (double)m->re->x - 1;
