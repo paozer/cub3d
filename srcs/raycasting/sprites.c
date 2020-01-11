@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 21:45:59 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 20:54:44 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 21:45:23 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,8 @@ void	sprites_select_pixel(t_map *m, int j)
 			{
 				color = m->t[4]->buf[(int)m->t[4]->width *
 					m->sp->tex_y + m->sp->tex_x];
-				if (color != 0)
+				if (color != 0 &&
+						(int)m->t[4]->width * m->sp->tex_y + m->sp->tex_x >= 0)
 					m->i->buf[y * m->re->x + j] = color;
 			}
 			++y;
