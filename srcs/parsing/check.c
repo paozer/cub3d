@@ -13,7 +13,7 @@
 
 #include "cub3d.h"
 
-void	check_path(t_map *map)
+void	check_path(t_map *m)
 {
 	int		i;
 	int		fd;
@@ -22,63 +22,63 @@ void	check_path(t_map *map)
 	i = 0;
 	while (i < 5)
 	{
-		if ((fd = open(map->tp[i], O_RDONLY)) == -1)
-			print_error(2, map->tp[i], map, 1);
+		if ((fd = open(m->tp[i], O_RDONLY)) == -1)
+			print_error(2, m->tp[i], m, 1);
 		close(fd);
-		len = ft_strlen(map->tp[i]) - 4;
-		if (ft_strncmp(map->tp[i] + len, ".xpm", 4) != 0)
-			print_error(3, map->tp[i], map, 1);
+		len = ft_strlen(m->tp[i]) - 4;
+		if (ft_strncmp(m->tp[i] + len, ".xpm", 4) != 0)
+			print_error(3, m->tp[i], m, 1);
 		++i;
 	}
 }
 
-void	check_wall(t_map *map, int i)
+void	check_wall(t_map *m, int i)
 {
 	int j;
 
 	j = 0;
-	while (map->map[i][j])
+	while (m->map[i][j])
 	{
-		if (map->map[i][j] != '1')
-			print_error(5, &i, map, 1);
+		if (m->map[i][j] != '1')
+			print_error(5, &i, m, 1);
 		++j;
 	}
 }
 
-void	check_map(t_map *map)
+void	check_map(t_map *m)
 {
 	int i;
 	int j;
 
 	i = 0;
-	check_wall(map, i);
-	while (map->map[i])
+	check_wall(m, i);
+	while (m->map[i])
 	{
 		j = 0;
-		(map->map[i][j] != '1') ? print_error(5, &i, map, 1) : 1;
-		while (map->map[i][j])
+		(m->map[i][j] != '1') ? print_error(5, &i, m, 1) : 1;
+		while (m->map[i][j])
 		{
-			if (!(ft_strchr("012NSEW", map->map[i][j]) ||
-						ft_isspace(map->map[i][j])))
-				print_error(4, &map->map[i][j], map, 1);
-			(ft_strchr("NSEW", map->map[i][j])) ? set_player(map, i, j) : 1;
+			if (!(ft_strchr("012NSEW", m->map[i][j]) ||
+						ft_isspace(m->map[i][j])))
+				print_error(4, &m->map[i][j], m, 1);
+			(ft_strchr("NSEW", m->map[i][j])) ? set_player(m, i, j) : 1;
 			++j;
 		}
-		(map->map[i][j - 1] != '1') ? print_error(5, &i, map, 1) : 1;
+		(m->map[i][j - 1] != '1') ? print_error(5, &i, m, 1) : 1;
 		++i;
 	}
-	check_wall(map, i - 1);
-	(map->p->x == 0 && map->p->y == 0) ? print_error(7, (void *)0, map, 1) : 0;
+	check_wall(m, i - 1);
+	(m->p->x == 0 && m->p->y == 0) ? print_error(7, (void *)0, m, 1) : 0;
 }
 
-void	check_parsing(t_map *map)
+void	check_parsing(t_map *m)
 {
-	(map->re->x <= 0 || map->re->y <= 0) ? (print_error(0, (void *)0, map, 1)) : 1;
-	(map->re->x >= 5120) ? map->re->x = 5120 / 2 : 0;
-	(map->re->y >= 2880) ? map->re->y = 1395 : 0;
-	(map->config_flag != 8) ? print_error(9, (void *)0, map, 1) : 0;
-	check_path(map);
-	check_map(map);
-	(map->p->set_flag != 1) ? print_error(6, (void *)0, map, 1) : 0;
-	(map->flag_clr == 1) ? print_error(1, (void *)0, map, 1) : 0;
+	(m->re->x <= 0 || m->re->y <= 0) ? (print_error(0, (void *)0, m, 1)) : 1;
+	(m->re->x >= 5120) ? m->re->x = 5120 / 2 : 0;
+	(m->re->y >= 2880) ? m->re->y = 1395 : 0;
+	(m->config_flag != 8) ? print_error(9, (void *)0, m, 1) : 0;
+	check_path(m);
+	check_map(m);
+	(m->p->set_flag != 1) ? print_error(6, (void *)0, m, 1) : 0;
+	(m->flag_clr == 1) ? print_error(1, (void *)0, m, 1) : 0;
 }

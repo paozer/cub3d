@@ -35,28 +35,28 @@ static char	**ft_realloc(char **str, int size, int len)
 	return (new_str);
 }
 
-static int	**set_int_map(t_map *map)
+static int	**set_int_map(t_map *m)
 {
 	int i;
 	int j;
 	int **map_i;
 
 	i = 0;
-	if (!(map_i = malloc(sizeof(*map_i) * ft_strlen(map->map[i]))))
+	if (!(map_i = malloc(sizeof(*map_i) * ft_strlen(m->map[i]))))
 		return (NULL);
-	while (map->map[i])
+	while (m->map[i])
 	{
 		j = 0;
-		if (!(map_i[i] = malloc(sizeof(**map_i) * ft_strlen(map->map[i]))))
+		if (!(map_i[i] = malloc(sizeof(**map_i) * ft_strlen(m->map[i]))))
 			return (NULL);
-		while (map->map[i][j])
+		while (m->map[i][j])
 		{
-			if (ft_strchr("NSWE", map->map[i][j]))
+			if (ft_strchr("NSWE", m->map[i][j]))
 				map_i[i][j] = 0;
 			else
-				map_i[i][j] = map->map[i][j] - 48;
-			if (map->map[i][j] == '2')
-				map->sp->nbr += 1;
+				map_i[i][j] = m->map[i][j] - 48;
+			if (m->map[i][j] == '2')
+				m->sp->nbr += 1;
 			++j;
 		}
 		++i;
@@ -64,28 +64,28 @@ static int	**set_int_map(t_map *map)
 	return (map_i);
 }
 
-void		set_map(t_map *map, int fd, char *line)
+void		set_map(t_map *m, int fd, char *line)
 {
 	int		i;
 	int		len;
 	char	*map_line;
 
 	i = 1;
-	if (!(map->map = malloc(sizeof(*map->map) * 2)))
+	if (!(m->map = malloc(sizeof(*m->map) * 2)))
 		return ;
-	map->map[0] = ft_strdup_mod(line);
-	map->map[1] = NULL;
+	m->map[0] = ft_strdup_mod(line);
+	m->map[1] = NULL;
 	map_line = NULL;
-	len = ft_strlen(map->map[0]);
+	len = ft_strlen(m->map[0]);
 	while (get_next_line(fd, &map_line))
 	{
-		map->map[i] = ft_strdup_mod(map_line);
-		map->map = ft_realloc(map->map, ++i, len);
+		m->map[i] = ft_strdup_mod(map_line);
+		m->map = ft_realloc(m->map, ++i, len);
 	}
 	free(map_line);
-	free(map->map[i]);
-	map->map[i] = NULL;
-	map->map_i = set_int_map(map);
-	map->width = len;
-	map->height = i;
+	free(m->map[i]);
+	m->map[i] = NULL;
+	m->map_i = set_int_map(m);
+	m->width = len;
+	m->height = i;
 }

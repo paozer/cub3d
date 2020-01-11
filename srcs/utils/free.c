@@ -13,71 +13,71 @@
 
 #include "cub3d.h"
 
-static void	free_extra(t_map *map, int flag)
+static void	free_extra(t_map *m, int flag)
 {
-	free(map->cc);
-	free(map->fc);
-	(flag == 1) ? free(map->sp) : 0;
-	(flag == 1) ? free(map->mx) : 0;
-	free(map->s);
-	free(map->ra);
-	free(map->p);
-	free(map->re);
+	free(m->cc);
+	free(m->fc);
+	(flag == 1) ? free(m->sp) : 0;
+	(flag == 1) ? free(m->mx) : 0;
+	free(m->s);
+	free(m->ra);
+	free(m->p);
+	free(m->re);
 }
 
-static void	free_mlx(t_map *map, int flag)
+static void	free_mlx(t_map *m, int flag)
 {
 	int i;
 
 	i = 0;
-	mlx_destroy_window(map->mx->mlx_ptr, map->mx->win_ptr);
-	free(map->mx);
-	(flag == 3) ? 0 : free(map->mo);
+	mlx_destroy_window(m->mx->mlx_ptr, m->mx->win_ptr);
+	free(m->mx);
+	(flag == 3) ? 0 : free(m->mo);
 	while (i < 5)
 	{
-		free(map->t[i]->img);
-		free(map->t[i]->buf);
-		free(map->t[i++]);
+		free(m->t[i]->img);
+		free(m->t[i]->buf);
+		free(m->t[i++]);
 	}
 	i = 0;
-	free(map->sp->wall_dist);
+	free(m->sp->wall_dist);
 	i = 0;
-	while (map->sp->arr[i])
-		free(map->sp->arr[i++]);
-	free(map->sp->arr);
-	free(map->sp);
-	free(map->i->img);
-	free(map->i->buf);
-	free(map->i);
+	while (m->sp->arr[i])
+		free(m->sp->arr[i++]);
+	free(m->sp->arr);
+	free(m->sp);
+	free(m->i->img);
+	free(m->i->buf);
+	free(m->i);
 }
 
-int			free_dummy(t_map *map)
+int			free_dummy(t_map *m)
 {
-	free_all(map, 2);
+	free_all(m, 2);
 	return (0);
 }
 
-void		free_all(t_map *map, int flag)
+void		free_all(t_map *m, int flag)
 {
 	int i;
 
 	i = 0;
 	if (flag != 0)
 	{
-		free_extra(map, flag);
+		free_extra(m, flag);
 		while (i < 5)
-			free(map->tp[i++]);
+			free(m->tp[i++]);
 		i = 0;
-		while (map->map[i])
-			free(map->map[i++]);
-		free(map->map[i]);
-		free(map->map);
+		while (m->map[i])
+			free(m->map[i++]);
+		free(m->map[i]);
+		free(m->map);
 		i = 0;
-		while (i < map->height)
-			free(map->map_i[i++]);
-		free(map->map_i);
+		while (i < m->height)
+			free(m->map_i[i++]);
+		free(m->map_i);
 	}
-	(flag == 2 || flag == 3) ? free_mlx(map, flag) : 0;
-	free(map);
+	(flag == 2 || flag == 3) ? free_mlx(m, flag) : 0;
+	free(m);
 	exit(0);
 }

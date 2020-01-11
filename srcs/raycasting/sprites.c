@@ -1,117 +1,118 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   raycasting_spri.c                                .::    .:/ .      .::   */
+/*   sprites.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 21:45:59 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 00:20:41 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 02:30:20 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	sprites_select_pixel(t_map *map, int j)
+void	sprites_select_pixel(t_map *m, int j)
 {
 	int y;
 	int d;
 	int color;
 
-	if (map->sp->trans_y > 0 && j > 0 && j < map->re->x &&
-			map->sp->trans_y < map->sp->wall_dist[j])
+	if (m->sp->trans_y > 0 && j > 0 && j < m->re->x &&
+			m->sp->trans_y < m->sp->wall_dist[j])
 	{
-		y = map->sp->draw_start_y;
-		while (y < map->sp->draw_end_y)
+		y = m->sp->draw_start_y;
+		while (y < m->sp->draw_end_y)
 		{
-			d = y * 256 - map->re->y * 128 + map->sp->height * 128;
-			map->sp->tex_y = ((d * map->t[4]->width) / map->sp->height) / 256;
-			if (map->t[4]->width * map->t[4]->height > map->sp->tex_y * map->t[4]->width +
-					map->sp->tex_x)
+			d = y * 256 - m->re->y * 128 + m->sp->height * 128;
+			m->sp->tex_y = ((d * m->t[4]->width) / m->sp->height) / 256;
+			if (m->t[4]->width * m->t[4]->height >
+					m->sp->tex_y * m->t[4]->width + m->sp->tex_x)
 			{
-				color = map->t[4]->buf[map->sp->tex_y * map->t[4]->width + map->sp->tex_x];
+				color = m->t[4]->buf[m->sp->tex_y *
+					m->t[4]->width + m->sp->tex_x];
 				if (color != 0)
-					map->i->buf[y * map->re->x + j] = color;
+					m->i->buf[y * m->re->x + j] = color;
 			}
 			++y;
 		}
 	}
 }
 
-void	sprites_start_end(t_map *map)
+void	sprites_start_end(t_map *m)
 {
-	map->sp->height = abs((int)(map->re->y / map->sp->trans_y));
-	map->sp->draw_start_y = -map->sp->height / 2 + map->re->y / 2;
-	(map->sp->draw_start_y < 0) ? map->sp->draw_start_y = 0 : 0;
-	map->sp->draw_end_y = map->sp->height / 2 + map->re->y / 2;
-	(map->sp->draw_end_y >= map->re->y) ? map->sp->draw_end_y = map->re->y - 1 : 0;
-	map->sp->width = abs((int)(map->re->y / map->sp->trans_y));
-	map->sp->draw_start_x = -map->sp->width / 2 + map->sp->screen_x;
-	(map->sp->draw_start_x < 0) ? map->sp->draw_start_x = 0 : 0;
-	map->sp->draw_end_x = map->sp->width / 2 + map->sp->screen_x;
-	(map->sp->draw_end_x >= map->re->x) ? map->sp->draw_end_x = map->re->x - 1 : 0;
+	m->sp->height = abs((int)(m->re->y / m->sp->trans_y));
+	m->sp->draw_start_y = -m->sp->height / 2 + m->re->y / 2;
+	(m->sp->draw_start_y < 0) ? m->sp->draw_start_y = 0 : 0;
+	m->sp->draw_end_y = m->sp->height / 2 + m->re->y / 2;
+	(m->sp->draw_end_y >= m->re->y) ? m->sp->draw_end_y = m->re->y - 1 : 0;
+	m->sp->width = abs((int)(m->re->y / m->sp->trans_y));
+	m->sp->draw_start_x = -m->sp->width / 2 + m->sp->screen_x;
+	(m->sp->draw_start_x < 0) ? m->sp->draw_start_x = 0 : 0;
+	m->sp->draw_end_x = m->sp->width / 2 + m->sp->screen_x;
+	(m->sp->draw_end_x >= m->re->x) ? m->sp->draw_end_x = m->re->x - 1 : 0;
 }
 
-void	sprites_draw(t_map *map)
+void	sprites_draw(t_map *m)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (i < map->sp->nbr)
+	while (i < m->sp->nbr)
 	{
-		map->sp->x = map->sp->arr[i]->x - map->p->x;
-		map->sp->y = map->sp->arr[i]->y - map->p->y;
-		map->sp->inv_deter = 1.0 / (map->s->plane_x * map->p->dir_y -
-				map->p->dir_x * map->s->plane_y);
-		map->sp->trans_x = map->sp->inv_deter *
-			(map->p->dir_y * map->sp->x - map->p->dir_x * map->sp->y);
-		map->sp->trans_y = map->sp->inv_deter *
-			(-map->s->plane_y * map->sp->x + map->s->plane_x * map->sp->y);
-		map->sp->screen_x = (int)((map->re->x / 2) * (1 + map->sp->trans_x / map->sp->trans_y));
-		sprites_start_end(map);
-		j = map->sp->draw_start_x;
-		while (j < map->sp->draw_end_x)
+		m->sp->x = m->sp->arr[i]->x - m->p->x;
+		m->sp->y = m->sp->arr[i++]->y - m->p->y;
+		m->sp->inv_deter = 1.0 / (m->s->plane_x * m->p->dir_y -
+				m->p->dir_x * m->s->plane_y);
+		m->sp->trans_x = m->sp->inv_deter *
+			(m->p->dir_y * m->sp->x - m->p->dir_x * m->sp->y);
+		m->sp->trans_y = m->sp->inv_deter *
+			(-m->s->plane_y * m->sp->x + m->s->plane_x * m->sp->y);
+		m->sp->screen_x = (int)((m->re->x / 2) *
+				(1 + m->sp->trans_x / m->sp->trans_y));
+		sprites_start_end(m);
+		j = m->sp->draw_start_x;
+		while (j < m->sp->draw_end_x)
 		{
-			map->sp->tex_x = (int)(256 * (j - (-map->sp->width / 2 + map->sp->screen_x))
-					* map->t[4]->height / map->sp->width) / 256;
-			sprites_select_pixel(map, j++);
+			m->sp->tex_x = (int)(256 * (j - (-m->sp->width / 2 +
+				m->sp->screen_x)) * m->t[4]->height / m->sp->width) / 256;
+			sprites_select_pixel(m, j++);
 		}
-		++i;
 	}
 }
 
-void	sprites_sort(t_map *map)
+void	sprites_sort(t_map *m)
 {
 	int		i;
 	t_spr	*tmp;
 
 	i = 0;
-	while (map->sp->arr[i] && map->sp->arr[i + 1])
+	while (m->sp->arr[i] && m->sp->arr[i + 1])
 	{
-		if (map->sp->arr[i]->dist < map->sp->arr[i + 1]->dist)
+		if (m->sp->arr[i]->dist < m->sp->arr[i + 1]->dist)
 		{
-			tmp = map->sp->arr[i + 1];
-			map->sp->arr[i + 1] = map->sp->arr[i];
-			map->sp->arr[i] = tmp;
+			tmp = m->sp->arr[i + 1];
+			m->sp->arr[i + 1] = m->sp->arr[i];
+			m->sp->arr[i] = tmp;
 			i = 0;
 		}
 		++i;
 	}
 }
 
-void	sprites_main(t_map *map)
+void	sprites_main(t_map *m)
 {
 	int i;
 
 	i = 0;
-	while (map->sp->arr[i])
+	while (m->sp->arr[i])
 	{
-		map->sp->arr[i]->dist = pow(map->p->x - map->sp->arr[i]->x, 2)
-			+ pow(map->p->y - map->sp->arr[i]->y, 2);
+		m->sp->arr[i]->dist = pow(m->p->x - m->sp->arr[i]->x, 2)
+			+ pow(m->p->y - m->sp->arr[i]->y, 2);
 		++i;
 	}
-	sprites_sort(map);
-	sprites_draw(map);
+	sprites_sort(m);
+	sprites_draw(m);
 }

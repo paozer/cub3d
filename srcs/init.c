@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/24 14:38:24 by paozer      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 01:08:39 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,80 +15,81 @@
 
 t_map	*init_map(void)
 {
-	t_map	*map;
+	t_map	*m;
 
-	if (!(map = malloc(sizeof(*map))))
+	if (!(m = malloc(sizeof(*m))))
 		print_error(8, NULL, NULL, 0);
-	map->fc = malloc(sizeof(*map->fc));
-	map->cc = malloc(sizeof(*map->cc));
-	map->flag_clr = 0;
-	map->mx = malloc(sizeof(*map->mx));
-	map->re = malloc(sizeof(*map->re));
-	map->s = malloc(sizeof(*map->s));
-	map->p = malloc(sizeof(*map->p));
-	(map->p) ? map->p->set_flag = 0 : 0;
-	map->ra = malloc(sizeof(*map->ra));
-	map->sp = malloc(sizeof(*map->sp));
-	map->sp->nbr = 0;
-	map->save = 0;
-	map->config_flag = 0;
-	if (!(map && map->fc && map->cc && map->mx && map->re && map->s && map->p && map->ra && map->sp))
-		print_error(8, NULL, map, 1);
-	return (map);
+	m->fc = malloc(sizeof(*m->fc));
+	m->cc = malloc(sizeof(*m->cc));
+	m->flag_clr = 0;
+	m->mx = malloc(sizeof(*m->mx));
+	m->re = malloc(sizeof(*m->re));
+	m->s = malloc(sizeof(*m->s));
+	m->p = malloc(sizeof(*m->p));
+	(m->p) ? m->p->set_flag = 0 : 0;
+	m->ra = malloc(sizeof(*m->ra));
+	m->sp = malloc(sizeof(*m->sp));
+	m->sp->nbr = 0;
+	m->save = 0;
+	m->config_flag = 0;
+	if (!(m && m->fc && m->cc && m->mx && m->re &&
+				m->s && m->p && m->ra && m->sp))
+		print_error(8, NULL, m, 1);
+	return (m);
 }
 
-void	init_sprites(t_map *map)
+void	init_sprites(t_map *m)
 {
 	int i;
 	int j;
 	int y;
 
-	if (!(map->sp->arr = malloc(sizeof(*map->sp->arr) * (map->sp->nbr + 1))))
+	if (!(m->sp->arr = malloc(sizeof(*m->sp->arr) * (m->sp->nbr + 1))))
 		return ;
-	map->sp->arr[map->sp->nbr] = NULL;
+	m->sp->arr[m->sp->nbr] = NULL;
 	i = -1;
 	y = 0;
-	while (++i < map->height)
+	while (++i < m->height)
 	{
 		j = -1;
-		while (++j < map->width)
+		while (++j < m->width)
 		{
-			if (map->map_i[i][j] == 2)
+			if (m->map_i[i][j] == 2)
 			{
-				if (!(map->sp->arr[y] = malloc(sizeof(*map->sp->arr[y]))))
+				if (!(m->sp->arr[y] = malloc(sizeof(*m->sp->arr[y]))))
 					return ;
-				map->sp->arr[y]->x = i + .5;
-				map->sp->arr[y++]->y = j + .5;
+				m->sp->arr[y]->x = i + .5;
+				m->sp->arr[y++]->y = j + .5;
 			}
 		}
 	}
-	if (!(map->sp->wall_dist = malloc(sizeof(*map->sp->wall_dist) * map->re->x)))
+	if (!(m->sp->wall_dist = malloc(sizeof(*m->sp->wall_dist) * m->re->x)))
 		return ;
 }
 
-void	init(t_map *map)
+void	init(t_map *m)
 {
 	int i;
 
 	i = 0;
-	if ((map->mx->mlx_ptr = mlx_init()) == NULL)
+	if ((m->mx->mlx_ptr = mlx_init()) == NULL)
 		return ;
-	if ((map->mx->win_ptr = mlx_new_window(map->mx->mlx_ptr, map->re->x, map->re->y,
+	if ((m->mx->win_ptr = mlx_new_window(m->mx->mlx_ptr, m->re->x, m->re->y,
 					"cube3d")) == NULL)
 		return ;
-	if (!(map->i = malloc(sizeof(*(map->i)))))
+	if (!(m->i = malloc(sizeof(*(m->i)))))
 		return ;
-	map->i->img = mlx_new_image(map->mx->mlx_ptr, map->re->x, map->re->y);
-	map->i->buf = (int *)mlx_get_data_addr(map->i->img, &map->i->bpp,
-			&map->i->size_line, &map->i->endian);
+	m->i->img = mlx_new_image(m->mx->mlx_ptr, m->re->x, m->re->y);
+	m->i->buf = (int *)mlx_get_data_addr(m->i->img, &m->i->bpp,
+			&m->i->size_line, &m->i->endian);
 	while (i < 5)
 	{
-		if (!(map->t[i] = malloc(sizeof(t_img))))
+		if (!(m->t[i] = malloc(sizeof(t_img))))
 			return ;
-		map->t[i]->img = mlx_xpm_file_to_image(map->mx->mlx_ptr, map->tp[i],
-				&map->t[i]->width, &map->t[i]->height);
-		map->t[i]->buf = (int *)mlx_get_data_addr(map->t[i]->img, &map->t[i]->bpp,
-				&map->t[i]->size_line, &map->t[i]->endian);
+		m->t[i]->img = mlx_xpm_file_to_image(m->mx->mlx_ptr, m->tp[i],
+				&m->t[i]->width, &m->t[i]->height);
+		m->t[i]->buf = (int *)mlx_get_data_addr(m->t[i]->img, &m->t[i]->bpp,
+				&m->t[i]->size_line, &m->t[i]->endian);
 		++i;
 	}
 }

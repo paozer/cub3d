@@ -6,14 +6,14 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 03:31:34 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/24 15:03:31 by paozer      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 02:26:13 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_error(int flag, void *arg, t_map *map, int free_flag)
+void	print_error(int flag, void *arg, t_map *m, int free_flag)
 {
 	write(1, "Error\n", 6);
 	(flag == 0) ? ft_printf("Resolution is not valid.\n") : 1;
@@ -28,10 +28,10 @@ void	print_error(int flag, void *arg, t_map *map, int free_flag)
 	(flag == 7) ? ft_printf("No start position for player.\n") : 1;
 	(flag == 8) ? ft_printf("Could not allocate sufficient memory.\n") : 1;
 	(flag == 9) ? ft_printf("Multiple or missing specifications.\n") : 1;
-	free_all(map, free_flag);
+	free_all(m, free_flag);
 }
 
-char	*set_paths(char *line, t_map *map)
+char	*set_paths(char *line, t_map *m)
 {
 	int		i;
 	char	*str;
@@ -40,7 +40,7 @@ char	*set_paths(char *line, t_map *map)
 	while (line[i] && ft_isspace(line[i]))
 		++i;
 	str = ft_strdup(line + i);
-	++map->config_flag;
+	++m->config_flag;
 	return (str);
 }
 
@@ -79,4 +79,14 @@ char	*ft_strdup_mod(char *str)
 	s[j] = '\0';
 	free(str);
 	return (s);
+}
+
+void	ft_atoi_pos_return(char *s, int *n, int *i)
+{
+	while (s[*i] && (ft_isspace(s[*i]) || s[*i] == ','))
+		*i += 1;
+	if (s[*i] && ft_isdigit(s[*i]))
+		*n = ft_atoi(s + *i);
+	while (s[*i] && ft_isdigit(s[*i]))
+		*i += 1;
 }

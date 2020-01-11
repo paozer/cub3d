@@ -6,109 +6,111 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 01:38:04 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 06:25:26 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 01:06:42 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	compute_first_section(t_map *map)
+void	compute_first_section(t_map *m)
 {
-	if (map->ra->dir_x < 0)
+	if (m->ra->dir_x < 0)
 	{
-		map->ra->step_x = -1;
-		map->ra->side_dist_x = (map->p->x - (double)map->ra->map_x) * map->ra->delta_dist_x;
+		m->ra->step_x = -1;
+		m->ra->side_dist_x = (m->p->x - (double)m->ra->map_x) *
+			m->ra->delta_dist_x;
 	}
 	else
 	{
-		map->ra->step_x = 1;
-		map->ra->side_dist_x = ((double)map->ra->map_x + 1 - map->p->x) *
-			map->ra->delta_dist_x;
+		m->ra->step_x = 1;
+		m->ra->side_dist_x = ((double)m->ra->map_x + 1 - m->p->x) *
+			m->ra->delta_dist_x;
 	}
-	if (map->ra->dir_y < 0)
+	if (m->ra->dir_y < 0)
 	{
-		map->ra->step_y = -1;
-		map->ra->side_dist_y = (map->p->y - (double)map->ra->map_y) * map->ra->delta_dist_y;
+		m->ra->step_y = -1;
+		m->ra->side_dist_y = (m->p->y - (double)m->ra->map_y) *
+			m->ra->delta_dist_y;
 	}
 	else
 	{
-		map->ra->step_y = 1;
-		map->ra->side_dist_y = ((double)map->ra->map_y + 1 - map->p->y) *
-			map->ra->delta_dist_y;
+		m->ra->step_y = 1;
+		m->ra->side_dist_y = ((double)m->ra->map_y + 1 - m->p->y) *
+			m->ra->delta_dist_y;
 	}
 }
 
-void	compute_wall_hit(t_map *map)
+void	compute_wall_hit(t_map *m)
 {
-	map->ra->hit = 0;
-	while (map->ra->hit == 0)
+	m->ra->hit = 0;
+	while (m->ra->hit == 0)
 	{
-		if (map->ra->side_dist_x < map->ra->side_dist_y)
+		if (m->ra->side_dist_x < m->ra->side_dist_y)
 		{
-			map->ra->side_dist_x += map->ra->delta_dist_x;
-			map->ra->map_x += map->ra->step_x;
-			map->ra->side = 0;
+			m->ra->side_dist_x += m->ra->delta_dist_x;
+			m->ra->map_x += m->ra->step_x;
+			m->ra->side = 0;
 		}
 		else
 		{
-			map->ra->side_dist_y += map->ra->delta_dist_y;
-			map->ra->map_y += map->ra->step_y;
-			map->ra->side = 1;
+			m->ra->side_dist_y += m->ra->delta_dist_y;
+			m->ra->map_y += m->ra->step_y;
+			m->ra->side = 1;
 		}
-		if (map->map_i[map->ra->map_x][map->ra->map_y] == 1)
-			map->ra->hit = 1;
+		if (m->map_i[m->ra->map_x][m->ra->map_y] == 1)
+			m->ra->hit = 1;
 	}
-	if (map->ra->side == 0)
-		map->ra->wall_dist = ((double)map->ra->map_x - map->p->x +
-				(1 - map->ra->step_x) / 2) / map->ra->dir_x;
+	if (m->ra->side == 0)
+		m->ra->wall_dist = ((double)m->ra->map_x - m->p->x +
+				(1 - m->ra->step_x) / 2) / m->ra->dir_x;
 	else
-		map->ra->wall_dist = ((double)map->ra->map_y - map->p->y +
-				(1 - map->ra->step_y) / 2) / map->ra->dir_y;
+		m->ra->wall_dist = ((double)m->ra->map_y - m->p->y +
+				(1 - m->ra->step_y) / 2) / m->ra->dir_y;
 }
 
-void	raycasting(t_map *map)
+void	raycasting(t_map *m)
 {
 	int x;
 
 	x = 0;
-	mlx_clear_window(map->mx->mlx_ptr, map->mx->win_ptr);
-	while (x < map->re->x)
+	mlx_clear_window(m->mx->mlx_ptr, m->mx->win_ptr);
+	while (x < m->re->x)
 	{
-		map->s->cam_x = 2 * x / (double)map->re->x - 1;
-		map->ra->dir_x = map->p->dir_x + map->s->plane_x * map->s->cam_x;
-		map->ra->dir_y = map->p->dir_y + map->s->plane_y * map->s->cam_x;
-		map->ra->map_x = (int)map->p->x;
-		map->ra->map_y = (int)map->p->y;
-		map->ra->delta_dist_x = fabs(1 / map->ra->dir_x);
-		map->ra->delta_dist_y = fabs(1 / map->ra->dir_y);
-		compute_first_section(map);
-		compute_wall_hit(map);
-		map->sp->wall_dist[x] = map->ra->wall_dist;
-		map->ra->line_h = (int)(map->re->y / map->ra->wall_dist);
-		draw(map, x);
+		m->s->cam_x = 2 * x / (double)m->re->x - 1;
+		m->ra->dir_x = m->p->dir_x + m->s->plane_x * m->s->cam_x;
+		m->ra->dir_y = m->p->dir_y + m->s->plane_y * m->s->cam_x;
+		m->ra->map_x = (int)m->p->x;
+		m->ra->map_y = (int)m->p->y;
+		m->ra->delta_dist_x = fabs(1 / m->ra->dir_x);
+		m->ra->delta_dist_y = fabs(1 / m->ra->dir_y);
+		compute_first_section(m);
+		compute_wall_hit(m);
+		m->sp->wall_dist[x] = m->ra->wall_dist;
+		m->ra->line_h = (int)(m->re->y / m->ra->wall_dist);
+		draw(m, x);
 		++x;
 	}
-	sprites_main(map);
-	if (map->save == 1)
-		map_to_bmp(map);
-	mlx_put_image_to_window(map->mx->mlx_ptr, map->mx->win_ptr, map->i->img, 0, 0);
+	sprites_main(m);
+	if (m->save == 1)
+		map_to_bmp(m);
+	mlx_put_image_to_window(m->mx->mlx_ptr, m->mx->win_ptr, m->i->img, 0, 0);
 }
 
-void	start(t_map *map)
+void	start(t_map *m)
 {
-	raycasting(map);
-	if (!(map->mo = malloc(sizeof(*map->mo))))
+	raycasting(m);
+	if (!(m->mo = malloc(sizeof(*m->mo))))
 		return ;
-	map->mo->front = 0;
-	map->mo->back = 0;
-	map->mo->right = 0;
-	map->mo->left = 0;
-	map->mo->rot_right = 0;
-	map->mo->rot_left = 0;
-	mlx_loop_hook(map->mx->mlx_ptr, movt_do, map);
-	mlx_hook(map->mx->win_ptr, 2, 0, movt_pressed, map);
-	mlx_hook(map->mx->win_ptr, 3, 0, movt_released, map);
-	mlx_hook(map->mx->win_ptr, 17, 0, free_dummy, map);
-	mlx_loop(map->mx->mlx_ptr);
+	m->mo->front = 0;
+	m->mo->back = 0;
+	m->mo->right = 0;
+	m->mo->left = 0;
+	m->mo->rot_right = 0;
+	m->mo->rot_left = 0;
+	mlx_loop_hook(m->mx->mlx_ptr, movt_do, m);
+	mlx_hook(m->mx->win_ptr, 2, 0, movt_pressed, m);
+	mlx_hook(m->mx->win_ptr, 3, 0, movt_released, m);
+	mlx_hook(m->mx->win_ptr, 17, 0, free_dummy, m);
+	mlx_loop(m->mx->mlx_ptr);
 }

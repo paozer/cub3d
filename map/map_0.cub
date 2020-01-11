@@ -6,8 +6,8 @@ WE textures/wolf_brick.xpm
 EA textures/wolf_grass.xpm
 S textures/eye.xpm
 
-C 230, 230, 250
-F 105, 105, 105
+C 42, 42, 42
+F 105, 3, 30
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1

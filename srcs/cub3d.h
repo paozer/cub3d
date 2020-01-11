@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/27 13:03:56 by paozer      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 02:30:39 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,21 +23,8 @@
 # include "../libft/includes/ft_printf.h"
 # include <stdio.h>
 
-// # define map->p map->player
-// # define map->s map->screen
-// # define map->mo map->movt
-// # define map->ra map->ray
-// # define map->mx map->mlx
-// # define map->sp map->sprites
-// # define map->i map->img
-// # define map->t map->texture
-// # define map->tp map->texture_path
-// # define map->re map->resolution
-// # define map->fc map->flo_clr
-// # define map->cc map->cei_clr
 # define SPEED .1
 # define ROTSPEED .05
-// # define ALL map->fc && map->cc && map->mx && map->re && map->s && map->p && map->ra && map->sp
 
 typedef struct		s_res
 {
@@ -174,52 +161,48 @@ typedef struct		s_map
 	int				height;
 	int				config_flag;
 
-	t_res			*re; //*resolution;
-	t_player		*p; //*player;
-	t_movt			*mo; //*movt;
-	t_screen		*s; //*screen;
-	t_ray			*ra; //*ray;
-	char			*tp[5]; //*texture_path[5];
-	t_img			*t[5]; //*texture[5];
-	t_sprite		*sp; //*sprites;
-	int				*fc; //*flo_clr;
-	int				*cc; //*cei_clr;
+	t_res			*re;
+	t_player		*p;
+	t_movt			*mo;
+	t_screen		*s;
+	t_ray			*ra;
+	char			*tp[5];
+	t_img			*t[5];
+	t_sprite		*sp;
+	int				*fc;
+	int				*cc;
 	int				flag_clr;
-	t_mlx			*mx; //*mlx;
-	t_img			*i; //*img;
+	t_mlx			*mx;
+	t_img			*i;
 	int				save;
 }					t_map;
 
 t_map				*parsing(char *params);
-void				check_parsing(t_map *map);
-void				check_color(int *c, t_map *map);
-void				set_map(t_map *map, int fd, char *line);
-void				set_player(t_map *map, int x, int y);
-void				init(t_map *map);
+void				check_parsing(t_map *m);
+void				check_color(int *c, t_map *m);
+void				set_map(t_map *m, int fd, char *line);
+void				set_player(t_map *m, int x, int y);
+void				init(t_map *m);
 t_map				*init_map(void);
 
-void				start(t_map *map);
-void				raycasting(t_map *map);
-void				draw(t_map *map, int x);
-int					movt_do(t_map *map);
-int					movt_pressed(int key_code, t_map *map);
-int					movt_released(int key_code, t_map *map);
-void				movt_front_back(int key_code, t_map *map);
-void				movt_left_right(int key_code, t_map *map);
-int					rot_left_right(int key_code, t_map *map);
-void				sprites_main(t_map *map);
-void				init_sprites(t_map *map);
+void				start(t_map *m);
+void				raycasting(t_map *m);
+void				draw(t_map *m, int x);
+int					movt_do(t_map *m);
+int					movt_pressed(int key_code, t_map *m);
+int					movt_released(int key_code, t_map *m);
+void				movt_front_back(int key_code, t_map *m);
+void				movt_left_right(int key_code, t_map *m);
+int					rot_left_right(int key_code, t_map *m);
+void				sprites_main(t_map *m);
+void				init_sprites(t_map *m);
 
-void				print_error(int flag, void *arg, t_map *map, int free_flag);
-void				free_all(t_map *map, int flag);
-int					free_dummy(t_map *map);
+void				print_error(int flag, void *arg, t_map *m, int free_flag);
+void				free_all(t_map *m, int flag);
+int					free_dummy(t_map *m);
 char				*ft_strdup_mod(char *str);
-char				*set_paths(char *line, t_map *map);
-void				map_to_bmp(t_map *map);
-
-void				ft_print_parsing(t_map *map);
-void				ft_print_map(char **map);
-void				ft_print_map_i(int **map, int wd, int ht);
-void				ft_print_spr(t_map *map);
+char				*set_paths(char *line, t_map *m);
+void				map_to_bmp(t_map *m);
+void				ft_atoi_pos_return(char *s, int *c, int *i);
 
 #endif
