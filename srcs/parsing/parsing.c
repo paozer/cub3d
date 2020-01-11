@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 02:42:57 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 06:58:27 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -110,10 +110,10 @@ t_map			*parsing(char *params)
 	i = 0;
 	line = NULL;
 	m = init_map();
-	if ((fd = open(params, O_RDONLY)) == -1)
-		print_error(2, params, m, 1);
 	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
 		print_error(3, params, m, 1) : 1;
+	if ((fd = open(params, O_RDONLY)) == -1)
+		print_error(2, params, m, 1);
 	line = gnl_file(m, fd, i);
 	set_map(m, fd, line);
 	check_parsing(m);
