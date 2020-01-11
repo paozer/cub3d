@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 06:56:41 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 19:05:56 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,8 @@ void	init_map2(t_map *m)
 {
 	m->map = NULL;
 	m->map_i = NULL;
+	m->height = 0;
+	m->width = 0;
 }
 
 t_map	*init_map(void)
