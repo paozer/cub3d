@@ -6,7 +6,7 @@
 /*   By: pramella <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 14:15:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/05 13:32:21 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 02:53:00 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,13 +76,12 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 
-typedef struct		s_list_fd
+typedef struct		s_lst_fd
 {
 	int				fd;
 	int				ret;
 	char			*buf;
-	struct s_list_fd
-	*next;
+	struct s_lst_fd	*next;
 }					t_list_fd;
 
 int					get_next_line(int fd, char **line);
