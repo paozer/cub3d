@@ -36,9 +36,7 @@ LIBFT	= libft/
 
 LIBNAME = libft.a
 
-MLXINC	= X11/includes/
-
-MLXLIB	= X11/lib/
+LIBMLX	= mlx/
 
 NAME	= cub3D
 
@@ -46,7 +44,7 @@ CC		= gcc
 
 CFLAGS	= -Wall -Werror -Wextra -I srcs #-g -fsanitize=address
 
-MLXFLAGS = -I $(MLXINC) -g -L $(MLXLIB) -l mlx -framework OpenGL -framework AppKit
+MLXFLAGS = -I $(LIBMLX) -g -L $(LIBMLX) -l mlx -framework OpenGL -framework AppKit
 
 RM		= rm -f
 
@@ -57,11 +55,13 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			make -C $(LIBFT)
+			make -C $(LIBMLX)
 			$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(LIBFT)$(LIBNAME)
 
 clean:
 			$(RM) $(OBJS)
 			cd $(LIBFT) && make clean
+			cd $(LIBMLX) && make clean
 
 fclean: 	clean
 			$(RM) $(NAME)

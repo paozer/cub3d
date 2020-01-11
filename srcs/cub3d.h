@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 14:12:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 02:46:57 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 03:30:11 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <math.h>
-# include "../X11/includes/mlx.h"
+# include "../mlx/mlx.h"
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
 # include <stdio.h>
