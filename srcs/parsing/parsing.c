@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/12 21:03:10 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/12 22:16:23 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,11 +17,12 @@ static void		set_resolution(char *line, t_map *m)
 {
 	int i;
 
-	m->re->x = ft_atoi(line);
 	i = 0;
-	while (ft_isdigit(line[i]))
+	ft_atoi_pos_return(line, &m->re->x, &i);
+	ft_atoi_pos_return(line, &m->re->y, &i);
+	while (ft_isspace(line[i]))
 		++i;
-	m->re->y = ft_atoi(line + i);
+	(line[i]) ? m->re->x = -1 : 0;
 	i = 0;
 	while (line[i])
 	{
@@ -46,6 +47,9 @@ static void		set_color(char *line, t_map *m, int flag)
 	ft_atoi_pos_return(line, &r, &i);
 	ft_atoi_pos_return(line, &g, &i);
 	ft_atoi_pos_return(line, &b, &i);
+	while (ft_isspace(line[i]))
+		++i;
+	(line[i]) ? m->flag_clr = 1 : 0;
 	(r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) ?
 		m->flag_clr = 1 : 0;
 	(flag == 1) ? (*m->cc = (r << 16) | (g << 8) | (b)) :
