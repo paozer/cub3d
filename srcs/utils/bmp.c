@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/22 06:20:46 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 06:41:19 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/12 18:48:53 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,8 @@ void	create_header_file(const char *filename, t_map *m)
 	t_file_header	bfh;
 	t_bmp_header	bih;
 
-	ft_memcpy(&bfh.bitmap_type, "BM", 2);
+	bfh.bitmap_type[0] = 'B';
+	bfh.bitmap_type[1] = 'M';
 	bfh.file_size = m->re->x * m->re->y * 4 + 54;
 	bfh.reserved1 = 0;
 	bfh.reserved2 = 0;
