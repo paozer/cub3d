@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 21:45:59 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 21:45:23 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/12 22:27:55 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,7 @@ void	sprites_draw(t_map *m)
 		while (j < m->sp->draw_end_x)
 		{
 			m->sp->tex_x = (int)(256 * (j - (-m->sp->width / 2 +
-							m->sp->screen_x)) * m->t[4]->height / m->sp->width) / 256;
+				m->sp->screen_x)) * m->t[4]->height / m->sp->width) / 256;
 			sprites_select_pixel(m, j++);
 		}
 	}
