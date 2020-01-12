@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 19:05:56 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/12 22:29:38 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,8 +27,7 @@ t_map	*init_map(void)
 	t_map	*m;
 
 	i = 0;
-	if (!(m = malloc(sizeof(*m))))
-		print_error(8, NULL, NULL, 0);
+	(!(m = malloc(sizeof(*m)))) ? print_error(8, NULL, NULL, 0) : 0;
 	while (i < 5)
 		m->tp[i++] = NULL;
 	m->fc = malloc(sizeof(*m->fc));
@@ -89,8 +88,8 @@ void	init(t_map *m)
 		return ;
 	if (m->save == 0)
 		if ((m->mx->win_ptr = mlx_new_window(m->mx->mlx_ptr,
-					m->re->x, m->re->y, "cube3d")) == NULL)
-		return ;
+						m->re->x, m->re->y, "cube3d")) == NULL)
+			return ;
 	if (!(m->i = malloc(sizeof(*(m->i)))))
 		return ;
 	m->i->img = mlx_new_image(m->mx->mlx_ptr, m->re->x, m->re->y);
