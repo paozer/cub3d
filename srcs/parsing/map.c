@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/09 20:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 21:02:08 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 01:45:57 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,35 +35,6 @@ static char	**ft_realloc(char **str, int size, int len)
 	return (new_str);
 }
 
-static int	**set_int_map(t_map *m)
-{
-	int i;
-	int j;
-	int **map_i;
-
-	i = 0;
-	if (!(map_i = malloc(sizeof(*map_i) * ft_strlen(m->map[i]))))
-		return (NULL);
-	while (m->map[i])
-	{
-		j = 0;
-		if (!(map_i[i] = malloc(sizeof(**map_i) * ft_strlen(m->map[i]))))
-			return (NULL);
-		while (m->map[i][j])
-		{
-			if (ft_strchr("NSWE", m->map[i][j]))
-				map_i[i][j] = 0;
-			else
-				map_i[i][j] = m->map[i][j] - 48;
-			if (m->map[i][j] == '2')
-				m->sp->nbr += 1;
-			++j;
-		}
-		++i;
-	}
-	return (map_i);
-}
-
 void		set_map(t_map *m, int fd, char *line)
 {
 	int		i;
@@ -85,7 +56,6 @@ void		set_map(t_map *m, int fd, char *line)
 	free(map_line);
 	free(m->map[i]);
 	m->map[i] = NULL;
-	m->map_i = set_int_map(m);
 	m->width = len;
 	m->height = i;
 }

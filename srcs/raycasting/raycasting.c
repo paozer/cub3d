@@ -58,7 +58,7 @@ void	compute_wall_hit(t_map *m)
 			m->ra->map_y += m->ra->step_y;
 			m->ra->side = 1;
 		}
-		if (m->map_i[m->ra->map_x][m->ra->map_y] == 1)
+		if (m->map[m->ra->map_x][m->ra->map_y] == '1')
 			m->ra->hit = 1;
 	}
 	if (m->ra->side == 0)
