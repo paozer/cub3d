@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 02:05:04 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 03:38:12 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -81,7 +81,7 @@ void	check_parsing(t_map *m)
 	(m->re->y > 1418) ? m->re->y = 1418 : 0;
 	(m->config_flag != 8) ? print_error(9, (void *)0, m, 1) : 0;
 	check_path(m);
-	check_map(m);
+	(m->map) ? check_map(m) : 0;
 	(m->p->set_flag != 1) ? print_error(6, (void *)0, m, 1) : 0;
 	(m->flag_clr == 1) ? print_error(1, (void *)0, m, 1) : 0;
 }

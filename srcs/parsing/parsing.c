@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/04 19:29:14 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/12 22:16:23 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 03:43:04 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,17 +89,17 @@ char			*gnl_file(t_map *m, int fd, int i)
 			++i;
 		(line[i] == 'R') ? set_resolution(line + i + 1, m) : 1;
 		(line[i] == 'N' && line[i + 1] == 'O') ?
-			(m->tp[0] = set_paths(line + 2, m, 0)) : 0;
+			(m->tp[0] = set_paths(line + i + 2, m, 0)) : 0;
 		(line[i] == 'S' && line[i + 1] == 'O') ?
-			(m->tp[1] = set_paths(line + 2, m, 1)) : 0;
+			(m->tp[1] = set_paths(line + i + 2, m, 1)) : 0;
 		(line[i] == 'W' && line[i + 1] == 'E') ?
-			(m->tp[2] = set_paths(line + 2, m, 2)) : 0;
+			(m->tp[2] = set_paths(line + i + 2, m, 2)) : 0;
 		(line[i] == 'E' && line[i + 1] == 'A') ?
-			(m->tp[3] = set_paths(line + 2, m, 3)) : 0;
+			(m->tp[3] = set_paths(line + i + 2, m, 3)) : 0;
 		(line[i] == 'S' && line[i + 1] != 'O') ?
 			(m->tp[4] = set_paths(line + 1, m, 4)) : 0;
-		(line[i] == 'F') ? set_color(line + 2, m, 0) : 0;
-		(line[i] == 'C') ? set_color(line + 2, m, 1) : 0;
+		(line[i] == 'F') ? set_color(line + i + 2, m, 0) : 0;
+		(line[i] == 'C') ? set_color(line + i + 2, m, 1) : 0;
 		if (ft_isdigit(line[i]))
 			return (line);
 		free(line);
@@ -109,20 +109,18 @@ char			*gnl_file(t_map *m, int fd, int i)
 
 t_map			*parsing(char *params)
 {
-	int		i;
 	int		fd;
 	char	*line;
 	t_map	*m;
 
-	i = 0;
 	line = NULL;
 	m = init_map();
 	(ft_strncmp(params + ft_strlen(params) - 4, ".cub", 4) != 0) ?
 		print_error(3, params, m, 1) : 1;
 	if ((fd = open(params, O_RDONLY)) == -1)
 		print_error(2, params, m, 1);
-	line = gnl_file(m, fd, i);
-	set_map(m, fd, line);
+	line = gnl_file(m, fd, 0);
+	(line != NULL) ? set_map(m, fd, line) : 0;
 	check_parsing(m);
 	close(fd);
 	return (m);
