@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 22:57:17 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 01:51:00 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 03:29:36 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,10 +30,10 @@ static void	free_mlx(t_map *m, int flag)
 	mlx_destroy_image(m->mx->mlx_ptr, m->i->img);
 	free(m->i);
 	free(m->mx);
-	free(m->sp->wall_dist);
 	i = 0;
 	while (m->sp->arr[i])
 		free(m->sp->arr[i++]);
+	free(m->sp->wall_dist);
 	free(m->sp->arr);
 	free(m->sp);
 }
@@ -51,8 +51,8 @@ void		free_all(t_map *m, int flag)
 	i = 0;
 	if (flag != 0)
 	{
-		free(m->cc);
 		free(m->fc);
+		free(m->cc);
 		(flag == 1) ? free(m->sp) : 0;
 		(flag == 1) ? free(m->mx) : 0;
 		free(m->s);
@@ -69,6 +69,5 @@ void		free_all(t_map *m, int flag)
 	}
 	(flag == 2 || flag == 3) ? free_mlx(m, flag) : 0;
 	free(m);
-	while (1) ;
 	exit(0);
 }
