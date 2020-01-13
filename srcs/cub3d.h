@@ -156,7 +156,6 @@ typedef struct		s_movt
 typedef struct		s_map
 {
 	char			**map;
-	int				**map_i;
 	int				width;
 	int				height;
 	int				config_flag;

@@ -22,7 +22,7 @@ void	movt_front_back(int key_code, t_map *m)
 	{
 		new_x = (int)(m->p->x + m->p->dir_x * SPEED);
 		new_y = (int)(m->p->y + m->p->dir_y * SPEED);
-		if (m->map_i[new_x][new_y] == 1)
+		if (m->map[new_x][new_y] == '1')
 			return ;
 		m->p->x += m->p->dir_x * SPEED;
 		m->p->y += m->p->dir_y * SPEED;
@@ -31,7 +31,7 @@ void	movt_front_back(int key_code, t_map *m)
 	{
 		new_x = (int)(m->p->x - m->p->dir_x * SPEED);
 		new_y = (int)(m->p->y - m->p->dir_y * SPEED);
-		if (m->map_i[new_x][new_y] == 1)
+		if (m->map[new_x][new_y] == '1')
 			return ;
 		m->p->x -= m->p->dir_x * SPEED;
 		m->p->y -= m->p->dir_y * SPEED;
@@ -47,7 +47,7 @@ void	movt_left_right(int key_code, t_map *m)
 	{
 		new_x = (int)(m->p->x - m->p->dir_y * SPEED);
 		new_y = (int)(m->p->y + m->p->dir_x * SPEED);
-		if (m->map_i[new_x][new_y] == 1)
+		if (m->map[new_x][new_y] == '1')
 			return ;
 		m->p->x -= m->p->dir_y * SPEED;
 		m->p->y += m->p->dir_x * SPEED;
@@ -56,7 +56,7 @@ void	movt_left_right(int key_code, t_map *m)
 	{
 		new_x = (int)(m->p->x + m->p->dir_y * SPEED);
 		new_y = (int)(m->p->y - m->p->dir_x * SPEED);
-		if (m->map_i[new_x][new_y] == 1)
+		if (m->map[new_x][new_y] == '1')
 			return ;
 		m->p->x += m->p->dir_y * SPEED;
 		m->p->y -= m->p->dir_x * SPEED;

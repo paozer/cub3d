@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/06 16:22:56 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 06:27:52 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 02:05:04 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,6 +60,7 @@ void	check_map(t_map *m)
 		(m->map[i][j] != '1') ? print_error(5, &i, m, 1) : 1;
 		while (m->map[i][j])
 		{
+			(m->map[i][j] == '2') ? m->sp->nbr += 1 : 0;
 			if (!(ft_strchr("012NSEW", m->map[i][j]) ||
 						ft_isspace(m->map[i][j])))
 				print_error(4, &m->map[i][j], m, 1);

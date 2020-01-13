@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/05 18:32:50 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/12 22:29:38 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 01:52:24 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,6 @@
 void	init_map2(t_map *m)
 {
 	m->map = NULL;
-	m->map_i = NULL;
 	m->height = 0;
 	m->width = 0;
 }
@@ -66,7 +65,7 @@ void	init_sprites(t_map *m)
 		j = -1;
 		while (++j < m->width)
 		{
-			if (m->map_i[i][j] == 2)
+			if (m->map[i][j] == '2')
 			{
 				if (!(m->sp->arr[y] = malloc(sizeof(*m->sp->arr[y]))))
 					return ;
