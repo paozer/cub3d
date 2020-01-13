@@ -6,7 +6,7 @@
 /*   By: pramella <pramella@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/14 17:50:21 by pramella     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 01:10:07 by pramella    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 04:59:48 by pramella    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,19 +66,19 @@ void		draw(t_map *m, int x)
 	m->i->draw_start = (m->re->y - m->ra->line_h) / 2;
 	m->i->draw_end = (m->re->y + m->ra->line_h) / 2;
 	m->i->draw_start = (m->i->draw_start > 0) ? m->i->draw_start : 0;
-	m->i->draw_end = (m->i->draw_end >= m->re->y) ?
-		m->re->y - 1 : m->i->draw_end;
+	m->i->draw_end = (m->i->draw_end > m->re->y) ?
+		m->re->y : m->i->draw_end;
 	text_index = select_texture(m);
 	while (y < m->re->y)
 	{
 		if (y < m->i->draw_start)
 			m->i->buf[y * m->re->x + x] = *m->cc;
-		if (y >= m->i->draw_start && y < m->i->draw_end)
+		if (y >= m->i->draw_start && y <= m->i->draw_end)
 		{
 			select_pixel(m, text_index, x, y);
 			y = m->i->draw_end;
 		}
-		if (y >= m->i->draw_end)
+		if (y > m->i->draw_end)
 			m->i->buf[y * m->re->x + x] = *m->fc;
 		++y;
 	}
