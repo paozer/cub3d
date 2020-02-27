@@ -11,4 +11,5 @@
 * example of (non)-valid maps can be found in the map directory
 
 ### To-Do ###
-* if the resolution is higher than the displays > adjust
+* parse map first as a linked list of char * and then as a char * * to avoid realloc
+* move map extension check to main to avoid unecessary initialisations
