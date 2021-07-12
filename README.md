@@ -18,3 +18,5 @@ You can move the view using W, A, S, D and the arrow keys. The program can be st
 ### To-Do
 * parse map first as a linked list of char * and then as a char * * to avoid realloc
 * move map extension check to main to avoid unecessary initialisations
+
+![](example.gif)
